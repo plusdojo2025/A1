@@ -22,6 +22,15 @@
 			<li><a href="A1/VisitorListServlet">一覧</a>
 		</ul>
 	</nav>
+	
+	<!-- ボタン設置 -->>
+	<div class="">
+	<a href="A1/GachaServlet">ガチャ</a>
+		<a href="A1/QaServlet">Q&A</a>
+		<a href="A1/SettingServlet">設定</a>
+		<a href="A1/LogoutServlet">ログアウト</a>
+	</div>
+	
 	</header>
 <!-- ヘッダー(ここまで) -->
 
