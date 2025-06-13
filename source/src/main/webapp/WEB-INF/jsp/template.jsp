@@ -4,9 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>｜peace(仮)</title>
+<link >
 </head>
-<body>
 
+<!-- ヘッダー（ここから） -->
+	<header>
+		<h1>
+		 <a href="A1/HomeServlet">peace(仮)</a>
+		</h1>
+	
+	<nav>
+		<ul>
+			<li><a href="A1/HomeServlet">ホーム</a>
+			<li><a href="A1/VisitorRegistServlet">登録</a>
+			<li><a href="A1/VisitorSearchServlet">検索</a>
+			<li><a href="A1/VisitorListServlet">一覧</a>
+		</ul>
+	</nav>
+	</header>
+<!-- ヘッダー(ここまで) -->
+
+<body>
 </body>
 </html>
