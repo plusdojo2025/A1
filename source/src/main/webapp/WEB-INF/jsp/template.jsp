@@ -26,7 +26,7 @@
 	<!-- ボタン設置 -->>
 	<div class="">
 	<a href="A1/GachaServlet">ガチャ</a>
-		<a href="A1/QaServlet">Q&A</a>
+		<a href="A1/QaServlet">QA</a>
 		<a href="A1/SettingServlet">設定</a>
 		<a href="A1/LogoutServlet">ログアウト</a>
 	</div>
@@ -34,6 +34,18 @@
 	</header>
 <!-- ヘッダー(ここまで) -->
 
+<!-- メイン（ここから） -->
+	<main>
+
+	</main>
+<!-- メイン(ここまで) -->
+
+<!-- フッター(ここから) -->
+	<div class="footer">
+    	<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
+    	<p>旅のひとコマが、未来を彩るタイルになる</p>
+	</div>
+<!-- フッター（ここまで） -->
 <body>
 </body>
 </html>
