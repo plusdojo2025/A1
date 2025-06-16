@@ -24,7 +24,7 @@
 		</ul>
 	</nav>
 	
-	<!-- ボタン設置 -->>
+	<!-- ボタン設置 -->
 	<div class="">
 	<a href="/A1/GachaServlet">ガチャ</a>
 		<a href="/A1/QaServlet">QA</a>
