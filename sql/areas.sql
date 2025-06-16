@@ -65,6 +65,4 @@ INSERT INTO areas(area_id,name,prefecture_id) VALUES
 
 
 /*areasテーブルのデータを確認*/
-SELECT FROM areas;
-
-
+SELECT*FROM areas;
