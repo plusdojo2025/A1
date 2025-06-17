@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- [ 読込 ] jstl を扱えるように --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- [ 短縮 ] コンテキストパス --%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%-- [ 短縮 ] アセッツパス --%>
+<c:set var="assetsPath" value="${contextPath}/assets" />
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>｜TABI×TILE</title>
