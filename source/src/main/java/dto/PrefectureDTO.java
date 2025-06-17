@@ -1,30 +1,30 @@
 package dto;
 
 public class PrefectureDTO {
-	private int prefectureId;   // 都道府県ID（主キー）
-    private String name;        // 都道府県名
+	private int prefecture_id;   		// 都道府県ID（主キー）
+    private String prefecture_name;		// 都道府県名
 	
     // コンストラクタ
-    public PrefectureDTO(int prefectureId, String name) {
+    public PrefectureDTO(int prefecture_id, String prefecture_name) {
 		super();
-		this.prefectureId = prefectureId;
-		this.name = name;
+		this.prefecture_id = prefecture_id;
+		this.prefecture_name = prefecture_name;
 	}
     
     // getterとsetter
-	public int getPrefectureId() {
-		return prefectureId;
+	public int getPrefecture_id() {
+		return prefecture_id;
 	}
 
-	public void setPrefectureId(int prefectureId) {
-		this.prefectureId = prefectureId;
+	public void setPrefecture_id(int prefecture_id) {
+		this.prefecture_id = prefecture_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getPrefecture_name() {
+		return prefecture_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPrefecture_name(String prefecture_name) {
+		this.prefecture_name = prefecture_name;
 	}
 }

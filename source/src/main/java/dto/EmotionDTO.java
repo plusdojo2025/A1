@@ -1,33 +1,33 @@
 package dto;
 
 public class EmotionDTO {
-	private int emotionId;   // 感情ID
-    private String name;     // 感情名称
-    private String emoji;    // 絵文字
+	private int emotion_id;   		// 感情ID
+    private String emotion_name;    // 感情名称
+    private String emoji;    		// 絵文字
 	
     // コンストラクタ
-    public EmotionDTO(int emotionId, String name, String emoji) {
+    public EmotionDTO(int emotion_id, String emotion_name, String emoji) {
 		super();
-		this.emotionId = emotionId;
-		this.name = name;
+		this.emotion_id = emotion_id;
+		this.emotion_name = emotion_name;
 		this.emoji = emoji;
 	}
     
     // getterとsetter
-	public int getEmotionId() {
-		return emotionId;
+	public int getEmotion_id() {
+		return emotion_id;
 	}
 
-	public void setEmotionId(int emotionId) {
-		this.emotionId = emotionId;
+	public void setEmotion_id(int emotion_id) {
+		this.emotion_id = emotion_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmotion_name() {
+		return emotion_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmotion_name(String emotion_name) {
+		this.emotion_name = emotion_name;
 	}
 
 	public String getEmoji() {
@@ -36,5 +36,5 @@ public class EmotionDTO {
 
 	public void setEmoji(String emoji) {
 		this.emoji = emoji;
-	}  
+	}
 }

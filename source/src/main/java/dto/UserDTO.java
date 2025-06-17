@@ -1,27 +1,27 @@
 package dto;
 
 public class UserDTO {
-	private String userId;      // ユーザーID（主キー）
+	private String user_id;      // ユーザーID（主キー）
     private String password;    // パスワード
-    private String name;        // ユーザー名
-    private int live;           // 居住地の都道府県ID（外部キー）
+    private String nickname;        // ユーザー名
+    private int prefecture_id;           // 居住地の都道府県ID（外部キー）
 	
     // コンストラクタ
-    public UserDTO(String userId, String password, String name, int live) {
+    public UserDTO(String user_id, String password, String nickname, int prefecture_id) {
 		super();
-		this.userId = userId;
+		this.user_id = user_id;
 		this.password = password;
-		this.name = name;
-		this.live = live;
+		this.nickname = nickname;
+		this.prefecture_id = prefecture_id;
 	}
     
     // getterとsetter
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getPassword() {
@@ -32,19 +32,19 @@ public class UserDTO {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public int getLive() {
-		return live;
+	public int getPrefecture_id() {
+		return prefecture_id;
 	}
 
-	public void setLive(int live) {
-		this.live = live;
+	public void setPrefecture_id(int prefecture_id) {
+		this.prefecture_id = prefecture_id;
 	}
 }

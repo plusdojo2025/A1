@@ -1,60 +1,60 @@
 package dto;
 
 public class PickupDTO {
-	    private int pickupId;		// 候補地ID（主キー）
-	    private int userId;  		// ユーザーID（外部キー）
-	    private int prefectureId; 	// 都道府県（外部キー）
-	    private String place;   	// 場所
+	    private int pickup_id;		// 候補地ID（主キー）
+	    private int user_id;  		// ユーザーID（外部キー）
+	    private int prefecture_id; 	// 都道府県（外部キー）
+	    private String pickup_place;   	// 場所
 	    private String remarks;		// 備考（コメント）
 		
-	    // コンストラクタ
-	    public PickupDTO(int pickupId, int userId, int prefectureId, String place, String remarks) {
-			super();
-			this.pickupId = pickupId;
-			this.userId = userId;
-			this.prefectureId = prefectureId;
-			this.place = place;
-			this.remarks = remarks;
-		}
-	    
-	    // getterとsetter
-		public int getPickupId() {
-			return pickupId;
-		}
+	 // コンストラクタ
+	 public PickupDTO(int pickup_id, int user_id, int prefecture_id, String pickup_place, String remarks) {
+		super();
+		this.pickup_id = pickup_id;
+		this.user_id = user_id;
+		this.prefecture_id = prefecture_id;
+		this.pickup_place = pickup_place;
+		this.remarks = remarks;
+	}
+	 
+	// getterとsetter
+	public int getPickup_id() {
+		return pickup_id;
+	}
 
-		public void setPickupId(int pickupId) {
-			this.pickupId = pickupId;
-		}
+	public void setPickup_id(int pickup_id) {
+		this.pickup_id = pickup_id;
+	}
 
-		public int getUserId() {
-			return userId;
-		}
+	public int getUser_id() {
+		return user_id;
+	}
 
-		public void setUserId(int userId) {
-			this.userId = userId;
-		}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
-		public int getPrefectureId() {
-			return prefectureId;
-		}
+	public int getPrefecture_id() {
+		return prefecture_id;
+	}
 
-		public void setPrefectureId(int prefectureId) {
-			this.prefectureId = prefectureId;
-		}
+	public void setPrefecture_id(int prefecture_id) {
+		this.prefecture_id = prefecture_id;
+	}
 
-		public String getPlace() {
-			return place;
-		}
+	public String getPickup_place() {
+		return pickup_place;
+	}
 
-		public void setPlace(String place) {
-			this.place = place;
-		}
+	public void setPickup_place(String pickup_place) {
+		this.pickup_place = pickup_place;
+	}
 
-		public String getRemarks() {
-			return remarks;
-		}
+	public String getRemarks() {
+		return remarks;
+	}
 
-		public void setRemarks(String remarks) {
-			this.remarks = remarks;
-		}  
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 }

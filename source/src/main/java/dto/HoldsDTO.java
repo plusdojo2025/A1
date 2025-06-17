@@ -3,50 +3,50 @@ package dto;
 import java.sql.Timestamp;
 
 public class HoldsDTO {
-	private int holdId;                // 保持ID（主キー）
-    private int badgeId;              // バッジID（badgesテーブルと関連）
-    private String userId;            // ユーザーID（usersテーブルと関連）
-    private Timestamp dateAcquisition; // 獲得日時
+	private int hold_id;                // 保持ID（主キー）
+    private int badge_id;              // バッジID（badgesテーブルと関連）
+    private String user_id;            // ユーザーID（usersテーブルと関連）
+    private Timestamp date_acquisition; // 獲得日時
 	
-    // コンストラクタ
-    public HoldsDTO(int holdId, int badgeId, String userId, Timestamp dateAcquisition) {
+    // getterとsetter
+    public HoldsDTO(int hold_id, int badge_id, String user_id, Timestamp date_acquisition) {
 		super();
-		this.holdId = holdId;
-		this.badgeId = badgeId;
-		this.userId = userId;
-		this.dateAcquisition = dateAcquisition;
+		this.hold_id = hold_id;
+		this.badge_id = badge_id;
+		this.user_id = user_id;
+		this.date_acquisition = date_acquisition;
 	}
     
     // getterとsetter
-    public int getHoldId() {
-		return holdId;
+	public int getHold_id() {
+		return hold_id;
 	}
 
-	public void setHoldId(int holdId) {
-		this.holdId = holdId;
+	public void setHold_id(int hold_id) {
+		this.hold_id = hold_id;
 	}
 
-	public int getBadgeId() {
-		return badgeId;
+	public int getBadge_id() {
+		return badge_id;
 	}
 
-	public void setBadgeId(int badgeId) {
-		this.badgeId = badgeId;
+	public void setBadge_id(int badge_id) {
+		this.badge_id = badge_id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public Timestamp getDateAcquisition() {
-		return dateAcquisition;
+	public Timestamp getDate_acquisition() {
+		return date_acquisition;
 	}
 
-	public void setDateAcquisition(Timestamp dateAcquisition) {
-		this.dateAcquisition = dateAcquisition;
-	} 
+	public void setDate_acquisition(Timestamp date_acquisition) {
+		this.date_acquisition = date_acquisition;
+	}
 }

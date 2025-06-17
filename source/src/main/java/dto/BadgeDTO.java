@@ -1,40 +1,40 @@
 package dto;
 
 public class BadgeDTO {
-	private int badgeId;          // バッジID
-    private String name;          // バッジ名
-    private String badgeImage;    // バッジ画像
+	private int badge_id;          // バッジID
+    private String badge_name;          // バッジ名
+    private String badge_image;    // バッジ画像
 	
     // コンストラクタ
-    public BadgeDTO(int badgeId, String name, String badgeImage) {
+    public BadgeDTO(int badge_id, String badge_name, String badge_image) {
 		super();
-		this.badgeId = badgeId;
-		this.name = name;
-		this.badgeImage = badgeImage;
+		this.badge_id = badge_id;
+		this.badge_name = badge_name;
+		this.badge_image = badge_image;
 	}
     
     // getterとsetter
-	public int getBadgeId() {
-		return badgeId;
+	public int getBadge_id() {
+		return badge_id;
 	}
 
-	public void setBadgeId(int badgeId) {
-		this.badgeId = badgeId;
+	public void setBadge_id(int badge_id) {
+		this.badge_id = badge_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getBadge_name() {
+		return badge_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBadge_name(String badge_name) {
+		this.badge_name = badge_name;
 	}
 
-	public String getBadgeImage() {
-		return badgeImage;
+	public String getBadge_image() {
+		return badge_image;
 	}
 
-	public void setBadgeImage(String badgeImage) {
-		this.badgeImage = badgeImage;
-	} 
+	public void setBadge_image(String badge_image) {
+		this.badge_image = badge_image;
+	}
 }

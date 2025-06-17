@@ -3,59 +3,59 @@ package dto;
 import java.sql.Date;
 
 public class VisitorDTO {
-	private int visitorId;         // 訪問地ID（主キー）
-    private String userId;         // ユーザーID（外部キー）
+	private int visitor_id;         // 訪問地ID（主キー）
+    private String user_id;         // ユーザーID（外部キー）
     private String title;          // タイトル
     private String componion;      // 同行者
-    private Date startDate;        // 開始日
-    private Date endDate;          // 終了日
-    private int prefectureId;      // 都道府県ID（外部キー）
-    private String place;          // 場所
+    private Date start_date;        // 開始日
+    private Date end_date;          // 終了日
+    private int prefecture_id;      // 都道府県ID（外部キー）
+    private String visitor_place;          // 場所
     private String thought;        // 感想
-    private int emotionId;         // 感情ID（外部キー）
+    private int emotion_id;         // 感情ID（外部キー）
     private String photo1;         // 写真1
     private String photo2;         // 写真2
     private String photo3;         // 写真3
     private String photo4;         // 写真4
     private String photo5;         // 写真5
 	
-	// コンストラクタ
-	public VisitorDTO(int visitorId, String userId, String title, String componion, Date startDate, Date endDate,
-			int prefectureId, String place, String thought, int emotionId, String photo1, String photo2, String photo3,
-			String photo4, String photo5) {
+    // コンストラクタ
+    public VisitorDTO(int visitor_id, String user_id, String title, String componion, Date start_date, Date end_date,
+			int prefecture_id, String visitor_place, String thought, int emotion_id, String photo1, String photo2,
+			String photo3, String photo4, String photo5) {
 		super();
-		this.visitorId = visitorId;
-		this.userId = userId;
+		this.visitor_id = visitor_id;
+		this.user_id = user_id;
 		this.title = title;
 		this.componion = componion;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.prefectureId = prefectureId;
-		this.place = place;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.prefecture_id = prefecture_id;
+		this.visitor_place = visitor_place;
 		this.thought = thought;
-		this.emotionId = emotionId;
+		this.emotion_id = emotion_id;
 		this.photo1 = photo1;
 		this.photo2 = photo2;
 		this.photo3 = photo3;
 		this.photo4 = photo4;
 		this.photo5 = photo5;
 	}
-	
-	// getterとsetter
-	public int getVisitorId() {
-		return visitorId;
+    
+    // getterとsetter
+	public int getVisitor_id() {
+		return visitor_id;
 	}
 
-	public void setVisitorId(int visitorId) {
-		this.visitorId = visitorId;
+	public void setVisitor_id(int visitor_id) {
+		this.visitor_id = visitor_id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getTitle() {
@@ -74,36 +74,36 @@ public class VisitorDTO {
 		this.componion = componion;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getStart_date() {
+		return start_date;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getEnd_date() {
+		return end_date;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 
-	public int getPrefectureId() {
-		return prefectureId;
+	public int getPrefecture_id() {
+		return prefecture_id;
 	}
 
-	public void setPrefectureId(int prefectureId) {
-		this.prefectureId = prefectureId;
+	public void setPrefecture_id(int prefecture_id) {
+		this.prefecture_id = prefecture_id;
 	}
 
-	public String getPlace() {
-		return place;
+	public String getVisitor_place() {
+		return visitor_place;
 	}
 
-	public void setPlace(String place) {
-		this.place = place;
+	public void setVisitor_place(String visitor_place) {
+		this.visitor_place = visitor_place;
 	}
 
 	public String getThought() {
@@ -114,12 +114,12 @@ public class VisitorDTO {
 		this.thought = thought;
 	}
 
-	public int getEmotionId() {
-		return emotionId;
+	public int getEmotion_id() {
+		return emotion_id;
 	}
 
-	public void setEmotionId(int emotionId) {
-		this.emotionId = emotionId;
+	public void setEmotion_id(int emotion_id) {
+		this.emotion_id = emotion_id;
 	}
 
 	public String getPhoto1() {

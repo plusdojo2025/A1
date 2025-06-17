@@ -37,7 +37,7 @@ public class VisitorDAO {
 	        while (rs.next()) {
 	            VisitorDTO visitor = new VisitorDTO(
 	                rs.getInt("visitor_id"),
-	                rs.getInt("user_id"),
+	                rs.getString("user_id"),
 	                rs.getString("title"),
 	                rs.getString("componion"),
 	                rs.getDate("start_date"),
@@ -102,7 +102,7 @@ public class VisitorDAO {
             while (rs.next()) {
             	VisitorDTO visitor = new VisitorDTO(
                     rs.getInt("visitor_id"),
-                    rs.getInt("user_id"),
+                    rs.getString("user_id"),
                     rs.getString("title"),
                     rs.getString("componion"),
                     rs.getDate("start_date"),
