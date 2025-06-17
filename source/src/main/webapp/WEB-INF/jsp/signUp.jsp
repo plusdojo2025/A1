@@ -41,7 +41,7 @@
 		</div>
 	</header>
     <main>
-        <form method="POST" action="/webapp/RegistServlet" id="signup_form">
+        <form method="POST" action="/A1/SignUpServlet" id="signup_form">
             <table>
                 <p>
                     <label>ID<br>
@@ -117,7 +117,7 @@
                 </p>
                 <p>
                     <label>ニックネームを設定してください</label><br>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="nickname">
                 </p>
                 <p colspan="2">
                     <input type="submit" id="register" name="submit" value="登録">
@@ -155,7 +155,7 @@
         }else if(!formObj.prefecture_id.value){
         errorMessageObj.textContent = '※都道府県を選択してください！';
         return false;            
-        }else if(!formObj.name.value){
+        }else if(!formObj.nickname.value){
         errorMessageObj.textContent = '※ニックネームを入力してください！';
         return false;                   
         }

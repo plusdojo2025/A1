@@ -47,16 +47,16 @@
 
 <!-- メイン（ここから） -->
 	<main>
-        <form method="POST" action="/webapp/RegistServlet" id="name_form">
+        <form method="POST" action="/webapp/SettingServlet" id="name_form">
             <p>
                 <label>ニックネームの変更<br>
-                    <input type="text" id="name" name="name" placeholder="ニックネームの表示">
+                    <input type="text" id="name" name="nickname" placeholder="ニックネームの表示">
                     <input type="submit" id="register" name="submit" value="変更">
                     <span id="error_message1"></span>
                 </label>
             </p>
         </form>
-        <form method="POST" action="/webapp/RegistServlet" id="prefecture_form">
+        <form method="POST" action="/webapp/SettingServlet" id="prefecture_form">
             <p>
                 <label>都道府県の変更<br>
                     <select name="prefecture_id">
@@ -114,10 +114,10 @@
                 </label>
             </p>
         </form>
-        <form method="POST" action="/webapp/RegistServlet" id="password_form">
+        <form method="POST" action="/webapp/SettingServlet" id="password_form">
             <p>パスワードの変更</p>
                 <label>現在のパスワード<br>
-                    <input type="password" id="password1" name="password" placeholder="現在のパスワードを入力">
+                    <input type="password" id="password1" placeholder="現在のパスワードを入力">
                     <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
                 </label><br>
                 <label>新しいパスワード<br>
