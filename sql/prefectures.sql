@@ -1,10 +1,10 @@
 CREATE TABLE prefectures (
     prefecture_id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(10) NOT NULL,
+    prefecture_name VARCHAR(10) NOT NULL,
     PRIMARY KEY(prefecture_id)
 );
 
-INSERT INTO prefectures(prefecture_id, name) VALUES
+INSERT INTO prefectures(prefecture_id, prefecture_name) VALUES
 (1, '北海道'),
 (2, '青森県'),
 (3, '岩手県'),

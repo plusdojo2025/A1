@@ -1,18 +1,13 @@
 CREATE TABLE emotions (
     emotion_id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(10) NOT NULL,
-    emoji CHAR(1) CHARACTER SET utf8mb4 NOT NULL,
+    emotion_name VARCHAR(10) NOT NULL,
+    emoji VARCHAR(10) CHARACTER SET utf8mb4 NOT NULL,
     PRIMARY KEY(emotion_id)
 );
 
-/*emojiカラムの長さが足りなかったのでvarchar(10)に変更します。
-↓ここからコピペ*/
-
- ALTER TABLE emotions
- MODIFY emoji VARCHAR(10) CHARACTER SET utf8mb4 NOT NULL;
 
 
-INSERT INTO emotions(emotion_id,name,emoji) VALUES
+INSERT INTO emotions(emotion_id,emotion_name,emoji) VALUES
 (1,'嬉しい','😊'),
 (2,'ハート','❤️'),
 (3,'無感情','😑'),

@@ -1,14 +1,175 @@
 CREATE TABLE pickups (
     pickup_id INT NOT NULL AUTO_INCREMENT,
-    user VARCHAR(255) NOT NULL,
-    prefecture INT NOT NULL,
-    place VARCHAR(50),
+    user_id VARCHAR(255) NOT NULL,
+    prefecture_id INT NOT NULL,
+    pickup_place VARCHAR(50),
     remarks TEXT,
     PRIMARY KEY(pickup_id),
-    FOREIGN KEY (user) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (prefecture) REFERENCES prefectures(prefecture_id)
+    FOREIGN KEY (prefecture_id) REFERENCES prefectures(prefecture_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+INSERT INTO pickups
+(pickup_id,
+user_id,
+prefecture_id,
+pickup_place,
+remarks
+)VALUES
+/*鬼瓦*/
+-- 舞妓体験専門店
+(1,
+'onigawara',
+26,
+'舞妓体験専門店',
+'花魁と舞妓さんになりたい'),
+-- 札幌ラーメン悠
+(2,
+'onigawara',
+1,
+'札幌ラーメン悠',
+'ラーメンが食べたい！！！！！！！'),
+-- 箱根
+(3,
+'onigawara',
+14,
+'箱根',
+'年内に行きたい'),
+-- 仙台Loose Bar
+(4,
+'onigawara',
+4,
+'仙台Loose Bar',
+'楽しくお酒を飲みたい'),
+-- 岩手わんこそばを食べれる場所
+(5,
+'onigawara',
+3,
+'わんこそばを食べれる場所',
+'目指せ200万杯'),
+-- 鹿児島県　屋久島
+(6,
+'onigawara',
+46,
+'屋久島',
+'神秘的な自然と縄文杉を見に行きたい'),
+-- 山口県　角島大橋
+(7,
+'onigawara',
+35,
+'角島大橋',
+'青い海の上をまっすぐ進む絶景ドライブしたい'),
+-- 大分県　湯布院
+(8,
+'onigawara',
+44,
+'湯布院',
+'のんびりカフェ巡りと温泉を楽しみたい'),
+/*神宮寺*/
+-- 長岡
+(9,
+'zinguuzi',
+15,
+'長岡',
+'花火みたい！！！！！！！！！'),
+-- 沖縄
+(10,
+'zinguuzi',
+47,
+NULL,
+'夏に行きたい'),
+-- 餃子通り
+(11,
+'zinguuzi',
+9,
+'餃子通り',
+'餃子巡りしたい'),
+-- 金沢　近江町市場　
+(12,
+'zinguuzi',
+17,
+'金沢　近江町市場　',
+'美味しい海鮮が食べたい'),
+-- 鳥取砂丘
+(13,
+'zinguuzi',
+31,
+'鳥取砂丘',
+'コナン聖地いきたい！！！！！！！'),
+/*黒川*/
+-- 加茂水族館
+(14,
+'kuro',
+6,
+'加茂水族館',
+'たくさんクラゲをみたい'),
+-- 平和記念公園
+(15,
+'kuro',
+34,
+'平和記念公園',
+'一度も行ったことないので行ってみたい'),
+-- 
+(16,
+'kuro',
+37,
+NULL,
+'うどんたべたい'),
+-- 留久
+(17,
+'kuro',
+21,
+'留久',
+'牛タン食べたい'),
+-- もつ鍋が食べれる場所
+(18,
+'kuro',
+40,
+'もつ鍋が食べれる場所',
+'前回の福岡旅行で〆のちゃんぽんを食べることができなかったため、リベンジをしたい。'),
+-- 佐渡島
+(19,
+'kuro',
+15,
+'佐渡島',
+'佐渡の景色と汽船をまた堪能したい'),
+-- 茨城県	国営ひたち海浜公園	
+(20,
+'kuro',
+8,
+'国営ひたち海浜公園',
+'ネモフィラやコキアの絶景を見たい'),
+-- 東京都	神楽坂
+(21,
+'kuro',
+13,
+'神楽坂',
+'路地裏グルメと和風の雰囲気を楽しみたい'),
+-- 福島県	大内宿
+(22,
+'kuro',
+7,
+'大内宿',
+'かやぶき屋根の集落でそばを食べたい'),
+-- 山形県	銀山温泉
+(23,
+'kuro',
+6,
+'銀山温泉',
+'大正ロマンな雰囲気の中で泊まってみたい'),
+-- 青森県	十和田湖・奥入瀬渓流
+(24,
+'kuro',
+2,
+'十和田湖・奥入瀬渓流',
+'大自然の中をハイキングしたい'),
+-- 秋田県	乳頭温泉郷
+(25,
+'kuro',
+5,
+'乳頭温泉郷',
+'雪見風呂を体験したい');

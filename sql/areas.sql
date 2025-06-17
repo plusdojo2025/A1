@@ -1,20 +1,16 @@
 CREATE TABLE areas (
     area_id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(10) NOT NULL,
-    prefecture INT,
+    area_name VARCHAR(10) NOT NULL,
+    prefecture_id INT,
     PRIMARY KEY(area_id),
-    FOREIGN KEY (prefecture) REFERENCES prefectures(prefecture_id)
+    FOREIGN KEY (prefecture_id) REFERENCES prefectures(prefecture_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-/*テーブルのカラム名、prefectureをprefecture_idに変更お願いします
-↓ここからコピペ*/
 
-ALTER TABLE areas
-CHANGE COLUMN prefecture prefecture_id INT;
 
-INSERT INTO areas(area_id,name,prefecture_id) VALUES
+INSERT INTO areas(area_id,area_name,prefecture_id) VALUES
 (1,'北海道地方',1),
 (2,'東北地方',2),
 (3,'東北地方',3),
