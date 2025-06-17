@@ -121,11 +121,11 @@
             ><button type="button"
                 name="UpdateButton"
                 >更新</button
-        ></div>
-        <div
-            ><a href="#"
-                >&lt;&lt;&lt; 一覧のページに戻る</a
         ></div
+        ><div
+            ><button
+            	>前に戻る</button
+       	></div
     ></main>
 
 <!-- メイン(ここまで) -->
