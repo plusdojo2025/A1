@@ -14,7 +14,7 @@ public class DAO {
 			// JDBCドライバを読み込む
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/[データベース名]?"
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a1?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 					"root", "password");
 			

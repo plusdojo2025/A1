@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDAO;
+import dto.UserDTO;
 
 /**
  * Servlet implementation class SettingServlet
@@ -49,10 +49,10 @@ public class SettingServlet extends HttpServlet {
 
 		
 		UserDAO uDAO = new UserDAO();
-		if (uDao.update(new UserDAO(user_id,password,nickname,prefecture_id))) { // 登録成功
-			request.setAttribute("result", new Result("更新成功！", "レコードを更新しました。", "/webapp/MenuServlet"));
+		if (uDAO.update(new UserDTO(user_id,password,nickname,prefecture_id))) { // 登録成功
+			
 		} else { // 登録失敗
-			request.setAttribute("result", new Result("更新失敗！", "レコードを更新できませんでした。", "/webapp/MenuServlet"));
+
 		}
 		
 		// ログインページにフォワードする
