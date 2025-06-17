@@ -30,24 +30,24 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="/${contextPath}/HomeServlet">TABI×TILE</a>
+		 <a href="${contextPath}/HomeServlet">TABI×TILE</a>
 		</h1>
 	
 	<nav>
 		<ul>
-			<li><a href="/${contextPath}/HomeServlet">ホーム</a>
-			<li><a href="/${contextPath}/VisitorRegistServlet">登録</a>
-			<li><a href="/${contextPath}/VisitorSearchServlet">検索</a>
-			<li><a href="/${contextPath}/VisitorListServlet">一覧</a>
+			<li><a href="${contextPath}/HomeServlet">ホーム</a>
+			<li><a href="${contextPath}/VisitorRegistServlet">登録</a>
+			<li><a href="${contextPath}/VisitorSearchServlet">検索</a>
+			<li><a href="${contextPath}/VisitorListServlet">一覧</a>
 		</ul>
 	</nav>
 	
 	<!-- ボタン設置 -->
 	<div class="">
-	<a href="/${contextPath}/GachaServlet">ガチャ</a>
-		<a href="/${contextPath}/QaServlet">QA</a>
-		<a href="/${contextPath}/SettingServlet">設定</a>
-		<a href="/${contextPath}/LogoutServlet">ログアウト</a>
+	<a href="${contextPath}/GachaServlet">ガチャ</a>
+		<a href="${contextPath}/QaServlet">QA</a>
+		<a href="${contextPath}/SettingServlet">設定</a>
+		<a href="${contextPath}/LogoutServlet">ログアウト</a>
 	</div>
 	
 	</header>
@@ -55,18 +55,23 @@
 
 <!-- メイン（ここから） -->
 	<main>
-        <form method="POST" action="/${contextPath}/SettingServlet" id="name_form">
+        <form method="POST" action="${contextPath}/SettingServlet" id="name_form">
             <p>
                 <label>ニックネームの変更<br>
+                	<input type="hidden" name="user_id">
+                	<input type="hidden" name="password">
                     <input type="text" id="name" name="nickname" placeholder="ニックネームの表示">
                     <input type="submit" id="register" name="submit" value="変更">
                     <span id="error_message1"></span>
                 </label>
             </p>
         </form>
-        <form method="POST" action="/${contextPath}/SettingServlet" id="prefecture_form">
+        <form method="POST" action="${contextPath}/SettingServlet" id="prefecture_form">
             <p>
                 <label>都道府県の変更<br>
+                	<input type="hidden" name="user_id" value="suzukikun12">
+                	<input type="hidden" name="password">
+                	<input type="hidden" name="nickname">
                     <select name="prefecture_id">
                             <option value="" selected>選択してください</option>
                             <option value="1">北海道</option>
@@ -122,8 +127,10 @@
                 </label>
             </p>
         </form>
-        <form method="POST" action="/${contextPath}/SettingServlet" id="password_form">
+        <form method="POST" action="${contextPath}/SettingServlet" id="password_form">
             <p>パスワードの変更</p>
+            	<input type="hidden" name="user_id" value="suzukikun12">
+               	<input type="hidden" name="nickname">
                 <label>現在のパスワード<br>
                     <input type="password" id="password1" placeholder="現在のパスワードを入力">
                     <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton()"></span>

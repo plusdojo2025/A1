@@ -17,21 +17,13 @@ import dto.UserDTO;
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignUpServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 新規登録画面にフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/A1/jsp/signUp.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -45,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String user_id = request.getParameter("user_id");
 		String password = request.getParameter("password");
-		String nickname = request.getParameter("name");
+		String nickname = request.getParameter("nickname");
 		int prefecture_id = Integer.parseInt(request.getParameter("prefecture_id"));
 		
 		UserDAO uDAO = new UserDAO();

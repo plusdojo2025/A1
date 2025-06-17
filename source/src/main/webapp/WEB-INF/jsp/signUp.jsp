@@ -27,28 +27,28 @@
 <body>
 <header>
     <h1>
-        <a href="/${contextPath}/HomeServlet">TABI×TILE</a>
+        <a href="${contextPath}/HomeServlet">TABI×TILE</a>
     </h1>
 	
 		<nav>
 			<ul>
-				<li><a href="/${contextPath}/HomeServlet">ホーム</a>
-				<li><a href="/${contextPath}/VisitorRegistServlet">登録</a>
-				<li><a href="/${contextPath}/VisitorSearchServlet">検索</a>
-				<li><a href="/${contextPath}/VisitorListServlet">一覧</a>
+				<li><a href="${contextPath}/HomeServlet">ホーム</a>
+				<li><a href="${contextPath}/VisitorRegistServlet">登録</a>
+				<li><a href="${contextPath}/VisitorSearchServlet">検索</a>
+				<li><a href="${contextPath}/VisitorListServlet">一覧</a>
 			</ul>
 		</nav>
 	
 	<!-- ボタン設置 -->
 		<div class="">
-			<a href="/${contextPath}/GachaServlet">ガチャ</a>
-				<a href="/${contextPath}/QaServlet">QA</a>
-				<a href="/${contextPath}/SettingServlet">設定</a>
-				<a href="/${contextPath}/LogoutServlet">ログアウト</a>
+			<a href="${contextPath}/GachaServlet">ガチャ</a>
+				<a href="${contextPath}/QaServlet">QA</a>
+				<a href="${contextPath}/SettingServlet">設定</a>
+				<a href="${contextPath}/LogoutServlet">ログアウト</a>
 		</div>
 	</header>
     <main>
-        <form method="POST" action="/${contextPath}/SignUpServlet" id="signup_form">
+        <form method="POST" action="${contextPath}/SignUpServlet" id="signup_form">
             <table>
                 <p>
                     <label>ID<br>
@@ -124,7 +124,7 @@
                 </p>
                 <p>
                     <label>ニックネームを設定してください</label><br>
-                    <input type="text" id="name" name="nickname">
+                    <input type="text" id="nickname" name="nickname">
                 </p>
                 <p colspan="2">
                     <input type="submit" id="register" name="submit" value="登録">

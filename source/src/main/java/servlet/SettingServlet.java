@@ -18,6 +18,16 @@ import dto.UserDTO;
 @WebServlet("/SettingServlet")
 public class SettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 設定画面にフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+		dispatcher.forward(request, response);
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -31,9 +41,9 @@ public class SettingServlet extends HttpServlet {
 		int prefecture_id = Integer.parseInt(request.getParameter("prefecture_id"));
 		
 		UserDAO uDAO = new UserDAO();
-		if (uDAO.update(new UserDTO(user_id,password,nickname,prefecture_id))) { // 登録成功
+		if (uDAO.update(new UserDTO(user_id,password,nickname,prefecture_id))) { // 更新成功
 			
-		} else { // 登録失敗
+		} else { // 更新失敗
 
 		}
 		
