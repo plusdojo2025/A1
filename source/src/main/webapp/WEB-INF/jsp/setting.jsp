@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%-- [ 読込 ] jstl を扱えるように --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- [ 短縮 ] コンテキストパス --%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%-- [ 短縮 ] アセッツパス --%>
+<c:set var="assetsPath" value="${contextPath}/assets" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,24 +30,24 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="/A1/HomeServlet">TABI×TILE</a>
+		 <a href="/${contextPath}/HomeServlet">TABI×TILE</a>
 		</h1>
 	
 	<nav>
 		<ul>
-			<li><a href="/A1/HomeServlet">ホーム</a>
-			<li><a href="/A1/VisitorRegistServlet">登録</a>
-			<li><a href="/A1/VisitorSearchServlet">検索</a>
-			<li><a href="/A1/VisitorListServlet">一覧</a>
+			<li><a href="/${contextPath}/HomeServlet">ホーム</a>
+			<li><a href="/${contextPath}/VisitorRegistServlet">登録</a>
+			<li><a href="/${contextPath}/VisitorSearchServlet">検索</a>
+			<li><a href="/${contextPath}/VisitorListServlet">一覧</a>
 		</ul>
 	</nav>
 	
 	<!-- ボタン設置 -->
 	<div class="">
-	<a href="/A1/GachaServlet">ガチャ</a>
-		<a href="/A1/QaServlet">QA</a>
-		<a href="/A1/SettingServlet">設定</a>
-		<a href="/A1/LogoutServlet">ログアウト</a>
+	<a href="/${contextPath}/GachaServlet">ガチャ</a>
+		<a href="/${contextPath}/QaServlet">QA</a>
+		<a href="/${contextPath}/SettingServlet">設定</a>
+		<a href="/${contextPath}/LogoutServlet">ログアウト</a>
 	</div>
 	
 	</header>
@@ -47,7 +55,7 @@
 
 <!-- メイン（ここから） -->
 	<main>
-        <form method="POST" action="/webapp/SettingServlet" id="name_form">
+        <form method="POST" action="/${contextPath}/SettingServlet" id="name_form">
             <p>
                 <label>ニックネームの変更<br>
                     <input type="text" id="name" name="nickname" placeholder="ニックネームの表示">
@@ -56,7 +64,7 @@
                 </label>
             </p>
         </form>
-        <form method="POST" action="/webapp/SettingServlet" id="prefecture_form">
+        <form method="POST" action="/${contextPath}/SettingServlet" id="prefecture_form">
             <p>
                 <label>都道府県の変更<br>
                     <select name="prefecture_id">
@@ -114,7 +122,7 @@
                 </label>
             </p>
         </form>
-        <form method="POST" action="/webapp/SettingServlet" id="password_form">
+        <form method="POST" action="/${contextPath}/SettingServlet" id="password_form">
             <p>パスワードの変更</p>
                 <label>現在のパスワード<br>
                     <input type="password" id="password1" placeholder="現在のパスワードを入力">
@@ -157,12 +165,13 @@
     /* [実行]ボタンをクリックしたときの処理 */
     nameformObj.onsubmit = function() {
     /* 各入力項目を必須入力項目とします */
-    if (!nameformObj.name.value) {
+    if (!nameformObj.nickname.value) {
         errorMessageObj1.textContent = '※ニックネームを入力してください！';
         return false;
         }
     }
     
+    /*HTML要素をオブジェクトとして取得する*/
     let prefectureformObj = document.getElementById('prefecture_form');
     let errorMessageObj2 = document.getElementById('error_message2');
 
