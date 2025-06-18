@@ -38,7 +38,7 @@ public class PickupDAO {
 		        while (rs.next()) {
 		        	PickupDTO pickup = new PickupDTO(
 		                rs.getInt("pickup_id"),
-		                rs.getInt("user_id"),
+		                rs.getString("user_id"),
 		                rs.getInt("prefecture_id"),
 		                rs.getString("place"),
 		                rs.getString("remarks")
@@ -93,7 +93,7 @@ public class PickupDAO {
 	            while (rs.next()) {
 	            	PickupDTO pickup = new PickupDTO(
 	            			rs.getInt("pickup_id"),
-			                rs.getInt("user_id"),
+			                rs.getString("user_id"),
 			                rs.getInt("prefecture_id"),
 			                rs.getString("place"),
 			                rs.getString("remarks")
@@ -117,6 +117,104 @@ public class PickupDAO {
 
 		        // リストを返す
 		        return pickupList;
-		    }
+		}
+		  
+		// PickupDAOクラス内に追加するメソッド例
+
+		public List<PickupDTO> search(PickupDTO dto) {
+		    List<PickupDTO> pickupList = new ArrayList<>();
+		    Connection conn = null;
+
+		    try {
+		        Class.forName("com.mysql.cj.jdbc.Driver");
+		        conn = DriverManager.getConnection(
+		            "jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+		            "root", "password"
+		        );
+
+		        String sql = "SELECT * FROM pickup WHERE "
+		                   + " (user_id = ? OR ? IS NULL OR ? = 0) "
+		                   + " AND (prefecture_id = ? OR ? = 0) "
+		                   + " AND (place LIKE CONCAT('%', ?, '%') OR ? IS NULL OR ? = '') "
+		                   + " AND (remarks LIKE CONCAT('%', ?, '%') OR ? IS NULL OR ? = '') "
+		                   + " ORDER BY pickup_id";
+
+		        PreparedStatement pStmt = conn.prepareStatement(sql);
+			     // SQL文を実行し、結果表を取得する
+		        ResultSet rs = pStmt.executeQuery();
+		        while (rs.next()) {
+		            PickupDTO pickup = new PickupDTO(
+		                rs.getInt("pickup_id"),
+		                rs.getString("user_id"),
+		                rs.getInt("prefecture_id"),
+		                rs.getString("pickup_place"),
+		                rs.getString("remarks")
+		            );
+		            pickupList.add(pickup);
+		        }
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				pickupList = null;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				pickupList  = null;
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						pickupList  = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return pickupList ;
 		}
 
+		
+	    // 登録処理
+	    public boolean insert(PickupDTO dto) {
+	        Connection conn = null;
+	        PreparedStatement ps = null;
+
+	        try {
+	            // JDBCドライバのロード（MySQLの場合）
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+
+	            // DBに接続
+	            conn = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	                "root", "password"
+	            );
+
+	            // SQL文の準備
+	            String sql = "INSERT INTO pickup (user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
+	            ps = conn.prepareStatement(sql);
+	            ps.setString(1, dto.getUser_id());
+	            ps.setInt(2, dto.getPrefecture_id());
+	            ps.setString(3, dto.getPickup_place());
+	            ps.setString(4, dto.getRemarks());
+
+	            int result = ps.executeUpdate();
+	            return result > 0;
+
+	        } catch (ClassNotFoundException | SQLException e) {
+	            e.printStackTrace();
+	            return false;
+
+	        } finally {
+	            // リソースのクローズ
+	            try {
+	                if (ps != null) ps.close();
+	                if (conn != null) conn.close();
+	            } catch (SQLException ex) {
+	                ex.printStackTrace();
+	            }
+
+	     }		
+	}
+}
