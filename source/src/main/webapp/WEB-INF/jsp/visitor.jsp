@@ -20,7 +20,11 @@
 		<h1>
 		 <a href="${contextPath}/HomeServlet">TABI×TILE</a>
 		</h1>
-	
+<c:if test ="${not empty sessionScope.user_id }">
+<p>
+${sessionScope.user_id.nickname}
+</p>
+</c:if>
 	<nav>
 		<ul>
 			<li><a href="${contextPath}/HomeServlet">ホーム</a>

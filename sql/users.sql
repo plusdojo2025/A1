@@ -12,4 +12,5 @@ FOREIGN KEY (prefecture_id) REFERENCES prefectures (prefecture_id)
 INSERT INTO users(user_id,password,nickname,prefecture_id) VALUES
 ('onigawara','kyunmoe32','もえもえ',4),
 ('zinguuzi','Maaay2025','まいやん',14),
-('kuro','Nagaoka25','いっちー',13);
+('kuro','Nagaoka25','いっちー',13),
+('higuchi','kumamon22','よっしー',43);
