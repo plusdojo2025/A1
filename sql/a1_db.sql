@@ -10,6 +10,8 @@ SHOW DATABASES;
 /*テーブルを一覧で閲覧したい時*/
 SHOW TABLES;
 
-/*テーブルを削除*/
-DROP DATABASE テーブル名;
+/*データベースを削除*/
+DROP DATABASE データベース名;
 
+/*テーブルを削除*/
+DROP TABLE テーブル名;
