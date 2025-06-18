@@ -1,7 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,21 +8,16 @@ import dto.IdPw;
 import dto.UserDTO;
 
 public class UserDAO extends DAO{
+	
 	public boolean isLoginOK(IdPw idpw) {
-		Connection conn = null;
+		//ドライバの読み込みおよびデータベースの接続
+		super.access();
+		
 		boolean loginResult = false;
 
 		try {
-			// JDBCドライバを読み込む
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/webapp2?"
-					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
-
 			// SELECT文を準備する
-			String sql = "SELECT count(*) FROM IdPw WHERE id=? AND pw=?";
+			String sql = "SELECT count(*) FROM users WHERE id=? AND pw=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, idpw.getId());
 			pStmt.setString(2, idpw.getPw());
@@ -45,19 +38,12 @@ public class UserDAO extends DAO{
 			loginResult = false;
 		} finally {
 			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-					loginResult = false;
-				}
-			}
+			super.close();
+			loginResult = false;
 		}
-
 		// 結果を返す
 		return loginResult;
-	}
+}
 
 
 	//引数infoで指定されたユーザー情報を登録する。（新規登録画面に使用）
