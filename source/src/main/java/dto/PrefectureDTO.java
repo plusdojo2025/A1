@@ -11,6 +11,12 @@ public class PrefectureDTO {
 		this.prefecture_name = prefecture_name;
 	}
     
+    // コンストラクタ
+    public PrefectureDTO() {
+    	prefecture_id = -1;
+    	prefecture_name = "";
+    }
+    
     // getterとsetter
 	public int getPrefecture_id() {
 		return prefecture_id;
