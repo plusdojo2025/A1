@@ -4,12 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dto.IdPw;
 import dto.UserDTO;
 
 public class UserDAO extends DAO{
 	
-	public boolean isLoginOK(IdPw idpw) {
+	public boolean isAuth(String userId, String password) {
 		//ドライバの読み込みおよびデータベースの接続
 		super.access();
 		
@@ -17,35 +16,76 @@ public class UserDAO extends DAO{
 
 		try {
 			// SELECT文を準備する
-			String sql = "SELECT count(*) FROM users WHERE id=? AND pw=?";
+			String sql = """
+				SELECT 
+					count(*) AS hit
+				FROM 
+					users 
+				WHERE 
+					user_id=? 
+				AND
+					password=?;
+					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, idpw.getId());
-			pStmt.setString(2, idpw.getPw());
+			pStmt.setString(1, userId);
+			pStmt.setString(2, password);
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// ユーザーIDとパスワードが一致するユーザーがいれば結果をtrueにする
 			rs.next();
-			if (rs.getInt("count(*)") == 1) {
+			if (rs.getInt("hit") == 1) {
 				loginResult = true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			loginResult = false;
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			loginResult = false;
 		} finally {
 			// データベースを切断
 			super.close();
-			loginResult = false;
 		}
 		// 結果を返す
 		return loginResult;
+	}
+
+	public UserDTO getLoginUser(String userId) {
+		super.access();
+		UserDTO loginUser = new UserDTO();
+		try {
+	        String sql = """
+	            SELECT  
+	             nickname,
+	              prefecture_id
+	            FROM 
+	        		users
+	            WHERE 
+	        		user_id = ? 
+	              """;
+	        
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, userId);
+	        
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			if (rs.next()) {
+	            loginUser = new UserDTO();
+	            loginUser.setUser_id(userId); // 追加推奨
+	            loginUser.setNickname(rs.getString("nickname"));
+	            loginUser.setPrefecture_id(rs.getInt("prefecture_id"));
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        super.close(); // DB接続を切断
+	    }
+
+	    return loginUser; // ヒットしなければ null
+	
 }
-
-
 	//引数infoで指定されたユーザー情報を登録する。（新規登録画面に使用）
 	public boolean insert(UserDTO info) {
 		

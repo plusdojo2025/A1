@@ -14,6 +14,12 @@ public class UserDTO {
 		this.nickname = nickname;
 		this.prefecture_id = prefecture_id;
 	}
+    public UserDTO() {
+    	this.user_id = "";
+		this.password = "";
+		this.nickname = "";
+		this.prefecture_id = -1;
+    }
     
     // getterとsetter
 	public String getUser_id() {
