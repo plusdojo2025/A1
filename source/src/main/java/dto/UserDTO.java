@@ -21,12 +21,7 @@ public class UserDTO {
 		this.prefecture_id = -1;
     }
     
-    //　デフォルトコンストラクタ
-    public UserDTO() {
-    	this.user_id = "";
-		this.password = "";
-		this.nickname = "";
-    }
+    
     
     // getterとsetter
 	public String getUser_id() {
