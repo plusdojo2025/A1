@@ -29,7 +29,7 @@
 	
 	<!-- ボタン設置 -->
 	<div class="">
-	<a href="<c:url value='/GachaServlet'/>">ガチャ</a>
+		<a href="<c:url value='/GachaServlet'/>">ガチャ</a>
 		<a href="<c:url value='/QaServlet'/>">QA</a>
 		<a href="<c:url value='/SettingServlet'/>">設定</a>
 		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;">ログアウト</a>
@@ -55,7 +55,7 @@
 <div id="overlay" class="overlay" style="display:none;"></div>
 <div id="confirmDialog" class="custom-dialog" style="display:none;">
     <p>ログアウトしてもよろしいですか？</p>
-    <img src="<c:url value='/assets/images/logo3.png' />" alt="ログアウト確認">
+    <img src="<c:url value='/assets/images/char/Door.png'/>" alt="ログアウト確認">
     <div class="dialog-buttons">
         <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
         <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
