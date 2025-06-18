@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>	一覧｜TABI×TILE</title>
-<link rel="styleesheet" href="/webapp/css/common.css" >
+<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-<link rel="styleesheet" href="/webapp/css/list.css" >
+<link rel="styleesheet" href="<c:url value='assets/css/list.css'/>" >
 </head>
 <body>
 
@@ -96,7 +96,7 @@
 <div id="overlay" class="overlay" style="display:none;"></div>
 <div id="confirmDialog" class="custom-dialog" style="display:none;">
     <p>ログアウトしてもよろしいですか？</p>
-    <img src="<c:url value='/assets/images/logo3.png' />" alt="ログアウト確認">
+    <img src="<c:url value='/assets/images/char/Door.png'/>" alt="ログアウト確認">
     <div class="dialog-buttons">
         <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
         <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>

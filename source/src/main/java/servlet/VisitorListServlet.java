@@ -27,35 +27,36 @@ public class VisitorListServlet extends HttpServlet {
 		
 		// セッションチェック
 		HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("userId") == null) {
+        if (session == null || session.getAttribute("user_id") == null) {
             // ログインしていない場合はログイン画面へ
             response.sendRedirect(request.getContextPath() + "/LoginServlet");
             return;
         }
-        String userId = (String) session.getAttribute("userId");
+        
+        String user_id = (String) session.getAttribute("user_id");
 
-        String prefectureId = request.getParameter("prefectureId"); // 絞り込み用パラメータ
+        String prefecture_id = request.getParameter("prefecture_id"); // 絞り込み用パラメータ
 
         try {
             List<VisitorDTO> visitorList;
             
-            if (prefectureId != null && !prefectureId.isEmpty()) {
+            if (prefecture_id != null && !prefecture_id.isEmpty()) {
                 // ユーザーID + 都道府県IDで絞り込み
-                visitorList = VisitorDAO.findByUserAndPrefecture(userId, prefectureId);
+                visitorList = VisitorDAO.findByUserAndPrefecture(user_id, prefecture_id);
             } else {
                 // ユーザーIDのみで全件取得
-                visitorList = VisitorDAO.findByUser(userId);
+                visitorList = VisitorDAO.findByUser(user_id);
             }
 
             // リクエストにセットしてJSPへ
             request.setAttribute("visitorList", visitorList);
-            request.setAttribute("selectedPrefecture", prefectureId);
+            request.setAttribute("selectedPrefecture", prefecture_id);
 
-            request.getRequestDispatcher("/WEB-INF/view/visitor_list.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/visitorList.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "訪問地データの取得に失敗しました");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "訪問地の情報が見つかりませんでした。");
         }
     }
 }
