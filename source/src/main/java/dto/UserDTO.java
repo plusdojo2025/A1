@@ -6,7 +6,7 @@ public class UserDTO {
     private String nickname;        // ユーザー名
     private int prefecture_id;           // 居住地の都道府県ID（外部キー）
 	
-    // コンストラクタ
+    // 引数付きコンストラクタ
     public UserDTO(String user_id, String password, String nickname, int prefecture_id) {
 		super();
 		this.user_id = user_id;
@@ -19,6 +19,13 @@ public class UserDTO {
 		this.password = "";
 		this.nickname = "";
 		this.prefecture_id = -1;
+    }
+    
+    //　デフォルトコンストラクタ
+    public UserDTO() {
+    	this.user_id = "";
+		this.password = "";
+		this.nickname = "";
     }
     
     // getterとsetter

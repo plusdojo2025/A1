@@ -29,26 +29,26 @@ public class PickupListServlet extends HttpServlet {
 		
 		// セッションチェック
 		HttpSession session = request.getSession(false);
-        if(session == null || session.getAttribute("userId") == null) {
+        if(session == null || session.getAttribute("user_id") == null) {
             response.sendRedirect(request.getContextPath() + "/LoginServlet");
             return;
         }
-        String userId = (String) session.getAttribute("userId");
-        String prefectureId = request.getParameter("prefectureId");
+        String user_id = (String) session.getAttribute("user_id");
+        String prefecture_id = request.getParameter("prefecture_id");
 
         try {
             List<PickupDTO> pickupList;
-            if (prefectureId != null && !prefectureId.isEmpty()) {
-                pickupList = PickupDAO.findByUserAndPrefecture(userId, prefectureId);
+            if (prefecture_id != null && !prefecture_id.isEmpty()) {
+                pickupList = PickupDAO.findByUserAndPrefecture(user_id, prefecture_id);
             } else {
-                pickupList = PickupDAO.findByUser(userId);
+                pickupList = PickupDAO.findByUser(user_id);
             }
             request.setAttribute("pickupList", pickupList);
-            request.setAttribute("selectedPrefecture", prefectureId);
-            request.getRequestDispatcher("/WEB-INF/view/pickup_list.jsp").forward(request, response);
+            request.setAttribute("selectedPrefecture", prefecture_id);
+            request.getRequestDispatcher("/WEB-INF/jsp/visitorList.jsp").forward(request, response);
         } catch(Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "候補地の取得に失敗しました");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "候補地の情報が見つかりませんでした。");
         }
     }
 }

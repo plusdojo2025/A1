@@ -23,30 +23,36 @@
       }
     </style>
 <title>TABI×TILE</title>
+<link rel="stylesheet" href="<c:url value='/assets/css/common.css' />">
 </head>
 <body>
-<header>
-    <h1>
-        <a href="${contextPath}/HomeServlet">TABI×TILE</a>
-    </h1>
+
+<!-- ヘッダー（ここから） -->
+	<header>
+		<h1>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="350" height="100"></a>
+		</h1>
+		
+<!-- ボタン設置 -->
+	<div class="">
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" height="50"></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" height="50"></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" height="50"></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" height="50"></a>
+	</div>
 	
-		<nav>
-			<ul>
-				<li><a href="${contextPath}/HomeServlet">ホーム</a>
-				<li><a href="${contextPath}/VisitorRegistServlet">登録</a>
-				<li><a href="${contextPath}/VisitorSearchServlet">検索</a>
-				<li><a href="${contextPath}/VisitorListServlet">一覧</a>
-			</ul>
-		</nav>
+	<nav>
+		<ul>
+			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+			<li><a href="<c:url value='/RegistServlet'/>">登録</a>
+			<li><a href="<c:url value='/VisitorServlet'/>">検索</a>
+			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+		</ul>
+	</nav>
 	
-	<!-- ボタン設置 -->
-		<div class="">
-			<a href="${contextPath}/GachaServlet">ガチャ</a>
-				<a href="${contextPath}/QaServlet">QA</a>
-				<a href="${contextPath}/SettingServlet">設定</a>
-				<a href="${contextPath}/LogoutServlet">ログアウト</a>
-		</div>
 	</header>
+<!-- ヘッダー(ここまで) -->
+
     <main>
         <form method="POST" action="${contextPath}/SignUpServlet" id="signup_form">
             <table>
@@ -132,6 +138,17 @@
                 </p>
             </table>
         </form>
+        <!-- ダイアログHTML(ここから) -->
+		<div id="overlay" class="overlay" style="display:none;"></div>
+		<div id="confirmDialog" class="custom-dialog" style="display:none;">
+		    <p>ログアウトしてもよろしいですか？</p>
+		    <img src="<c:url value='/assets/images/logo3.png' />" alt="ログアウト確認">
+		    <div class="dialog-buttons">
+		        <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
+		        <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
+		    </div>
+		</div>
+		<!-- ダイアログHTML(ここまで) -->
     <script>
     /*パスワードを隠すための処理*/
     function pushHideButton() {
@@ -167,6 +184,21 @@
         return false;                   
         }
     }   
+    
+    <!-- ダイアログJS(ここから) -->
+    function showConfirmDialog() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('confirmDialog').style.display = 'block';
+    }
+
+    function handleConfirm(isConfirmed) {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('confirmDialog').style.display = 'none';
+        if (isConfirmed) {
+            window.location.href = '<c:url value="/LogoutServlet" />';
+        }
+    }
+    <!-- ダイアログJS(ここまで) -->
     </script>
     </main>
 
