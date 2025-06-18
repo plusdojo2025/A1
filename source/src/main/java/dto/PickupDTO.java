@@ -2,13 +2,13 @@ package dto;
 
 public class PickupDTO {
 	    private int pickup_id;		// 候補地ID（主キー）
-	    private int user_id;  		// ユーザーID（外部キー）
+	    private String user_id;  		// ユーザーID（外部キー）
 	    private int prefecture_id; 	// 都道府県（外部キー）
 	    private String pickup_place;   	// 場所
 	    private String remarks;		// 備考（コメント）
 		
 	 // コンストラクタ
-	 public PickupDTO(int pickup_id, int user_id, int prefecture_id, String pickup_place, String remarks) {
+	 public PickupDTO(int pickup_id, String user_id, int prefecture_id, String pickup_place, String remarks) {
 		super();
 		this.pickup_id = pickup_id;
 		this.user_id = user_id;
@@ -26,11 +26,11 @@ public class PickupDTO {
 		this.pickup_id = pickup_id;
 	}
 
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 
