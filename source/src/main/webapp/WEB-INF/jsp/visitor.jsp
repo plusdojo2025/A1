@@ -2,15 +2,13 @@
     pageEncoding="UTF-8"%>
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- [ 短縮 ] コンテキストパス --%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%-- [ 短縮 ] アセッツパス --%>
-<c:set var="assetsPath" value="${contextPath}/assets" />
+<%-- [ 短縮 ] 画像フォルダパス --%>
+<c:set var="imgsPath" value="/assets/imgs" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>｜TABI×TILE</title>
+<title>訪問地の詳細｜TABI×TILE</title>
 <link >
 </head>
 <body>
@@ -18,29 +16,48 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="${contextPath}/HomeServlet">TABI×TILE</a>
+		 	<a href="<c:url value='/HomeServlet'/>"
+		 		><img src="<c:url value='${imgsPath}/TABITILE_logo.png' />"  
+	 		/></a>
 		</h1>
-<c:if test ="${not empty sessionScope.user_id }">
-<p>
-${sessionScope.user_id.nickname}
-</p>
-</c:if>
-	<nav>
-		<ul>
-			<li><a href="${contextPath}/HomeServlet">ホーム</a>
-			<li><a href="${contextPath}/VisitorRegistServlet">登録</a>
-			<li><a href="${contextPath}/VisitorSearchServlet">検索</a>
-			<li><a href="${contextPath}/VisitorListServlet">一覧</a>
-		</ul>
-	</nav>
+		
+	<!-- ニックネーム表示 -->
+	<c:if test ="${not empty sessionScope.user_id }">
+		<span class="nickname"
+			>${sessionScope.user_id.nickname}&nbsp;さん</span>
+	</c:if>
+	
+	<nav
+		><ul
+			><li
+				><a href="<c:url value='/HomeServlet'/>"
+				>ホーム</a
+			><li
+				><a href="<c:url value='/VisitorRegistServlet'/>"
+				>登録</a
+			><li
+				><a href="<c:url value='/VisitorSearchServlet'/>"
+				>検索</a
+			><li
+				><a href="<c:url value='/VisitorListServlet'/>"
+				>一覧</a
+		></ul
+	></nav>
 	
 	<!-- ボタン設置 -->
-	<div class="">
-	<a href="${contextPath}/GachaServlet">ガチャ</a>
-		<a href="${contextPath}/QaServlet">QA</a>
-		<a href="${contextPath}/SettingServlet">設定</a>
-		<a href="${contextPath}/LogoutServlet">ログアウト</a>
-	</div>
+	<div class=""
+		><a href="<c:url value='/GachaServlet'/>"
+			>ガチャ</a
+		><a href="<c:url value='/QaServlet'/>"
+			>QA</a
+		><a href="<c:url value='/SettingServlet'/>"
+			>設定</a
+		><a href="<c:url value='/LogoutServlet'/>"
+			onclick="showConfirmDialog(); return false;"
+				><img src="<c:url value='${imgsPath}/icons/logout.png' />" 
+					width="50" 
+		/></a
+	></div>
 	
 	</header>
 <!-- ヘッダー(ここまで) -->
@@ -113,8 +130,9 @@ ${sessionScope.user_id.nickname}
                     >${thought}</textarea
             ></label
         ></div
-        ><div
-            ><img src="${assetsPath}/imgs/${fileName}" 
+        ><div 
+            ><img <%-- [ 仮置き ] メディアパス --%>  
+            	src="<c:url value='/media/${fileName}'/>" 
                 alt="写真1"
                 width="300"
         /></div
