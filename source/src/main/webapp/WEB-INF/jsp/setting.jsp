@@ -7,7 +7,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%-- [ 短縮 ] アセッツパス --%>
 <c:set var="assetsPath" value="${contextPath}/assets" />
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,28 +22,33 @@
         width: 200px;
       }
     </style>
-<title>｜TABI×TILE</title>
+<title>TABI×TILE</title>
+<link rel="stylesheet" href="<c:url value='/assets/css/common.css' />">
 </head>
 <body>
 
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" ></a>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 		
 <!-- ボタン設置 -->
 	<div class="">
-		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" height="50"></a>
-		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" height="50"></a>
-		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" height="50"></a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" height="50"></a>
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50"></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50"></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50"></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50"></a>
 	</div>
-	
+<!-- ニックネーム表示 -->
+	<c:if test ="${not empty sessionScope.user_id }">
+	<span class="nickname">${sessionScope.user_id.nickname} &nbsp;さん</span>
+	</c:if>
+<!-- メニューバー表示 -->
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/RegistServlet'/>">登録</a>
+			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
 			<li><a href="<c:url value='/VisitorServlet'/>">検索</a>
 			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
 		</ul>
@@ -118,21 +122,19 @@
 		<p>パスワードの変更</p>
 		    <label>現在のパスワード<br>
 		        <input type="password" id="password1" placeholder="現在のパスワードを入力">
-		        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
+		        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton1()"></span>
 		  </label><br>
 		  <label>新しいパスワード<br>
 		          <input type="password" id="password2" name="password" placeholder="新しいパスワードを入力">
-		          <span id="buttonEye2" class="fa fa-eye-slash" onclick="pushHideButton()"></span><br>
+		          <span id="buttonEye2" class="fa fa-eye-slash" onclick="pushHideButton2()"></span><br>
 		          <input type="submit" id="register" name="submit" value="変更">
 		          <span id="error_message3"></span>
 		  </label>
         </form>
     <script>
-    function pushHideButton() {
+    function pushHideButton1() {
     var txtPass1 = document.getElementById("password1");
-    var txtPass2 = document.getElementById("password2");
     var btnEye1 = document.getElementById("buttonEye1");
-    var btnEye2 = document.getElementById("buttonEye2");
 
     if (txtPass1.type === "text") {
         txtPass1.type = "password";
@@ -141,6 +143,11 @@
         txtPass1.type = "text";
         btnEye1.className = "fa fa-eye";
         }
+    }
+    
+    function pushHideButton2() {
+    var txtPass2 = document.getElementById("password2");
+    var btnEye2 = document.getElementById("buttonEye2");
     
     if (txtPass2.type === "text") {
         txtPass2.type = "password";
@@ -148,8 +155,9 @@
     } else {
         txtPass2.type = "text";
         btnEye2.className = "fa fa-eye";
-        }
+    	}
     }
+    
         /*HTML要素をオブジェクトとして取得する
     let nameformObj = document.getElementById('name_form');
     let errorMessageObj1 = document.getElementById('error_message1');
