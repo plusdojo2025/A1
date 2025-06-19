@@ -38,7 +38,7 @@ public class PickupServlet extends HttpServlet {
 		request.setAttribute("prefectureId", prefectureId);
 		request.setAttribute("prefecture", prefecture);
 		// 場所
-		String place = "place";
+		String place = "餃子通り";
 		request.setAttribute("place", place);
 		// 備考
 		String remarks = """
