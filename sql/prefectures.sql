@@ -52,3 +52,6 @@ INSERT INTO prefectures(prefecture_id, prefecture_name) VALUES
 (45, '宮崎県'),
 (46, '鹿児島県'),
 (47, '沖縄県');
+
+/*prefecturesテーブルのデータを確認*/
+SELECT*FROM prefectures;

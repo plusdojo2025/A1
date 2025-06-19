@@ -15,3 +15,4 @@ DROP DATABASE データベース名;
 
 /*テーブルを削除*/
 DROP TABLE テーブル名;
+

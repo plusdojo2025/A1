@@ -10,7 +10,15 @@ FOREIGN KEY (prefecture_id) REFERENCES prefectures (prefecture_id)
 );	
 
 INSERT INTO users(user_id,password,nickname,prefecture_id) VALUES
-('onigawara','kyunmoe32','もえもえ',4),
-('zinguuzi','Maaay2025','まいやん',14),
-('kuro','Nagaoka25','いっちー',13),
-('higuchi','kumamon22','よっしー',43);
+('dojouser1','#SEplus2025SEplus','もえもえ',4),
+('dojouser2','#SEplus2025SEplus','まいやん',14),
+('dojouser3','#SEplus2025SEplus','いっちー',13),
+('dojouser4','#SEplus2025SEplus','よっしー',43);
+
+
+
+/*usersテーブルのデータを確認*/
+SELECT*FROM users;
+
+
+

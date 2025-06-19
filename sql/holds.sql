@@ -17,14 +17,17 @@ hold_id,
 badge_id,
 user_id,
 date_acquisition)VALUES
--- 鬼瓦　四国地方制覇
-(1,6,'onigawara,',2025-01-13),
--- 神宮寺　北海道地方制覇
-(2,1,'zinguuzi,',2025-02-06),
--- 神宮寺　関東地方制覇
-(3,3,'zinguuzi,',2025-03-05),
--- 黒川　北海道地方制覇
-(4,1,'kuro,',2024-02-05),
--- 黒川　中部地方制覇
-(5,4,'kuro,',2025-06-15);
+-- dojouser2 北海道制覇
+(1,1,'dojouser2','2025-02-06'),
+-- dojouser2 関東制覇
+(2,3,'dojouser2','2025-03-05'),
+-- dojouser3 北海道制覇
+(3,1,'dojouser3','2024-02-05'),
+-- dojouser3 中部制覇
+(4,4,'dojouser3','2025-06-15'),
+-- dojouser3 四国制覇
+(5,6,'dojouser3','2025-01-13');
+
+/*holdsテーブルのデータを確認*/
+SELECT*FROM holds;
 
