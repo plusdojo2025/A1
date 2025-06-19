@@ -49,7 +49,7 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="150"></a>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 		
 <!-- ボタン設置 -->
