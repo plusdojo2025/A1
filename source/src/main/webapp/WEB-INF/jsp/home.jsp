@@ -9,6 +9,7 @@
 <title>ホーム｜TABI×TILE</title>
 <link rel="stylesheet" href="<c:url value='/css/common.css' />">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+
 </head>
 <body>
 

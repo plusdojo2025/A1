@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,5 +27,9 @@ public class HomeServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/LoginServlet");
 			return;
 		} 
+
+		// ログイン済みなのでhome.jspにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
+		dispatcher.forward(request, response);
 	}
 }
