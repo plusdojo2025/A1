@@ -10,12 +10,15 @@ INSERT INTO badges
 badge_name,
 badge_image
 )VALUES
-(1,'北海道地方',''),
-(2,'東北地方',''),
-(3,'関東地方',''),
-(4,'中部地方',''),
-(5,'近畿地方',''),
-(6,'中国地方',''),
-(7,'四国地方',''),
-(8,'九州地方(沖縄含む)',''),
-(9,'都道府県制覇','');
+(1,'北海道','hokkaido.png'),
+(2,'東北','touhoku.png'),
+(3,'関東','kanto.png'),
+(4,'中部','tyubu.png'),
+(5,'近畿','kinki.png'),
+(6,'中国','tyugoku.png'),
+(7,'四国','sikoku.png'),
+(8,'九州(沖縄含む)','kyusyu.png'),
+(9,'都道府県制覇','japan.png');
+
+/*badgesテーブルのデータを確認*/
+SELECT*FROM badges;
