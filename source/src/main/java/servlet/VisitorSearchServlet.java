@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.PrefectureDAO;
 import dao.VisitorDAO;
@@ -42,11 +43,11 @@ public class VisitorSearchServlet extends HttpServlet {
 
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/webappAns/LoginServlet");
+			response.sendRedirect("/A1/LoginServlet");
 			return;
-		}*/
+		}
 		// 検索ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorSearch.jsp");
 		dispatcher.forward(request, response);
@@ -60,11 +61,11 @@ public class VisitorSearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
-		}*/
+		}
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 	    String user_id = request.getParameter("user_id");

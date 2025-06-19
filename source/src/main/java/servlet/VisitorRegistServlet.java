@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.PrefectureDAO;
 import dao.VisitorDAO;
@@ -40,11 +41,11 @@ public class VisitorRegistServlet extends HttpServlet {
 			request.setAttribute("prefectureList", prefectureList);
 			
 			// もしもログインしていなかったらログインサーブレットにリダイレクトする
-			/*HttpSession session = request.getSession();
+			HttpSession session = request.getSession();
 			if (session.getAttribute("id") == null) {
 				response.sendRedirect("/A1/LoginServlet");
 				return;
-			}*/
+			}
 	
 			// 登録ページにフォワードする
 			String view = "/WEB-INF/jsp/visitorRegist.jsp";
@@ -60,11 +61,11 @@ public class VisitorRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
-		}*/
+		}
 
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
