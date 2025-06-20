@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 <!-- 登録画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>" >
 <link rel="stylesheet" href="<c:url value='assets/css/regist.css'/>">
 </head>
 <body>
@@ -17,7 +18,7 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet'/>">TABI×TILE</a>
+		<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 		
 		<!-- ボタン設置 -->
@@ -33,6 +34,7 @@
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
 	
+<!-- メニューバー表示 -->	
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a></li>
@@ -42,13 +44,11 @@
 		</ul>
 	</nav>
 	
-	
 	</header>
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
 	<main>
-	
 	<div class="tab_wrap">
     <!--タブメニュー-->
   	<div class="tab_area">

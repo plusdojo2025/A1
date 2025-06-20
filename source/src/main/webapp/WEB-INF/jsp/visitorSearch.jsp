@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 <!-- 検索画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>" >
 <link rel="stylesheet" href="<c:url value='assets/css/search.css'/>">
 
 </head>
@@ -119,7 +120,6 @@
     </div>
 </div>
 <!-- ダイアログHTML(ここまで) -->
-
 <!-- ダイアログJS(ここから) -->
 <script>
 function showConfirmDialog() {

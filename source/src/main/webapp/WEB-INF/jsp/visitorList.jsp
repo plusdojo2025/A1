@@ -2,86 +2,107 @@
     pageEncoding="UTF-8"%>
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*, dto.VisitorDTO, dto.PickupDTO" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>	一覧｜TABI×TILE</title>
+<!-- 全画面共通 -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-<link rel="styleesheet" href="<c:url value='assets/css/list.css'/>" >
+
+<!-- 一覧画面 -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>" >
+<link rel="stylesheet" href="<c:url value='assets/css/list.css'/>" >
 </head>
 <body>
 
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet'/>">TABI×TILE</a>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
-	
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/RegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
-		</ul>
-	</nav>
 	
 	<!-- ボタン設置 -->
 	<div class="">
-		<a href="<c:url value='/GachaServlet'/>">ガチャ</a>
-		<a href="<c:url value='/QaServlet'/>">QA</a>
-		<a href="<c:url value='/SettingServlet'/>">設定</a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;">ログアウト</a>
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
 	</div>
 	
+	<!-- ニックネーム表示 -->
+	<c:if test ="${not empty sessionScope.user_id }">
+	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+	</c:if>	
+	
+<!-- メニューバー表示 -->	
+	<nav>
+		<ul>
+			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+		</ul>
+	</nav>
+
 	</header>
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
 	<main>
-	
 		<div class="tab_wrap">
-			<input id="tab1" type="radio" name="tab_btn" checked>
-			<input id="tab2" type="radio" name="tab_btn">
-
-			<div class="tab_area">
-				<label class="tab1_label" for="tab1">訪問地一覧</label>
-				<label class="tab2_label" for="tab2">候補地一覧</label>
-			</div>
-		
-		<div class="panel_area">
+    		<!--タブメニュー-->
+  			<div class="tab_area">
+   				<a href="<c:url value='/VisitorListServlet'/>">
+        			<button class="tab_btn ${pageContext.request.servletPath == '/VisitorListServlet' ? 'active' : ''}">訪問地一覧</button>
+    			</a>
+    			<a href="<c:url value='/PickupListServlet'/>">
+        			<button class="tab_btn ${pageContext.request.servletPath == '/PickupListServlet' ? 'active' : ''}">候補地一覧</button>
+    			</a>
+  			</div>
+  	
 			<!-- ▼ 訪問地 一覧 -->
-				<div class="tab_panel" id="panel1">
-					<h2>訪問地一覧</h2>
-					<div class="">
+			<div id="tab1" class="tab_panel active">
+				<h2>訪問地一覧</h2>
+				<div class="">
+					<c:if test="${empty visitorList}">
+   						<p>訪問地の情報は見つかりませんでした。</p>
+  					</c:if>
+
+  					<c:if test="${not empty visitorList}">
 						<c:forEach var="visitor" items="${visitorList}">
-							<div class= "card">
+							<div class="card link-card" data-href="visitor.jsp?visitor_id=${visitor.visitor_id}">
 								<h3>${visitor.start_date} の思い出</h3>
-								<p>${visitor.prefecture_id}</p>
-								<p>${visitor.place}</p>
-							</div>	
+								<p>${visitor.prefecture_name}</p>
+								<p>${visitor.visitor_place}</p>
+							</div>
 						</c:forEach>
-					</div>
+  					</c:if>
 				</div>
+			</div>
 			
 			<!-- ▼ 候補地 一覧 -->
-				<div class="tab_panel" id="panel2">
-					<h2>候補地一覧</h2>
-					<div class="">
+			<div id="tab2" class="tab_panel">
+				<h2>候補地一覧</h2>
+				<div class="">
+					<c:if test="${empty pickupList}">
+   						<p>候補地の情報は見つかりませんでした。</p>
+  					</c:if>
+					
+					<c:if test="${not empty pickupList}">
 						<c:forEach var="pickup" items="${pickupList}">
-							<div class= "card">
-								<p>${pickup.prefecture_id} </p>
-								<p>${pickup.place}</p>
+							<div class="card link-card" data-href="pickup.jsp?pickup_id=${pickup.pickup_id}">
+								<p>${pickup.prefecture_name} </p>
+								<p>${pickup.pickup_place}</p>
 								<p>${pickup.remarks}</p>
 							</div>
 						</c:forEach>
-					</div>
+					</c:if>	
 				</div>
 			</div>
 		</div>
-
 	</main>
 <!-- メイン(ここまで) -->
 
@@ -103,7 +124,6 @@
     </div>
 </div>
 <!-- ダイアログHTML(ここまで) -->
-
 <!-- ダイアログJS(ここから) -->
 <script>
 function showConfirmDialog() {
@@ -120,6 +140,40 @@ function handleConfirm(isConfirmed) {
 }
 </script>
 <!-- ダイアログJS(ここまで) -->
+
+<script>
+//▼ タブ切り替え処理
+	const tabButtons = document.querySelectorAll('.tab_btn');
+	const tabContents = document.querySelectorAll('.tab_panel');
+
+	tabButtons.forEach(button => {
+	button.addEventListener('click', () => {
+     
+	// タブのアクティブ切り替え
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    // コンテンツのアクティブ切り替え
+    const target = button.getAttribute('data-tab');
+    tabContents.forEach(content => {
+    content.classList.remove('active');
+     if (content.id === target) {
+     content.classList.add('active');
+     }
+    });
+   });
+  });
+	
+// ▼ カードクリックで遷移する処理（ここを追加！）
+	document.querySelectorAll('.link-card').forEach(card => {
+	card.addEventListener('click', () => {
+	const url = card.getAttribute('data-href');
+	if (url) {
+		window.location.href = url;
+	}
+   });
+  });	
+</script>
 
 </body>
 </html>
