@@ -1,22 +1,63 @@
 /*全体の背景に関する設定*/
 html {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 20px;
-  background-color: #C1E5F5;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 20px;
+	background-color: #C1E5F5;
 }
 
-/*タブに関する設定*/
-.tab_wrap{width:500px; margin:80px auto;}
-input[type="radio"]{display:none;}
-.tab_area{font-size:0; margin:0 10px;}
-.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;}
-.tab_area label:hover{opacity:0.5;}
-.panel_area{background:#fff;}
-.tab_panel{width:100%; padding:80px 0; display:none;}
-.tab_panel p{font-size:14px; letter-spacing:1px; text-align:center;}
+/*ボタンの配置に関する設定*/
+.parent{
+	display:flex;
+	justify-content: space-between;
+}
 
-#tab1:checked ~ .tab_area .tab1_label{background:#fff; color:#000;}
-#tab1:checked ~ .panel_area #panel1{display:block;}
-#tab2:checked ~ .tab_area .tab2_label{background:#fff; color:#000;}
-#tab2:checked ~ .panel_area #panel2{display:block;}
+/*メニューバーに関する設定*/
+ul{
+	margin: 5px;
+	padding: 0;
+    background-color: #fff;
+	list-style-type:none;
+	justify-content: center;
+	display: flex;
+    vertical-align:middle;
+}
+
+/*メニューバーの区切り線に関する設定*/
+.home{
+	border-right: 2px solid #000;
+}
+
+.regist{
+	border-right: 2px solid #000;
+}
+
+.search{
+	border-right: 2px solid #000;
+}
+
+/*メニューバーに配置された各項目に関する設定*/
+li{
+	padding: 30px 50px 30px 50px;
+    vertical-align:middle;
+    text-align:center;
+    position:relative;
+}
+
+/*メニューバーに設置された各項目を推したときの処理*/
+a:link{
+    color: #000;
+    text-decoration: none;
+}
+a:visited{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color: #000;
+    text-decoration: underline;
+}
+a:active{
+    color: #000;
+    text-decoration: underline;
+}
