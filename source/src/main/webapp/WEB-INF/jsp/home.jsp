@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ホーム｜TABI×TILE</title>
-<link rel="stylesheet" href="<c:url value='/css/common.css' />">
+<link rel="stylesheet" href="<c:url value='assets/css/common.css' />">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 
 </head>
@@ -19,11 +19,16 @@
 		 <a href="<c:url value='/HomeServlet' />">TABI×TILE</a>
 		</h1>
 	
+	
+	<c:if test ="${not empty sessionScope.user_id }">
+	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+	</c:if>
+	
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/RegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorServlet'/>">検索</a>
+			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
 			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
 		</ul>
 	</nav>
