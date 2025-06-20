@@ -7,63 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>登録｜TABI×TILE</title>
-    <style>
-     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .tab_wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .tab_area {
-       display: flex;
-      flex-direction: row;
-      margin-bottom: 0;
-      border-bottom: 2px solid #ccc;
-    }
-
-    .tab_btn {
-      flex: 1;
-      padding: 14px;
-      font-size: 16px;
-      background: #f0f0f0;
-      border: none;
-      border-right: 1px solid #ccc;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .tab_btn:last-child {
-      border-right: none;
-    }
-
-    .tab_btn.active {
-      background-color: white;
-      font-weight: bold;
-      border-bottom: 2px solid #007BFF;
-      color: #007BFF;
-    }
-
-    .tab_panel {
-      display: none;
-      padding: 20px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-
-    .tab_panel.active {
-      display: block;
-    }
-
-
-  </style>
-
+<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
+<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+<!-- 登録画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/regist.css'/>">
 </head>
 <body>
 
@@ -72,23 +19,29 @@
 		<h1>
 		 <a href="<c:url value='/HomeServlet'/>">TABI×TILE</a>
 		</h1>
+		
+		<!-- ボタン設置 -->
+	<div class="">
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+	</div>
+	
+	<!-- ニックネーム表示 -->
+	<c:if test ="${not empty sessionScope.user_id }">
+	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+	</c:if>
 	
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a></li>
-			<li><a href="<c:url value='/RegistServlet'/>">登録</a></li>
-			<li><a href="<c:url value='/VisitorServlet'/>">検索</a></li>
+			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a></li>
+			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a></li>
 			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a></li>
 		</ul>
 	</nav>
 	
-	<!-- ボタン設置 -->
-	<div class="">
-		<a href="<c:url value='/GachaServlet'/>">ガチャ</a>
-		<a href="<c:url value='/QaServlet'/>">QA</a>
-		<a href="<c:url value='/SettingServlet'/>">設定</a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;">ログアウト</a>
-	</div>
 	
 	</header>
 <!-- ヘッダー(ここまで) -->
