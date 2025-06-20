@@ -42,6 +42,7 @@ public class VisitorDTO {
 		this.photo5 = photo5;
 		this.prefecture_name = null;
 	}
+<<<<<<< Updated upstream
     
     // ★都道府県名ありのコンストラクタ（JOIN時に使用）
     public VisitorDTO(int visitor_id, String user_id, String title, String componion, Date start_date, Date end_date,
@@ -64,6 +65,8 @@ public class VisitorDTO {
         this.photo4 = photo4;
         this.photo5 = photo5;
     }
+=======
+>>>>>>> Stashed changes
 
     // getterとsetter
 	public int getVisitor_id() {

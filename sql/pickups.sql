@@ -172,6 +172,7 @@ NULL,
 'dojouser3',
 5,
 '乳頭温泉郷',
+<<<<<<< Updated upstream
 '雪見風呂を体験したい');
 
 
@@ -194,3 +195,6 @@ v.prefecture_id = p.prefecture_id;
 
 /*pickupsテーブルのデータを確認*/
 SELECT*FROM pickups;
+=======
+'雪見風呂を体験したい');
+>>>>>>> Stashed changes

@@ -12,7 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.PickupDAO;
 import dao.VisitorDAO;
+<<<<<<< Updated upstream
 import dto.PickupDTO;
+=======
+>>>>>>> Stashed changes
 import dto.UserDTO;
 import dto.VisitorDTO;
 
@@ -28,18 +31,26 @@ public class VisitorListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+<<<<<<< Updated upstream
 
 		
 		// セッションからログインユーザー情報を取得
 		HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user_id") == null) {
         	System.out.println("Vセッションまたは user_id が null です。ログインしていない状態です。");
+=======
+		// セッションからログインユーザー情報を取得
+		HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user_id") == null) {
+        	System.out.println("セッションまたは user_id が null です。ログインしていない状態です。");
+>>>>>>> Stashed changes
             // ログインしていない場合はログイン画面へ
             response.sendRedirect(request.getContextPath() + "/LoginServlet");
             return;
         }
         
         // セッションからユーザー情報の取得
+<<<<<<< Updated upstream
         UserDTO loginUser = (UserDTO) session.getAttribute("user_id"); 
         	if (loginUser == null) {
         		System.out.println("vセッションから取得した loginUser が null です。");
@@ -113,6 +124,34 @@ public class VisitorListServlet extends HttpServlet {
             
             List<PickupDTO> pickupList = PickupDAO.findByUser(user_id);
             	
+=======
+        UserDTO loginUser = (UserDTO) session.getAttribute("user_id");  
+        	if (loginUser == null) {
+        		System.out.println("セッションから取得した loginUser が null です。");
+        	} else {
+        		System.out.println("ログインユーザーID: " + loginUser.getUser_id());
+        	}
+        	String user_id = loginUser.getUser_id();
+
+        String prefecture_id = request.getParameter("prefecture_id"); // 絞り込み用パラメータ
+        System.out.println("リクエストパラメータ prefecture_id = " + prefecture_id);
+        
+        try {
+            List<VisitorDTO> visitorList;
+            
+            if (prefecture_id != null && !prefecture_id.isEmpty()) {
+            	 System.out.println("都道府県で絞り込み検索を実行（user_id: " + user_id + ", prefecture_id: " + prefecture_id + "）");
+                // ユーザーID + 都道府県IDで絞り込み
+                visitorList = VisitorDAO.findByUserAndPrefecture(user_id, prefecture_id);
+            } else {
+            	System.out.println("都道府県指定なしで全件検索を実行（user_id: " + user_id + "）");
+                // ユーザーIDのみで全件取得
+                visitorList = VisitorDAO.findByUser(user_id);
+            }
+            
+            System.out.println("取得した訪問地件数: " + visitorList.size());
+            
+>>>>>>> Stashed changes
             // リクエストにセットしてJSPへ
             request.setAttribute("visitorList", visitorList);
             request.setAttribute("pickupList", pickupList);

@@ -19,6 +19,23 @@
 		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 	
+<<<<<<< Updated upstream
+=======
+	
+	<c:if test ="${not empty sessionScope.user_id }">
+	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+	</c:if>
+	
+	<nav>
+		<ul>
+			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+		</ul>
+	</nav>
+	
+>>>>>>> Stashed changes
 	<!-- ボタン設置 -->
 	<div class="">
 		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
