@@ -14,6 +14,7 @@ public class UserDTO {
 		this.nickname = nickname;
 		this.prefecture_id = prefecture_id;
 	}
+    //引数なしコンストラクタ
     public UserDTO() {
     	this.user_id = "";
 		this.password = "";

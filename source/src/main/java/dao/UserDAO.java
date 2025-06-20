@@ -8,6 +8,7 @@ import dto.UserDTO;
 
 public class UserDAO extends DAO{
 	
+	// ログイン認証を行う
 	public boolean isAuth(String userId, String password) {
 		//ドライバの読み込みおよびデータベースの接続
 		super.access();
@@ -27,6 +28,7 @@ public class UserDAO extends DAO{
 					password=?;
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// ?に値をセット
 			pStmt.setString(1, userId);
 			pStmt.setString(2, password);
 
@@ -49,11 +51,13 @@ public class UserDAO extends DAO{
 		// 結果を返す
 		return loginResult;
 	}
-
+	// ログインした後ユーザーの情報を取得する
 	public UserDTO getLoginUser(String userId) {
+		//ドライバの読み込みおよびデータベースの接続
 		super.access();
-		UserDTO loginUser = new UserDTO();
+		UserDTO loginUser = new UserDTO();//インスタンス化 
 		try {
+			// SQL文を準備する
 	        String sql = """
 	            SELECT  
 	             nickname,
@@ -65,16 +69,15 @@ public class UserDAO extends DAO{
 	              """;
 	        
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        // ?に値をセット
 			pStmt.setString(1, userId);
 	        
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
+			// ユーザーが見つかればDTOに情報を返す
 			if (rs.next()) {
-	            loginUser = new UserDTO();
-	            loginUser.setUser_id(userId); // 追加推奨
-	            loginUser.setNickname(rs.getString("nickname"));
-	            loginUser.setPrefecture_id(rs.getInt("prefecture_id"));
+	            loginUser.setNickname(rs.getString("nickname")); //ニックネーム 
+	            loginUser.setPrefecture_id(rs.getInt("prefecture_id"));// 都道府県ID
 	        }
 
 	    } catch (SQLException e) {
@@ -82,7 +85,7 @@ public class UserDAO extends DAO{
 	    } finally {
 	        super.close(); // DB接続を切断
 	    }
-
+		// ユーザー情報を返す
 	    return loginUser; // ヒットしなければ null
 	
 }
