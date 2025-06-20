@@ -13,6 +13,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>TABI×TILE</title>
+	<!-- 全体共通css -->
+	<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
+	<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+	
+	<!-- Q&A画面用css -->
+	<link rel="stylesheet" href="<c:url value='assets/css/qa.css'/>">
+	
 </head>
 <body>
 
@@ -49,7 +56,8 @@
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
-	<main>
+	<main style="text-align: center;">
+	
 		<p>ログイン・ログアウトについて</p>
 			<details>
 				<summary>Q.ログイン時にパスワードを忘れてしまった。</summary>
