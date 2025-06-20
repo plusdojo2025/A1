@@ -20,7 +20,10 @@
 		</h1>
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 	
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>

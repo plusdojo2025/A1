@@ -82,8 +82,11 @@ public class PickupDAO {
 		
 		// ユーザーID＋都道府県IDでの絞り込み
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		public List<PickupDTO> findByUserAndPrefecture(String user_id, String prefecture_id) {
 =======
+=======
+>>>>>>> Stashed changes
 		public List<PickupDTO> findByUserAndPrefecture(String userId, String prefectureId) {
 >>>>>>> Stashed changes
 			Connection conn = null;
@@ -101,11 +104,15 @@ public class PickupDAO {
 				
 				// MySQL文を準備する
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				String sql = "SELECT p.pickup_id, p.user_id, p.prefecture_id, pf.prefecture_name, " +
                         "p.pickup_place, p.remarks " +
                         "FROM pickups p JOIN prefectures pf ON p.prefecture_id = pf.prefecture_id " +
                         "WHERE p.user_id = ? AND p.prefecture_id = ? ORDER BY p.pickup_id";
 				
+=======
+				String sql = "SELECT * FROM pickups WHERE user_id = ? AND prefecture_id = ? ORDER BY pickup_id";
+>>>>>>> Stashed changes
 =======
 				String sql = "SELECT * FROM pickups WHERE user_id = ? AND prefecture_id = ? ORDER BY pickup_id";
 >>>>>>> Stashed changes
@@ -192,6 +199,7 @@ public class PickupDAO {
 		        
 		        PreparedStatement pStmt = conn.prepareStatement(sql);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		        	pStmt.setString(1, "%" + dto.getUser_id()+ "%");
 		        	pStmt.setString(2, dto.getUser_id());
 		        	pStmt.setString(3, dto.getUser_id());
@@ -203,6 +211,8 @@ public class PickupDAO {
 		        	pStmt.setString(8, dto.getPickup_place());
 		        	pStmt.setString(9, "%" + dto.getRemarks() + "%");
 =======
+=======
+>>>>>>> Stashed changes
 		        	pStmt.setString(1, dto.getUser_id());
 		        	pStmt.setString(2, dto.getUser_id());
 		        	pStmt.setString(3, dto.getUser_id());
@@ -212,6 +222,9 @@ public class PickupDAO {
 		        	pStmt.setString(7, dto.getPickup_place());
 		        	pStmt.setString(8, dto.getPickup_place());
 		        	pStmt.setString(9, dto.getRemarks());
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		        	pStmt.setString(10, dto.getRemarks());
 		        	pStmt.setString(11, dto.getRemarks());
@@ -225,7 +238,10 @@ public class PickupDAO {
 		        				rs.getString("user_id"),
 		        				rs.getInt("prefecture_id"),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		        				rs.getString("prefecture_name"),
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		        				rs.getString("pickup_place"),
@@ -274,8 +290,12 @@ public class PickupDAO {
 
 	            // SQL文の準備
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	            String sql = "INSERT INTO pickups "
 	            		+ "(user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
+=======
+	            String sql = "INSERT INTO pickups (user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
+>>>>>>> Stashed changes
 =======
 	            String sql = "INSERT INTO pickups (user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
 >>>>>>> Stashed changes

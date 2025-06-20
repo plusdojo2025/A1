@@ -9,12 +9,81 @@
 <meta charset="UTF-8">
 <title>	一覧｜TABI×TILE</title>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <!-- 全画面共通 -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 
 <!-- 一覧画面 -->
 <link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>" >
+=======
+
+<style>
+     body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tab_wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    .tab_area {
+       display: flex;
+      flex-direction: row;
+      margin-bottom: 0;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .tab_btn {
+      flex: 1;
+      padding: 14px;
+      font-size: 16px;
+      background: #f0f0f0;
+      border: none;
+      border-right: 1px solid #ccc;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .tab_btn:last-child {
+      border-right: none;
+    }
+
+    .tab_btn.active {
+      background-color: white;
+      font-weight: bold;
+      border-bottom: 2px solid #007BFF;
+      color: #007BFF;
+    }
+
+    .tab_panel {
+      display: none;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .tab_panel.active {
+      display: block;
+    }
+
+   .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      }
+  </style>
+  
+<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
+<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+>>>>>>> Stashed changes
 =======
 
 <style>
@@ -137,9 +206,15 @@
     		<!--タブメニュー-->
   			<div class="tab_area">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
    				 <button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
   				<button class="tab_btn"  data-tab="tab2">候補地一覧</button>
 			</div>
+=======
+   				<button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
+    			<button class="tab_btn" 		data-tab="tab2">候補地一覧</button> 
+  			</div>
+>>>>>>> Stashed changes
 =======
    				<button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
     			<button class="tab_btn" 		data-tab="tab2">候補地一覧</button> 
@@ -150,7 +225,10 @@
 			<div id="tab1" class="tab_panel active">
 				<h2>訪問地一覧</h2>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 				<div class="">
@@ -174,9 +252,12 @@
 			<div id="tab2" class="tab_panel">
 				<h2>候補地一覧</h2>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				
 				
 				
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 				<div class="">
@@ -235,7 +316,10 @@ function handleConfirm(isConfirmed) {
 <!-- ダイアログJS(ここまで) -->
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <!-- タブの切り替え（ここから） -->
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 <script>
@@ -245,6 +329,7 @@ function handleConfirm(isConfirmed) {
 
 	tabButtons.forEach(button => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		button.addEventListener('click', () => {
 			
 	// 全ボタンのアクティブを外す
@@ -253,6 +338,8 @@ function handleConfirm(isConfirmed) {
 
     // 全タブパネルの表示切り替え target=タブパネル
 =======
+=======
+>>>>>>> Stashed changes
 	button.addEventListener('click', () => {
      
 	// タブのアクティブ切り替え
@@ -260,6 +347,9 @@ function handleConfirm(isConfirmed) {
     button.classList.add('active');
 
     // コンテンツのアクティブ切り替え
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     const target = button.getAttribute('data-tab');
     tabContents.forEach(content => {
