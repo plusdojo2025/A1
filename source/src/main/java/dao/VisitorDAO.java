@@ -17,7 +17,7 @@ public class VisitorDAO {
 	public List<VisitorDTO> findByUser(String user_id) {
 	    Connection conn = null;
 	    List<VisitorDTO> visitorList = new ArrayList<>();
-	    System.out.println("VisitorDAO: findByUser() 開始 - userId = " + user_id);
+	    System.out.println("VisitorDAO: findByUser() 開始 - user_id = " + user_id);
 
 	    try {
 	        // JDBCドライバを読み込む
@@ -28,9 +28,10 @@ public class VisitorDAO {
 	                "root", "password");
 
 	        // MySQL文を準備する（user_id のみで絞り込み）
-	        String sql =  "SELECT v.*, p.prefecture_name FROM visitors v " +
-                    "JOIN prefectures p ON v.prefecture_id = p.prefecture_id " +
-                    "WHERE v.user_id = ? ORDER BY v.visitor_id";
+	        String sql =  "SELECT v.*, p.prefecture_name FROM visitors v "
+                    + "JOIN prefectures p ON v.prefecture_id = p.prefecture_id "
+                    + "WHERE v.user_id = ? ORDER BY v.visitor_id";
+	        
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 	        pStmt.setString(1, user_id);  // ユーザーID
 
@@ -82,6 +83,7 @@ public class VisitorDAO {
 	public List<VisitorDTO> findByUserAndPrefecture(String user_id, String prefecture_id) {
 		Connection conn = null;
 		List<VisitorDTO> visitorList = new ArrayList<>();
+		System.out.println("VisitorDAO: findByUserAndPrefecture() 開始 - user_id = " + user_id);
 	
 		try {
 			// JDBCドライバを読み込む
@@ -189,6 +191,7 @@ public class VisitorDAO {
 	     	                rs.getDate("start_date"),
 	     	                rs.getDate("end_date"),
 	     	                rs.getInt("prefecture_id"),
+	     	               rs.getString("prefecture_name"),
 	     	                rs.getString("visitor_place"),
 	     	                rs.getString("thought"),
 	     	                rs.getInt("emotion_id"),

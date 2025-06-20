@@ -76,8 +76,11 @@ public class UserDAO extends DAO{
 			ResultSet rs = pStmt.executeQuery();
 			// ユーザーが見つかればDTOに情報を返す
 			if (rs.next()) {
-	            loginUser.setNickname(rs.getString("nickname")); //ニックネーム 
-	            loginUser.setPrefecture_id(rs.getInt("prefecture_id"));// 都道府県ID
+				loginUser.setUser_id(userId); // ユーザーID
+	            loginUser.setNickname(rs.getString(
+	            		"nickname")); //ニックネーム 
+	            loginUser.setPrefecture_id(rs.getInt(
+	            		"prefecture_id"));// 都道府県ID
 	        }
 
 	    } catch (SQLException e) {

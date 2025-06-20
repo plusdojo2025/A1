@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		// ログイン処理を行う
+		// ログイン処理を行う
 		UserDAO userdao = new UserDAO();
 		//ログイン認証
 		boolean isAuth = userdao.isAuth(userId,password);
@@ -55,14 +56,14 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id",loginUser);
 			
-			// メニューサーブレットにリダイレクトする
+			// ホームサーブレットにリダイレクトする(画面遷移)
 			String url = request.getContextPath() + "/HomeServlet";
 			response.sendRedirect (url);
 		}else {//ログイン失敗
-			request.setAttribute("errorMessage",
+			request.setAttribute("errorMessage", // エラーメッセージを出す
 					"IDまたはパスワードに間違いがあります。");
 			String view = "/WEB-INF/jsp/login.jsp";
-			RequestDispatcher dispatcher = 
+			RequestDispatcher dispatcher =   // ログイン画面へ戻す
 					request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		}

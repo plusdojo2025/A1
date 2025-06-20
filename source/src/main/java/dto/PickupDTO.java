@@ -8,17 +8,25 @@ public class PickupDTO {
 	    private String pickup_place;   	// 場所
 	    private String remarks;		// 備考（コメント）
 		
-	 // コンストラクタ
-	 public PickupDTO(int pickup_id, String user_id, int prefecture_id, String pickup_place, String remarks) {
-		super();
-		this.pickup_id = pickup_id;
-		this.user_id = user_id;
-		this.prefecture_id = prefecture_id;
-		this.pickup_place = pickup_place;
-		this.remarks = remarks;
-		this.prefecture_name = null;
-		
-	}
+	    // ★ prefecture_name「なし」バージョン（従来の登録・検索で使う）
+	    public PickupDTO(int pickup_id, String user_id, int prefecture_id, String pickup_place, String remarks) {
+	        this.pickup_id = pickup_id;
+	        this.user_id = user_id;
+	        this.prefecture_id = prefecture_id;
+	        this.pickup_place = pickup_place;
+	        this.remarks = remarks;
+	        this.prefecture_name = null;
+	    }
+
+	    // ★ prefecture_name「あり」バージョン（JOIN時に使う）
+	    public PickupDTO(int pickup_id, String user_id, int prefecture_id, String prefecture_name, String pickup_place, String remarks) {
+	        this.pickup_id = pickup_id;
+	        this.user_id = user_id;
+	        this.prefecture_id = prefecture_id;
+	        this.prefecture_name = prefecture_name;
+	        this.pickup_place = pickup_place;
+	        this.remarks = remarks;
+	    }
 	 
 	// getterとsetter
 	public int getPickup_id() {

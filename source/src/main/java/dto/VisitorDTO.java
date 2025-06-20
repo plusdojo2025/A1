@@ -20,7 +20,7 @@ public class VisitorDTO {
     private String photo4;         // 写真4
     private String photo5;         // 写真5
 	
-    // コンストラクタ
+    // ★ prefecture_name「なし」バージョン（従来の登録・検索で使う）
     public VisitorDTO(int visitor_id, String user_id, String title, String componion, Date start_date, Date end_date,
 			int prefecture_id, String visitor_place, String thought, int emotion_id, String photo1, String photo2,
 			String photo3, String photo4, String photo5) {
@@ -42,6 +42,28 @@ public class VisitorDTO {
 		this.photo5 = photo5;
 		this.prefecture_name = null;
 	}
+    
+    // ★都道府県名ありのコンストラクタ（JOIN時に使用）
+    public VisitorDTO(int visitor_id, String user_id, String title, String componion, Date start_date, Date end_date,
+            int prefecture_id, String prefecture_name, String visitor_place, String thought, int emotion_id,
+            String photo1, String photo2, String photo3, String photo4, String photo5) {
+        this.visitor_id = visitor_id;
+        this.user_id = user_id;
+        this.title = title;
+        this.componion = componion;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.prefecture_id = prefecture_id;
+        this.prefecture_name = prefecture_name;
+        this.visitor_place = visitor_place;
+        this.thought = thought;
+        this.emotion_id = emotion_id;
+        this.photo1 = photo1;
+        this.photo2 = photo2;
+        this.photo3 = photo3;
+        this.photo4 = photo4;
+        this.photo5 = photo5;
+    }
 
     // getterとsetter
 	public int getVisitor_id() {

@@ -16,14 +16,23 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet' />">TABI×TILE</a>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 	
+	<!-- ボタン設置 -->
+	<div class="">
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+	</div>
 	
+	<!-- ニックネーム表示 -->
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
 	
+<!-- メニューバー表示 -->		
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
@@ -32,15 +41,7 @@
 			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
 		</ul>
 	</nav>
-	
-	<!-- ボタン設置 -->
-	<div class="">
-	<a href="<c:url value='/GachaServlet' />">ガチャ</a>
-		<a href="<c:url value='/QaServlet' />">QA</a>
-		<a href="<c:url value='/SettingServlet' />">設定</a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;">ログアウト</a>
-	</div>
-	
+
 	</header>
 <!-- ヘッダー(ここまで) -->
 

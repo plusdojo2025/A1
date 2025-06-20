@@ -55,17 +55,14 @@
 		<div class="tab_wrap">
     		<!--タブメニュー-->
   			<div class="tab_area">
-   				<a href="<c:url value='/VisitorListServlet'/>">
-        			<button class="tab_btn ${pageContext.request.servletPath == '/VisitorListServlet' ? 'active' : ''}">訪問地一覧</button>
-    			</a>
-    			<a href="<c:url value='/PickupListServlet'/>">
-        			<button class="tab_btn ${pageContext.request.servletPath == '/PickupListServlet' ? 'active' : ''}">候補地一覧</button>
-    			</a>
-  			</div>
+   				 <button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
+  				<button class="tab_btn"  data-tab="tab2">候補地一覧</button>
+			</div>
   	
 			<!-- ▼ 訪問地 一覧 -->
 			<div id="tab1" class="tab_panel active">
 				<h2>訪問地一覧</h2>
+				
 				<div class="">
 					<c:if test="${empty visitorList}">
    						<p>訪問地の情報は見つかりませんでした。</p>
@@ -86,6 +83,9 @@
 			<!-- ▼ 候補地 一覧 -->
 			<div id="tab2" class="tab_panel">
 				<h2>候補地一覧</h2>
+				
+				
+				
 				<div class="">
 					<c:if test="${empty pickupList}">
    						<p>候補地の情報は見つかりませんでした。</p>
@@ -141,19 +141,20 @@ function handleConfirm(isConfirmed) {
 </script>
 <!-- ダイアログJS(ここまで) -->
 
+<!-- タブの切り替え（ここから） -->
 <script>
 //▼ タブ切り替え処理
 	const tabButtons = document.querySelectorAll('.tab_btn');
 	const tabContents = document.querySelectorAll('.tab_panel');
 
 	tabButtons.forEach(button => {
-	button.addEventListener('click', () => {
-     
-	// タブのアクティブ切り替え
+		button.addEventListener('click', () => {
+			
+	// 全ボタンのアクティブを外す
     tabButtons.forEach(btn => btn.classList.remove('active'));
     button.classList.add('active');
 
-    // コンテンツのアクティブ切り替え
+    // 全タブパネルの表示切り替え target=タブパネル
     const target = button.getAttribute('data-tab');
     tabContents.forEach(content => {
     content.classList.remove('active');
