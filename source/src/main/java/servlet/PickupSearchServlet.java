@@ -44,7 +44,7 @@ public class PickupSearchServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		// 検索ページにフォワードする
@@ -62,7 +62,7 @@ public class PickupSearchServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		// リクエストパラメータを取得する
@@ -85,7 +85,7 @@ public class PickupSearchServlet extends HttpServlet {
 		request.setAttribute("cardList", cardList);
 		
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickupList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickuppickupSearchresult.jsp");
 		dispatcher.forward(request, response);
 	}
 

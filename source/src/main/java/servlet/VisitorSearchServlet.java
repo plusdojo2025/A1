@@ -21,7 +21,9 @@ import dto.VisitorDTO;
 /**
  * Servlet implementation class VisitorSearchServlet
  */
-@WebServlet("/VisitorSearchServlet")
+@WebServlet(urlPatterns = {"/VisitorSearchServlet"})
+
+//@WebServlet("/VisitorSearchServlet")
 public class VisitorSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +47,7 @@ public class VisitorSearchServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		// 検索ページにフォワードする
@@ -63,7 +65,7 @@ public class VisitorSearchServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		// リクエストパラメータを取得する
@@ -73,7 +75,7 @@ public class VisitorSearchServlet extends HttpServlet {
 	    String end_date_str = request.getParameter("end_date");      // String型として取得
 	    String title = request.getParameter("title");
 	    String prefecture_id_str = request.getParameter("prefecture_id");  // String型
-	    String place = request.getParameter("place");
+	    String visitor_place = request.getParameter("visitor_place");
 	    String componion = request.getParameter("componion");
 	    String emotion_id_str = request.getParameter("emotion_id");   // String型
 	    String thought = request.getParameter("thought");
@@ -93,13 +95,16 @@ public class VisitorSearchServlet extends HttpServlet {
 
 	    // emotion_id を int 型に変換
 	    int emotion_id = Integer.parseInt(emotion_id_str);
+	    
 
 	    // prefecture_id を int 型に変換
 	    int prefecture_id = Integer.parseInt(prefecture_id_str);
+	    
+
 
 		// 検索処理を行う
 	    // DTOにセット
-	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, place, thought, emotion_id, photo, null, null, null, null);
+	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, photo, null, null, null, null);
 		// DB検索処理
 		VisitorDAO dao = new VisitorDAO();
 		List<VisitorDTO> cardList = dao.search(dto);
@@ -107,7 +112,7 @@ public class VisitorSearchServlet extends HttpServlet {
 		request.setAttribute("cardList", cardList);
 		
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorSearchresult.jsp");
 		dispatcher.forward(request, response);
 	}
 

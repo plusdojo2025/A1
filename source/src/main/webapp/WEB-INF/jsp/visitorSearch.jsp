@@ -58,7 +58,7 @@
 		<!-- 訪問地登録 -->
 		<div id="tab1" class="tab_panel active">
 			<h2>訪問地検索</h2>
-		<form method="POST" action="/webapp/VisitorSearchServlet">
+		<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
 		初日<input type="date" name="start_date"><br>
 		終日<input type="date" name="end_date"><br>
 		タイトル<input type="text" name="title"><br>
@@ -86,7 +86,7 @@
 		<!-- 候補地登録 -->
 		<div id="tab2" class="tab_panel">
 			<h2>候補地検索</h2>
-		<form method="POST" action="/webapp/PickupSearchServlet">
+		<form method="POST" action="<c:url value='PickupSearchServlet'/>">
 		都道府県<select name="prefecture_id">
 					<option value="" disabled selected>選択してください</option>
 					<c:forEach var="prefecture" items="${prefectureList}">
