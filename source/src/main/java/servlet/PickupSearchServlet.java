@@ -43,7 +43,7 @@ public class PickupSearchServlet extends HttpServlet {
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
 		}
@@ -61,7 +61,7 @@ public class PickupSearchServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
 		}

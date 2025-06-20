@@ -40,7 +40,7 @@ public class PickupDAO {
 		                rs.getInt("pickup_id"),
 		                rs.getString("user_id"),
 		                rs.getInt("prefecture_id"),
-		                rs.getString("place"),
+		                rs.getString("pickup_place"),
 		                rs.getString("remarks")
 		            );
 		        	pickupList.add(pickup);
@@ -65,7 +65,7 @@ public class PickupDAO {
 
 		
 		
-		// 
+		// ユーザーID＋都道府県IDでの絞り込み
 		public List<PickupDTO> findByUserAndPrefecture(String userId, String prefectureId) {
 			Connection conn = null;
 			List<PickupDTO> pickupList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class PickupDAO {
 						"root","password");
 				
 				// MySQL文を準備する
-				String sql = "SELECT * FROM pickup WHERE user_id = ? AND prefecture_id = ? ORDER BY pickup_id";
+				String sql = "SELECT * FROM pickups WHERE user_id = ? AND prefecture_id = ? ORDER BY pickup_id";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1, userId);
 				pStmt.setString(2, prefectureId);
@@ -95,7 +95,7 @@ public class PickupDAO {
 	            			rs.getInt("pickup_id"),
 			                rs.getString("user_id"),
 			                rs.getInt("prefecture_id"),
-			                rs.getString("place"),
+			                rs.getString("pickup_place"),
 			                rs.getString("remarks")
 			            );
 	                pickupList.add(pickup);
@@ -132,26 +132,39 @@ public class PickupDAO {
 		            "root", "password"
 		        );
 
-		        String sql = "SELECT * FROM pickup WHERE "
+		        String sql = "SELECT * FROM pickups WHERE "
 		                   + " (user_id = ? OR ? IS NULL OR ? = 0) "
 		                   + " AND (prefecture_id = ? OR ? = 0) "
-		                   + " AND (place LIKE CONCAT('%', ?, '%') OR ? IS NULL OR ? = '') "
+		                   + " AND (pickup_place LIKE CONCAT('%', ?, '%') OR ? IS NULL OR ? = '') "
 		                   + " AND (remarks LIKE CONCAT('%', ?, '%') OR ? IS NULL OR ? = '') "
 		                   + " ORDER BY pickup_id";
 
 		        PreparedStatement pStmt = conn.prepareStatement(sql);
-			     // SQL文を実行し、結果表を取得する
-		        ResultSet rs = pStmt.executeQuery();
-		        while (rs.next()) {
-		            PickupDTO pickup = new PickupDTO(
-		                rs.getInt("pickup_id"),
-		                rs.getString("user_id"),
-		                rs.getInt("prefecture_id"),
-		                rs.getString("pickup_place"),
-		                rs.getString("remarks")
-		            );
-		            pickupList.add(pickup);
-		        }
+		        	pStmt.setString(1, dto.getUser_id());
+		        	pStmt.setString(2, dto.getUser_id());
+		        	pStmt.setString(3, dto.getUser_id());
+		        	pStmt.setInt(4, dto.getPrefecture_id());
+		        	pStmt.setInt(5, dto.getPrefecture_id());
+		        	pStmt.setString(6, dto.getPickup_place());
+		        	pStmt.setString(7, dto.getPickup_place());
+		        	pStmt.setString(8, dto.getPickup_place());
+		        	pStmt.setString(9, dto.getRemarks());
+		        	pStmt.setString(10, dto.getRemarks());
+		        	pStmt.setString(11, dto.getRemarks());
+		        	
+		        	// SQL文を実行し、結果表を取得する
+		        	ResultSet rs = pStmt.executeQuery();
+		        
+		        		while (rs.next()) {
+		        			PickupDTO pickup = new PickupDTO(
+		        				rs.getInt("pickup_id"),
+		        				rs.getString("user_id"),
+		        				rs.getInt("prefecture_id"),
+		        				rs.getString("pickup_place"),
+		        				rs.getString("remarks")
+		        			);
+		        			pickupList.add(pickup);
+		        		}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -192,7 +205,7 @@ public class PickupDAO {
 	            );
 
 	            // SQL文の準備
-	            String sql = "INSERT INTO pickup (user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
+	            String sql = "INSERT INTO pickups (user_id, prefecture_id, pickup_place, remarks) VALUES (?, ?, ?, ?)";
 	            ps = conn.prepareStatement(sql);
 	            ps.setString(1, dto.getUser_id());
 	            ps.setInt(2, dto.getPrefecture_id());

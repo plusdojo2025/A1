@@ -41,7 +41,7 @@ public class PickupRegistServlet extends HttpServlet {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
 		}
@@ -59,7 +59,7 @@ public class PickupRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/A1/LoginServlet");
 			return;
 		}
@@ -69,13 +69,13 @@ public class PickupRegistServlet extends HttpServlet {
 	request.setCharacterEncoding("UTF-8");
     String user_id = request.getParameter("user_id");
     String prefecture_id_str = request.getParameter("prefecture_id");
-    String pickup_place = request.getParameter("place");
+    String pickup_place = request.getParameter("pickup_place");
     String remarks = request.getParameter("remarks");
 
     // 入力値保持用（戻ったときのため）
     request.setAttribute("user_id", user_id);
     request.setAttribute("prefecture_id", prefecture_id_str);
-    request.setAttribute("place", pickup_place);
+    request.setAttribute("pickup_place", pickup_place);
     request.setAttribute("remarks", remarks);
     
  // バリデーション（都道府県・場所は必須）

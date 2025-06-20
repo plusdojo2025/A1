@@ -10,6 +10,7 @@ public class VisitorDTO {
     private Date start_date;        // 開始日
     private Date end_date;          // 終了日
     private int prefecture_id;      // 都道府県ID（外部キー）
+    private String prefecture_name;
     private String visitor_place;          // 場所
     private String thought;        // 感想
     private int emotion_id;         // 感情ID（外部キー）
@@ -39,8 +40,9 @@ public class VisitorDTO {
 		this.photo3 = photo3;
 		this.photo4 = photo4;
 		this.photo5 = photo5;
+		this.prefecture_name = null;
 	}
-    
+
     // getterとsetter
 	public int getVisitor_id() {
 		return visitor_id;
@@ -96,6 +98,14 @@ public class VisitorDTO {
 
 	public void setPrefecture_id(int prefecture_id) {
 		this.prefecture_id = prefecture_id;
+	}
+
+	public String getPrefecture_name() {
+		return prefecture_name;
+	}
+
+	public void setPrefecture_name(String prefecture_name) {
+		this.prefecture_name = prefecture_name;
 	}
 
 	public String getVisitor_place() {

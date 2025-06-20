@@ -4,6 +4,7 @@ public class PickupDTO {
 	    private int pickup_id;		// 候補地ID（主キー）
 	    private String user_id;  		// ユーザーID（外部キー）
 	    private int prefecture_id; 	// 都道府県（外部キー）
+	    private String prefecture_name;
 	    private String pickup_place;   	// 場所
 	    private String remarks;		// 備考（コメント）
 		
@@ -15,6 +16,8 @@ public class PickupDTO {
 		this.prefecture_id = prefecture_id;
 		this.pickup_place = pickup_place;
 		this.remarks = remarks;
+		this.prefecture_name = null;
+		
 	}
 	 
 	// getterとsetter
@@ -40,6 +43,14 @@ public class PickupDTO {
 
 	public void setPrefecture_id(int prefecture_id) {
 		this.prefecture_id = prefecture_id;
+	}
+	
+	public String getPrefecture_name() {
+		return prefecture_name;
+	}
+
+	public void setPrefecture_name(String prefecture_name) {
+		this.prefecture_name = prefecture_name;
 	}
 
 	public String getPickup_place() {

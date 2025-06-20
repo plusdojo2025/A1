@@ -14,9 +14,10 @@ import dto.VisitorDTO;
 public class VisitorDAO {
 	
 	// ユーザーIDに紐づく訪問地一覧を取得
-	public List<VisitorDTO> findByUser(String userId) {
+	public List<VisitorDTO> findByUser(String user_id) {
 	    Connection conn = null;
 	    List<VisitorDTO> visitorList = new ArrayList<>();
+	    System.out.println("VisitorDAO: findByUser() 開始 - userId = " + user_id);
 
 	    try {
 	        // JDBCドライバを読み込む
@@ -27,9 +28,11 @@ public class VisitorDAO {
 	                "root", "password");
 
 	        // MySQL文を準備する（user_id のみで絞り込み）
-	        String sql = "SELECT * FROM visitor WHERE user_id = ? ORDER BY visitor_id";
+	        String sql =  "SELECT v.*, p.prefecture_name FROM visitors v " +
+                    "JOIN prefectures p ON v.prefecture_id = p.prefecture_id " +
+                    "WHERE v.user_id = ? ORDER BY v.visitor_id";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
-	        pStmt.setString(1, userId);  // ユーザーID
+	        pStmt.setString(1, user_id);  // ユーザーID
 
 	        // MySQLを実行し、結果を取得
 	        ResultSet rs = pStmt.executeQuery();
@@ -44,7 +47,7 @@ public class VisitorDAO {
 	                rs.getDate("start_date"),
 	                rs.getDate("end_date"),
 	                rs.getInt("prefecture_id"),
-	                rs.getString("place"),
+	                rs.getString("visitor_place"),
 	                rs.getString("thought"),
 	                rs.getInt("emotion_id"),
 	                rs.getString("photo1"),
@@ -75,8 +78,8 @@ public class VisitorDAO {
 
 	
 	
-	// 
-	public List<VisitorDTO> findByUserAndPrefecture(String userId, String prefectureId) {
+	// ユーザーIDと都道府県ID
+	public List<VisitorDTO> findByUserAndPrefecture(String user_id, String prefecture_id) {
 		Connection conn = null;
 		List<VisitorDTO> visitorList = new ArrayList<>();
 	
@@ -90,11 +93,12 @@ public class VisitorDAO {
 					"root","password");
 			
 			// MySQL文を準備する
-			String sql = "SELECT * FROM visitor WHERE user_id = ? AND prefecture_id = ? ORDER BY visitor_id";
+			String sql = "SELECT v.*, p.prefecture_name FROM visitors v " +
+                    "JOIN prefectures p ON v.prefecture_id = p.prefecture_id " +
+                    "WHERE v.user_id = ? AND v.prefecture_id = ? ORDER BY v.visitor_id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, userId);
-			pStmt.setString(2, prefectureId);
-			
+			pStmt.setString(1, user_id);
+			pStmt.setString(2, prefecture_id);
 			
 			// 実行
 			ResultSet rs = pStmt.executeQuery();
@@ -109,7 +113,7 @@ public class VisitorDAO {
                     rs.getDate("start_date"),
                     rs.getDate("end_date"),
                     rs.getInt("prefecture_id"),
-                    rs.getString("place"),
+                    rs.getString("visitor_place"),
                     rs.getString("thought"),
                     rs.getInt("emotion_id"),
                     rs.getString("photo1"),
@@ -148,19 +152,36 @@ public class VisitorDAO {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        conn = DriverManager.getConnection(
 	            "jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
-	            "root", "password"
-	        );
+	            "root", "password");
+	        
 	        //SQLを準備
-	        String sql = "SELECT * FROM visitor WHERE user_id LIKE ? AND title LIKE ? AND componion LIKE ? "
-	                   + "AND (start_date >= ? OR ? IS NULL) AND (end_date <= ? OR ? IS NULL) "
-	                   + "AND (prefecture_id = ? OR ? = 0) AND place LIKE ? AND thought LIKE ? AND (emotion_id = ? OR ? = 0) "
-	                   + "ORDER BY visitor_id";
+	        String sql = "SELECT v.*, p.prefecture_name FROM visitors v " +
+                    "JOIN prefectures p ON v.prefecture_id = p.prefecture_id " +
+                    "WHERE v.user_id LIKE ? AND v.title LIKE ? AND v.componion LIKE ? " +
+                    "AND (v.start_date >= ? OR ? IS NULL) AND (v.end_date <= ? OR ? IS NULL) " +
+                    "AND (v.prefecture_id = ? OR ? = 0) AND v.visitor_place LIKE ? AND v.thought LIKE ? " +
+                    "AND (v.emotion_id = ? OR ? = 0) ORDER BY v.visitor_id";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
-	     // SQL文を実行し、結果表を取得する
-	     			ResultSet rs = pStmt.executeQuery();
-	     	        while (rs.next()) {
-	     	            VisitorDTO visitor = new VisitorDTO(
+	        	pStmt.setString(1, "%" + dto.getUser_id() + "%");
+	        	pStmt.setString(2, "%" + dto.getTitle() + "%");
+	        	pStmt.setString(3, "%" + dto.getComponion() + "%");
+	        	pStmt.setDate(4, dto.getStart_date());
+	        	pStmt.setDate(5, dto.getStart_date());
+	        	pStmt.setDate(6, dto.getEnd_date());
+	        	pStmt.setDate(7, dto.getEnd_date());
+	        	pStmt.setInt(8, dto.getPrefecture_id());
+	        	pStmt.setInt(9, dto.getPrefecture_id());
+	        	pStmt.setString(10, "%" + dto.getVisitor_place() + "%");
+	        	pStmt.setString(11, "%" + dto.getThought() + "%");
+	        	pStmt.setInt(12, dto.getEmotion_id());
+	        	pStmt.setInt(13, dto.getEmotion_id());
+
+            	// SQL文を実行し、結果表を取得する
+	     		ResultSet rs = pStmt.executeQuery();
+	     	        
+	     			while (rs.next()) {
+	     				VisitorDTO visitor = new VisitorDTO(
 	     	                rs.getInt("visitor_id"),
 	     	                rs.getString("user_id"),
 	     	                rs.getString("title"),
@@ -168,7 +189,7 @@ public class VisitorDAO {
 	     	                rs.getDate("start_date"),
 	     	                rs.getDate("end_date"),
 	     	                rs.getInt("prefecture_id"),
-	     	                rs.getString("place"),
+	     	                rs.getString("visitor_place"),
 	     	                rs.getString("thought"),
 	     	                rs.getInt("emotion_id"),
 	     	                rs.getString("photo1"),
@@ -217,7 +238,7 @@ public class VisitorDAO {
 					"root","password");
 
             // SQL文の準備
-            String sql = "INSERT INTO visitor "
+            String sql = "INSERT INTO visitors "
                     + "(user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, photo1, photo2, photo3, photo4, photo5) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
