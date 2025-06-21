@@ -7,38 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>ホーム｜TABI×TILE</title>
-<link rel="stylesheet" href="<c:url value='assets/css/common.css' />">
+<!-- 全体共通css -->
+<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-
 </head>
 <body>
 
 <!-- ヘッダー（ここから） -->
 	<header>
+	<div class="parent">
 		<h1>
 		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
-	
-	
-	<c:if test ="${not empty sessionScope.user_id }">
-	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
-	</c:if>
-	
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
-		</ul>
-	</nav>
-	
-	<!-- ボタン設置 -->
-	<div class="">
-		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+		
+<!-- ボタン設置 -->
+		<div class="menubutton">
+			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+		</div>
 	</div>
 	
 	<!-- ニックネーム表示 -->
@@ -46,13 +34,13 @@
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
 	
-<!-- メニューバー表示 -->		
+<!-- メニューバー表示 -->
 	<nav>
 		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+			<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+			<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+			<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+			<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
 		</ul>
 	</nav>
 
@@ -82,7 +70,7 @@
 <div id="overlay" class="overlay" style="display:none;"></div>
 <div id="confirmDialog" class="custom-dialog" style="display:none;">
     <p>ログアウトしてもよろしいですか？</p>
-    <img src="<c:url value='/assets/images/logo3.png' />" alt="ログアウト確認">
+    <img src="<c:url value='/assets/imgs/char/Door.png' />" alt="ログアウト確認">
     <div class="dialog-buttons">
         <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
         <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
