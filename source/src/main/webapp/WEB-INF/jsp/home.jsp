@@ -19,11 +19,6 @@
 		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 	
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 	
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
@@ -38,7 +33,6 @@
 		</ul>
 	</nav>
 	
->>>>>>> Stashed changes
 	<!-- ボタン設置 -->
 	<div class="">
 		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>

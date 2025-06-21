@@ -12,13 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.PickupDAO;
 import dao.VisitorDAO;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import dto.PickupDTO;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import dto.UserDTO;
 import dto.VisitorDTO;
 
@@ -34,34 +28,16 @@ public class VisitorListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-		
 		// セッションからログインユーザー情報を取得
 		HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user_id") == null) {
         	System.out.println("Vセッションまたは user_id が null です。ログインしていない状態です。");
-=======
-		// セッションからログインユーザー情報を取得
-		HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user_id") == null) {
-        	System.out.println("セッションまたは user_id が null です。ログインしていない状態です。");
->>>>>>> Stashed changes
-=======
-		// セッションからログインユーザー情報を取得
-		HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user_id") == null) {
-        	System.out.println("セッションまたは user_id が null です。ログインしていない状態です。");
->>>>>>> Stashed changes
             // ログインしていない場合はログイン画面へ
             response.sendRedirect(request.getContextPath() + "/LoginServlet");
             return;
         }
         
         // セッションからユーザー情報の取得
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         UserDTO loginUser = (UserDTO) session.getAttribute("user_id"); 
         	if (loginUser == null) {
         		System.out.println("vセッションから取得した loginUser が null です。");
@@ -135,9 +111,6 @@ public class VisitorListServlet extends HttpServlet {
             
             List<PickupDTO> pickupList = PickupDAO.findByUser(user_id);
             	
-=======
-=======
->>>>>>> Stashed changes
         UserDTO loginUser = (UserDTO) session.getAttribute("user_id");  
         	if (loginUser == null) {
         		System.out.println("セッションから取得した loginUser が null です。");
@@ -164,10 +137,6 @@ public class VisitorListServlet extends HttpServlet {
             
             System.out.println("取得した訪問地件数: " + visitorList.size());
             
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             // リクエストにセットしてJSPへ
             request.setAttribute("visitorList", visitorList);
             request.setAttribute("pickupList", pickupList);
