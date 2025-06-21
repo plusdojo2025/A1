@@ -13,6 +13,12 @@ public class EmotionDTO {
 		this.emoji = emoji;
 	}
     
+    public EmotionDTO() {
+		this.emotion_id = -1;
+		this.emotion_name = "";
+		this.emoji = "";
+    }
+    
     // getterとsetter
 	public int getEmotion_id() {
 		return emotion_id;
