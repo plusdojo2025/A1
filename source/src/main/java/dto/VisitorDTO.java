@@ -10,7 +10,7 @@ public class VisitorDTO {
     private Date start_date;        // 開始日
     private Date end_date;          // 終了日
     private int prefecture_id;      // 都道府県ID（外部キー）
-    private String prefecture_name;
+    private String prefecture_name; // 都道府県名（外部）
     private String visitor_place;          // 場所
     private String thought;        // 感想
     private int emotion_id;         // 感情ID（外部キー）
@@ -65,7 +65,32 @@ public class VisitorDTO {
         this.photo4 = photo4;
         this.photo5 = photo5;
     }
-
+    
+    
+    /**
+     * <h3>[ コンストラクタ ] 引数なし</h3>
+     * <p>日付はNULLで初期化しています。</p>
+     */
+    public VisitorDTO() {
+		this.visitor_id		= -1;
+		this.user_id 		= "";
+		this.title 			= "";
+		this.componion 		= "";
+		this.start_date 	= null;
+		this.end_date 		= null;
+		this.prefecture_id 	= -1;
+		this.prefecture_name="";
+		this.visitor_place 	= "";
+		this.thought 		= "";
+		this.emotion_id 	= -1;
+		this.photo1 		= "";
+		this.photo2 		= "";
+		this.photo3 		= "";
+		this.photo4 		= "";
+		this.photo5 		= "";
+	}
+    
+    
     // getterとsetter
 	public int getVisitor_id() {
 		return visitor_id;
@@ -106,6 +131,18 @@ public class VisitorDTO {
 	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
+	
+	/**
+	 * <p>文字列をSQLのDATE型に変換して保存します。</p>
+	 * 
+	 * <h3>形式: </h3>
+	 * <p>yyyy-MM-dd</p>
+	 * 
+	 * @param start_date
+	 */
+	public void setStart_date(String start_date) {
+		this.start_date = Date.valueOf(start_date);
+	}
 
 	public Date getEnd_date() {
 		return end_date;
@@ -113,6 +150,18 @@ public class VisitorDTO {
 
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
+	}
+	
+	/**
+	 * <p>文字列をSQLのDATE型に変換して保存します。</p>
+	 * 
+	 * <h3>形式: </h3>
+	 * <p>yyyy-MM-dd</p>
+	 * 
+	 * @param end_date
+	 */
+	public void setEnd_date(String end_date) {
+		this.end_date = Date.valueOf(end_date);
 	}
 
 	public int getPrefecture_id() {
