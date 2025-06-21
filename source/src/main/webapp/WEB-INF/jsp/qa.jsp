@@ -22,42 +22,40 @@
 	
 </head>
 <body>
-
 <!-- ヘッダー（ここから） -->
 	<header>
-		<h1>
-		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
-		</h1>
-		
+		<div class="parent">
+			<h1>
+				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
+			</h1>
+			
 <!-- ボタン設置 -->
-	<div class="">
-		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
-	</div>
-	
+			<div class="menubutton">
+				<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+				<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+			</div>
+		</div>
 <!-- ニックネーム表示 -->
-	<c:if test ="${not empty sessionScope.user_id }">
-	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
-	</c:if>
-
-<!-- メニューバー表示 -->
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
-		</ul>
-	</nav>
+		<c:if test ="${not empty sessionScope.user_id }">
+		<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+		</c:if>
 	
-	</header>
+<!-- メニューバー表示 -->
+		<nav>
+			<ul>
+				<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+				<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+				<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+				<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+			</ul>
+		</nav>
+	</header>	
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
-	<main style="text-align: center;">
-	
+	<main>
 		<p>ログイン・ログアウトについて</p>
 			<details>
 				<summary>Q.ログイン時にパスワードを忘れてしまった。</summary>
@@ -74,7 +72,7 @@
 			<details>
 				<summary>Q.ログイン時に「入力内容が間違っています。」と表示されます。</summary>
 						A.以下のチェック項目を参考に、入力内容に誤りがないかご確認ください。<br>
-					<ul>
+					<ul class=qa>
 						<li>・半角英数字で入力されているかどうか</li>
 						<li>・前後にスペースが入っていないか</li>
 					</ul>
