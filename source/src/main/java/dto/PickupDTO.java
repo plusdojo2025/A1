@@ -29,19 +29,6 @@ public class PickupDTO {
 	        this.remarks = remarks;
 	    }
 
-	 // コンストラクタ
-	 public PickupDTO(int pickup_id, String user_id, int prefecture_id, String pickup_place, String remarks) {
-		super();
-		this.pickup_id = pickup_id;
-		this.user_id = user_id;
-		this.prefecture_id = prefecture_id;
-		this.pickup_place = pickup_place;
-		this.remarks = remarks;
-		this.prefecture_name = null;
-		
-	}
-
-	 
 	// getterとsetter
 	public int getPickup_id() {
 		return pickup_id;
