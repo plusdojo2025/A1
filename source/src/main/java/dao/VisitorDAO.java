@@ -8,10 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.UserDTO;
 import dto.VisitorDTO;
 
 
-public class VisitorDAO {
+public class VisitorDAO extends DAO {
 	
 	// ユーザーIDに紐づく訪問地一覧を取得
 	public List<VisitorDTO> findByUser(String user_id) {
@@ -292,5 +293,273 @@ public class VisitorDAO {
             }
         }
     }
+    
+    
+    /**
+     * ユーザーID と 訪問地ID を使用して、
+     * 訪問地のレコードを1件返します。
+     * 
+     * @return [ VisitorDTO ] 訪問地の詳細
+     */
+    public VisitorDTO select(UserDTO loginUser, int visitor_id) {
+    	// DB接続
+    	super.access();
+    	
+    	// [ Entity ] 訪問地
+    	VisitorDTO visitordto = new VisitorDTO();
+    	
+    	System.out.println("訪問地のレコードを1件取得します。");
+    	
+    	try {
+    		// [ 準備 ] SQL文の記述
+			String sql = """
+					SELECT
+						*
+					FROM
+						visitors
+					WHERE
+						user_id = ?
+					AND
+						visitor_id = ?;
+					""";
+			
+			// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] ユーザーID
+			pStmt.setString(1, 
+					loginUser.getUser_id());
+			// [ バインド ] 訪問地ID
+			pStmt.setInt(2, visitor_id);
+			
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			System.out.println("問い合わせ（取得）を実行しました。");
+			
+			// 取得したレコードが0件なら
+			if (rs.next() == false) {
+				throw new SQLException("""
+						取得したレコードの件数は0件でした。
+						バインドの入力値を変えてみてください。
+						""");
+			}
+			
+			// 結果をコレクションにコピーする
+			// 訪問地ID
+			visitordto.setVisitor_id(
+					visitor_id);
+			// ユーザーID
+			visitordto.setUser_id(
+					loginUser.getUser_id());
+			// お題
+			visitordto.setTitle(rs.getString(
+					"title"));
+			// 同伴者
+			visitordto.setComponion(rs.getString(
+					"componion"));
+			// 開始日
+			visitordto.setStart_date(rs.getDate(
+					"start_date"));
+			// 終了日
+			visitordto.setEnd_date(rs.getDate(
+					"end_date"));
+			// 都道府県ID
+			visitordto.setPrefecture_id(
+					rs.getInt("prefecture_id"));
+			// 場所
+			visitordto.setVisitor_place(rs.getString(
+					"visitor_place"));
+			// 感想
+			visitordto.setThought(rs.getString(
+					"thought"));
+			// 感情ID
+			visitordto.setEmotion_id(
+					rs.getInt("emotion_id"));
+			// 写真１
+			visitordto.setPhoto1(
+					rs.getString("photo1"));
+			// 写真２
+			visitordto.setPhoto2(
+					rs.getString("photo2"));
+			// 写真３
+			visitordto.setPhoto3(
+					rs.getString("photo3"));
+			// 写真４
+			visitordto.setPhoto4(
+					rs.getString("photo4"));
+			// 写真５
+			visitordto.setPhoto5(
+					rs.getString("photo5"));
+			
+			System.out.println("取得データをパックしました...");
+		} catch (SQLException e) {
+			// TODO: handle exception
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+			visitordto = null;
+		} finally {
+			// DB切断
+			super.close();
+			System.out.println();
+		}
+    	
+    	// 訪問地の詳細を返す
+    	return visitordto;
+    }
+    
+
+    /**
+     * ユーザーID と 訪問地ID を使用して、
+     * 訪問地のレコードを1件更新します。
+     * 
+     * @return [ boolean ] 更新できたか
+     */
+    public boolean update(String user_id, VisitorDTO visitordto) {
+    	// DB接続
+    	super.access();
+    	
+    	// 更新が成功したか
+    	boolean isSuccess = false;
+    	// 成功の値
+    	int success = 1;
+    	
+    	System.out.printf("%s ～ %s \n", 
+    			visitordto.getStart_date(),
+    			visitordto.getEnd_date());
+    	System.out.println("都道府県ID: " + visitordto.getPrefecture_id());
+    	System.out.println("以上の内容を更新します...");
+    	
+    	try {
+    		// [ 準備 ] SQL文
+    		String sql = """
+    				UPDATE
+    					visitors
+    				SET
+    					title = ?,
+    					componion = ?,
+    					start_date = ?,
+    					end_date = ?,
+    					prefecture_id = ?,
+    					visitor_place = ?,
+    					thought = ?,
+    					emotion_id = ?,
+    					photo1 = ?,
+    					photo2 = ?,
+    					photo3 = ?,
+    					photo4 = ?,
+    					photo5 = ?
+					WHERE
+						user_id = ?
+					AND
+						visitor_id = ?;
+    				""";
+			
+    		// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] 更新する列
+			pStmt.setString(1, 
+					visitordto.getTitle());
+			pStmt.setString(2, 
+					visitordto.getComponion());
+			pStmt.setDate(3, 
+					visitordto.getStart_date());
+			pStmt.setDate(4, 
+					visitordto.getEnd_date());
+			pStmt.setInt(5, 
+					visitordto.getPrefecture_id());
+			pStmt.setString(6, 
+					visitordto.getVisitor_place());
+			pStmt.setString(7, 
+					visitordto.getThought());
+			pStmt.setInt(8, 
+					visitordto.getEmotion_id());
+			pStmt.setString(9, 
+					visitordto.getPhoto1());
+			pStmt.setString(10, 
+					visitordto.getPhoto2());
+			pStmt.setString(11, 
+					visitordto.getPhoto3());
+			pStmt.setString(12, 
+					visitordto.getPhoto4());
+			pStmt.setString(13, 
+					visitordto.getPhoto5());
+			
+			// [ バインド ] 対象のレコードを指定
+			pStmt.setString(14, 
+					user_id);
+			pStmt.setInt(15, 
+					visitordto.getVisitor_id());
+			
+			// [ 実行 ] SQLの更新
+			isSuccess = pStmt.executeUpdate() == success;
+			System.out.println("問い合わせ（更新）を実行しました...");
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			// DB切断
+			super.close();
+			System.out.println();
+		}
+    	
+    	// 更新できたか
+    	return isSuccess;
+	}
+    
+    /**
+     * 
+     * 訪問地ID を使用して、
+     * 訪問地のレコード1件を削除します。
+     * @param visitor_id
+     * @return [ boolean ] 削除できたか
+     */
+    public boolean delete(int visitor_id) {
+    	// DB接続
+    	super.access();
+    	
+    	// 削除成功か
+		boolean isSuccess = false;
+
+		// 成功の値
+		int success = 1;
+		
+		System.out.println("訪問地ID: " + visitor_id);
+		System.out.println("以上の内容を削除します。");
+		
+		try {
+			String sql = """
+					DELETE
+					FROM
+						visitors
+					WHERE
+						visitor_id = ?;
+					""";
+			
+    		// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] 対象のレコードを指定
+			pStmt.setInt(1, 
+					visitor_id);
+			
+			// [ 実行 ] SQLの更新
+			isSuccess = pStmt.executeUpdate() == success;
+			System.out.println("問い合わせ（削除）を実行しました...");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}finally {
+			// DB切断
+			super.close();
+			System.out.println();
+		}
+		
+		// 削除できたか
+    	return isSuccess;
+	}
 
 }
