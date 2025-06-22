@@ -20,6 +20,7 @@ public class PrefectureDAO extends DAO {
 		
 		// 都道府県のリスト
 		ArrayList<PrefectureDTO> prefectureList = new ArrayList<PrefectureDTO>();
+		System.out.println("47都道府県のレコードを取得します。");
 
 		try {
 			String sql = """
@@ -35,7 +36,7 @@ public class PrefectureDAO extends DAO {
 			
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			
+			System.out.println("問い合わせ（取得）を実行しました。");
 			
 			
 			// 結果をコレクションにコピーする
@@ -51,7 +52,7 @@ public class PrefectureDAO extends DAO {
 				// 都道府県のリストに追加
 				prefectureList.add(pr);
 			}
-			
+			System.out.println("取得データをパックしました...");
 		}
 		catch (SQLException e) { 
 			// TODO: handle exception
@@ -65,6 +66,7 @@ public class PrefectureDAO extends DAO {
 		finally {
 			// DB切断
 			super.close();
+			System.out.println();
 		}
 		
 		// 都道府県のリストを返します

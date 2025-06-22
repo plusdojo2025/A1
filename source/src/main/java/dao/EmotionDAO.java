@@ -21,6 +21,8 @@ public class EmotionDAO extends DAO {
 		// 感情のリスト
 		ArrayList<EmotionDTO> emoList = new ArrayList<EmotionDTO>();
 		
+		System.out.println("感情の全レコードを取得します。");
+		
 		try {
 			// [ 準備 ] SQL文
 			String sql = """
@@ -37,7 +39,8 @@ public class EmotionDAO extends DAO {
 			
 			// [ 問い合わせ ] SQL文を実行し、結果を取得する
 			ResultSet rs = pStmt.executeQuery();
-			
+			System.out.println("問い合わせ（取得）を実行しました。");
+						
 			// 結果をコレクションにコピーする
 			while (rs.next()) {
 				//  [ Entity ] 感情
@@ -54,6 +57,7 @@ public class EmotionDAO extends DAO {
 				// 感情リストに追加
 				emoList.add(emotiondto);
 			}
+			System.out.println("取得データをパックしました...");
 		} 
 		catch (SQLException e) {
 			// TODO: handle exception
@@ -65,6 +69,7 @@ public class EmotionDAO extends DAO {
 		finally {
 			// DB切断
 			super.close();
+			System.out.println();
 		}
 		
 		// 感情リストを返す
