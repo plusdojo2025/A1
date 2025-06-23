@@ -18,12 +18,20 @@
     align-items: center; 
     justify-content: center; 
 	}
+	
 	.login-container form{
 	text-align:center;
 	}
+	
 	.password-input {
 	margin-left:20px;
+	padding:3px 3px
 	}
+	
+	.user_id-input {
+	padding:3px 3px
+	}
+	
 	.error-message{
 	text-align:center;
 	margin-left:50px;
@@ -34,6 +42,13 @@
   	padding: 8px 16px;
   	text-decoration: none;
   	border-radius: 4px;
+  	display: inline-block;
+  	margin-top: 20px; 
+	}
+	
+	.output {
+	padding: 1px 1px;
+	font-size: 18px;
 	}
 	</style>
 
@@ -62,7 +77,7 @@
     <tr>
       <td>
         <label>ユーザーID<br>
-        <input type="text" name="user_id" >
+        <input type="text" name="user_id" class="user_id-input">
         </label>
       </td>
     </tr>
@@ -76,14 +91,13 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" name="login" value="ログイン">
-        <input type="reset"  name="reset" value="リセット">
-        <p id="output"></p>
+        <input type="reset"  name="reset" value="リセット" class="output">
+        <input type="submit" name="login" value="ログイン" class="output">
       </td>
     </tr>
     <tr>
     	<td>
- 		<a href="<c:url value='/SignUpServlet' />" class="button">新規登録</a>
+ 		<a href="<c:url value='/SignUpServlet' />" class="button">新規登録はこちら</a>
     	</td>
     </tr>
   </table>
@@ -106,22 +120,22 @@
 		
 	}
 	
-	'use strict';
+	"use strict";
 	document.getElementById('login_form').onsubmit = function(event) {
-	  const I = document.getElementsByName('user_id')[0].value.trim();
-	  const P = document.getElementsByName('password')[0].value.trim();
-	  const output = document.getElementById('output');
-	  if (I === '' && P === '') {
-	    output.textContent = 'IDとPWを入力してください！'	;
+	  const I = document.getElementsByName("user_id")[0].value.trim();
+	  const P = document.getElementsByName("password")[0].value.trim();
+	  const output = document.getElementById("output");
+	  if (I === "" && P === "") {
+	    output.textContent = "IDとPWを入力してください！"	;
 	    event.preventDefault();
 	  }else if (I ==="") {
-		 output.textContent = 'IDを入力してください！';
+		 output.textContent = "IDを入力してください！";
 		 event.preventDefault();
 	  }else if (P ==="") {
-		 output.textContent = 'PWを入力してください！';
+		 output.textContent = "PWを入力してください！";
 		 event.preventDefault();  
 	  }else {
-		  output.textContent = '';
+		  output.textContent = "";
 	  }
 	  
 	  
