@@ -14,139 +14,8 @@
 
 <!-- 一覧画面 -->
 <link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>" >
-
-<style>
-     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .tab_wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .tab_area {
-       display: flex;
-      flex-direction: row;
-      margin-bottom: 0;
-      border-bottom: 2px solid #ccc;
-    }
-
-    .tab_btn {
-      flex: 1;
-      padding: 14px;
-      font-size: 16px;
-      background: #f0f0f0;
-      border: none;
-      border-right: 1px solid #ccc;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .tab_btn:last-child {
-      border-right: none;
-    }
-
-    .tab_btn.active {
-      background-color: white;
-      font-weight: bold;
-      border-bottom: 2px solid #007BFF;
-      color: #007BFF;
-    }
-
-    .tab_panel {
-      display: none;
-      padding: 20px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-
-    .tab_panel.active {
-      display: block;
-    }
-
-   .card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-      }
-  </style>
-  
-<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
-<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-
-<style>
-     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .tab_wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .tab_area {
-       display: flex;
-      flex-direction: row;
-      margin-bottom: 0;
-      border-bottom: 2px solid #ccc;
-    }
-
-    .tab_btn {
-      flex: 1;
-      padding: 14px;
-      font-size: 16px;
-      background: #f0f0f0;
-      border: none;
-      border-right: 1px solid #ccc;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .tab_btn:last-child {
-      border-right: none;
-    }
-
-    .tab_btn.active {
-      background-color: white;
-      font-weight: bold;
-      border-bottom: 2px solid #007BFF;
-      color: #007BFF;
-    }
-
-    .tab_panel {
-      display: none;
-      padding: 20px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-
-    .tab_panel.active {
-      display: block;
-    }
-
-   .card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-      }
-  </style>
-  
-<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>" >
-<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/list.css'/>" >
+
 </head>
 <body>
 
@@ -203,21 +72,31 @@
 
   					<c:if test="${not empty visitorList}">
 						<c:forEach var="visitor" items="${visitorList}">
-							<div class="card link-card" data-href="visitor.jsp?visitor_id=${visitor.visitor_id}">
-								<h3>${visitor.start_date} の思い出</h3>
-								<p>${visitor.prefecture_name}</p>
-								<p>${visitor.visitor_place}</p>
-							</div>
+							<a href="<c:url value='/VisitorServlet?pk=${visitor.visitor_id}'/>">
+								<div class="card link-card">
+									<h3>${visitor.start_date} の思い出</h3>
+									<p>${visitor.prefecture_name}</p>
+									<p>${visitor.visitor_place}</p>
+								</div>
+							</a>	
 						</c:forEach>
   					</c:if>
-				</div>
+  					
+  					<!-- ▼ 訪問地 ページネーション -->
+  					<c:if test="${totalPagesVisitor > 1}">
+  						<div class="pagination">
+  							<c:forEach begin="1" end="${totalPagesVisitor}" var="i">
+  								<a href="PlaceSelectServlet?pref=${selectedPrefecture}&page=${i}" 
+			   						class="${i == currentPage ? 'active' : ''}">${i}</a>
+							</c:forEach>
+						</div>
+					</c:if>
+  				</div>
 			</div>
 			
 			<!-- ▼ 候補地 一覧 -->
 			<div id="tab2" class="tab_panel">
 				<h2>候補地一覧</h2>
-				
-				
 				
 				<div class="">
 					<c:if test="${empty pickupList}">
@@ -226,13 +105,25 @@
 					
 					<c:if test="${not empty pickupList}">
 						<c:forEach var="pickup" items="${pickupList}">
-							<div class="card link-card" data-href="pickup.jsp?pickup_id=${pickup.pickup_id}">
-								<p>${pickup.prefecture_name} </p>
-								<p>${pickup.pickup_place}</p>
-								<p>${pickup.remarks}</p>
-							</div>
+							<a href="<c:url value='/PickupServlet?pk=${pickup.pickup_id}'/>">
+								<div class="card link-card" >
+									<h3>${pickup.prefecture_name} </h3>
+									<p>${pickup.pickup_place}</p>
+									<p>${pickup.remarks}</p>
+								</div>
+							</a>
 						</c:forEach>
-					</c:if>	
+					</c:if>
+					
+					<!-- ▼ 候補地 ページネーション -->
+					<c:if test="${totalPagesPickup > 1}">
+						<div class="pagination">
+							<c:forEach begin="1" end="${totalPagesPickup}" var="i">
+								<a href="PlaceSelectServlet?pref=${selectedPrefecture}&page=${i}" 
+			   						class="${i == currentPage ? 'active' : ''}">${i}</a>
+			   				</c:forEach>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -250,7 +141,7 @@
 <div id="overlay" class="overlay" style="display:none;"></div>
 <div id="confirmDialog" class="custom-dialog" style="display:none;">
     <p>ログアウトしてもよろしいですか？</p>
-    <img src="<c:url value='/assets/images/char/Door.png'/>" alt="ログアウト確認">
+    <img src="<c:url value='/assets/imgs/char/Door.png'/>" alt="ログアウト確認">
     <div class="dialog-buttons">
         <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
         <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
@@ -280,40 +171,34 @@ function handleConfirm(isConfirmed) {
 	const tabButtons = document.querySelectorAll('.tab_btn');
 	const tabContents = document.querySelectorAll('.tab_panel');
 
-	tabButtons.forEach(button => {
-		button.addEventListener('click', () => {
-			
-	// 全ボタンのアクティブを外す
+ 	tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+    
+    // 全ボタンのアクティブを外す
     tabButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    // 全タブパネルの表示切り替え target=タブパネル
-	button.addEventListener('click', () => {
-     
-	// タブのアクティブ切り替え
-    tabButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    // コンテンツのアクティブ切り替え
-    const target = button.getAttribute('data-tab');
+   	button.classList.add('active');
+   	
+   	// コンテンツのアクティブ切り替え
+   	const target = button.getAttribute('data-tab');
     tabContents.forEach(content => {
     content.classList.remove('active');
-     if (content.id === target) {
-     content.classList.add('active');
-     }
+    if (content.id === target) {
+    content.classList.add('active');
+        }
+      });
     });
-   });
   });
+
 	
 // ▼ カードクリックで遷移する処理（ここを追加！）
 	document.querySelectorAll('.link-card').forEach(card => {
-	card.addEventListener('click', () => {
-	const url = card.getAttribute('data-href');
-	if (url) {
-		window.location.href = url;
-	}
-   });
-  });	
+    	card.addEventListener('click', () => {
+      	const url = card.getAttribute('data-href');
+      	if (url) {
+        	window.location.href = url;
+      }
+    });
+  });
 </script>
 
 </body>
