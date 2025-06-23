@@ -152,42 +152,34 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
+	<div class="parent">
 		<h1>
 		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
-	
-	<nav>
-		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
-		</ul>
-	</nav>
-	
-	<!-- ボタン設置 -->
-	<div class="">
-		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+		
+<!-- ボタン設置 -->
+		<div class="menubutton">
+			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
+			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
+			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
+			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+		</div>
 	</div>
-	
-	<!-- ニックネーム表示 -->
+<!-- ニックネーム表示 -->
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
-	</c:if>	
-	
-<!-- メニューバー表示 -->	
+	</c:if>
+
+<!-- メニューバー表示 -->
 	<nav>
 		<ul>
-			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+			<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+			<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+			<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+			<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
 		</ul>
 	</nav>
-
+	
 	</header>
 <!-- ヘッダー(ここまで) -->
 
@@ -199,12 +191,6 @@
    				 <button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
   				<button class="tab_btn"  data-tab="tab2">候補地一覧</button>
 			</div>
-   				<button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
-    			<button class="tab_btn" 		data-tab="tab2">候補地一覧</button> 
-  			</div>
-   				<button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
-    			<button class="tab_btn" 		data-tab="tab2">候補地一覧</button> 
-  			</div>
   	
 			<!-- ▼ 訪問地 一覧 -->
 			<div id="tab1" class="tab_panel active">
