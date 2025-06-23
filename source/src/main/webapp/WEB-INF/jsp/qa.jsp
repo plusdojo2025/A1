@@ -36,6 +36,18 @@
 				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
 				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
 			</div>
+			
+			<!-- ダイアログHTML(ここから) -->
+			<div id="overlay" class="overlay" style="display:none;"></div>
+			<div id="confirmDialog" class="custom-dialog" style="display:none;">
+			    <p>ログアウトしてもよろしいですか？</p>
+			    <img src="<c:url value='/assets/imgs/char/Door.png'/>" alt="ログアウト確認">
+			    <div class="dialog-buttons">
+			        <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
+			        <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
+			    </div>
+			</div>
+			<!-- ダイアログHTML(ここまで) -->
 		</div>
 <!-- ニックネーム表示 -->
 		<c:if test ="${not empty sessionScope.user_id }">
@@ -59,7 +71,7 @@
 		<p>ログイン・ログアウトについて</p>
 			<details>
 				<summary>Q.ログイン時にパスワードを忘れてしまった。</summary>
-					<div>
+					<div class=text>
 						A.設定画面からパスワードの再設定ができます。
 					</div>
 			</details>
@@ -71,60 +83,63 @@
 			</details>
 			<details>
 				<summary>Q.ログイン時に「入力内容が間違っています。」と表示されます。</summary>
+					<div class=text>
 						A.以下のチェック項目を参考に、入力内容に誤りがないかご確認ください。<br>
 					<ul class=qa>
 						<li>・半角英数字で入力されているかどうか</li>
 						<li>・前後にスペースが入っていないか</li>
 					</ul>
+					</div>
 			</details>
 			<details>
 				<summary>Q.ログアウトするには</summary>
-					<div>
+					<div class=text>
 						A.右上の「画像」を選択するとログアウトできます。
 					</div>
 			</details>
 		<p>訪問地、候補地の登録について</p>
 			<details>
 				<summary>Q.「訪問地」に関する登録をするには</summary>
-					<div>
+					<div class=text>
 						A.登録画面から「訪れた場所に関する登録」を選択し、必要な項目を入力してから登録ボタンを押してください。
 					</div>
 			</details>
 			<details>
 				<summary>Q.「候補地」に関する登録をするには</summary>
-					<div>
+					<div class=text>
 						A.登録画面から「訪れた場所に関する登録」を選択し、必要な項目を入力してから登録ボタンを押してください。
 					</div>
 			</details>
 				<details>
 				<summary>Q.「訪問地」に関する登録の際、画像の登録枚数に上限はありますか？</summary>
-					<div>
+					<div class=text>
 						A.画像は5枚まで登録が可能となっております。
 					</div>
 			</details>
 			<details>
 				<summary>Q.「候補地」に登録した場所に訪れた場合はどうしたらいいですか？</summary>
-					<div>
+					<div class=text>
 						A.当該候補地の詳細画面にある「移動」をクリックし、必要な項目を入力の上ご登録ください。
 					</div>
 			</details>
 		<p>称号について</p>
 			<details>
 				<summary>Q.獲得した称号はどこで確認ができますか？</summary>
-					<div>
+					<div class=text>
 						A.獲得した称号はホーム画面から閲覧が可能です。
 					</div>
 			</details>
 			<details>
 				<summary>Q.獲得した称号が削除されていました。</summary>
-					<div>
-						A.称号は「訪問地」リストに登録された情報を基に付与しているため、「訪問地」リストに登録した情報を削除すると獲得した称号を失う可能性があります。ご了承ください。
+					<div class=text>
+						A.称号は「訪問地」リストに登録された情報を基に付与しているため<br>
+						「訪問地」リストに登録した情報を削除すると獲得した称号を失う可能性があります。ご了承ください。
 					</div>
 			</details>
 			<p>ガチャについて</p>
 				<details>
 				<summary>Q.ガチャは何回まで引けますか？</summary>
-					<div>
+					<div class=text>
 						A.ガチャは1日1回までとなっております。
 					</div>
 			</details>
@@ -134,5 +149,22 @@
 		<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
 		<p>旅のひとコマが、未来を彩るタイルになる</p>
 	</footer>
+	
+	<!-- ダイアログJS(ここから) -->
+	<script>
+	function showConfirmDialog() {
+	    document.getElementById('overlay').style.display = 'block';
+	    document.getElementById('confirmDialog').style.display = 'block';
+	}
+	
+	function handleConfirm(isConfirmed) {
+	    document.getElementById('overlay').style.display = 'none';
+	    document.getElementById('confirmDialog').style.display = 'none';
+	    if (isConfirmed) {
+	        window.location.href = '<c:url value="/LogoutServlet" />';
+	    }
+	}
+	</script>
+	<!-- ダイアログJS(ここまで) -->
 </body>
 </html>

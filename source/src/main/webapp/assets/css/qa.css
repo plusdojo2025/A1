@@ -1,18 +1,24 @@
+main p {
+   margin-top: 40px;
+   font-weight: bold;
+   font-size : 1.5rem;
+ 	}
+ 
+main summary {
+margin-top: 20px;
+}
 
-	main {
-  	text-align: center;
-	}
+.qa{
+	margin: 5px;
+	padding: 0;
+	list-style-type:none;
+	justify-content: center;
+	display: flex;
+    vertical-align:middle;
+    background-color: #C1E5F5;
+}
 
-	main p {
-    margin-top: 40px;
-    font-weight: bold;
-    font-size : 1.5rem;
-  	}
-  
-	main summary {
-	margin-top: 20px;
-	}
-	
-	main details {
-	background-color: #fff;
-	}
+.text{
+text-align:left;
+display:inline-block;
+}
