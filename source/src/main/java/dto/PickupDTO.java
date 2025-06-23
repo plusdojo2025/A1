@@ -29,6 +29,16 @@ public class PickupDTO {
 	        this.remarks = remarks;
 	    }
 
+	// コンストラクタ
+    public PickupDTO() {
+        this.pickup_id 		= -1;
+        this.user_id 		= "";
+        this.prefecture_id 	= -1;
+        this.prefecture_name= "";
+        this.pickup_place 	= "";
+        this.remarks 		= "";
+    }
+	    
 	// getterとsetter
 	public int getPickup_id() {
 		return pickup_id;
