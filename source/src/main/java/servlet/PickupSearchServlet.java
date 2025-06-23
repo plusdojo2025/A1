@@ -73,7 +73,17 @@ public class PickupSearchServlet extends HttpServlet {
 	    String remarks = request.getParameter("remarks");
 
 	    // prefecture_id を int 型に変換
-	    int prefecture_id = Integer.parseInt(prefecture_id_str);
+	 // 都道府県ID：同様に 0 を条件なしとする
+	    int prefecture_id = 0;
+	    if (prefecture_id_str != null && !prefecture_id_str.isEmpty()) {
+	        try {
+	            prefecture_id = Integer.parseInt(prefecture_id_str);
+	        } catch (NumberFormatException e) {
+	            prefecture_id = 0;
+	        }
+	    }
+
+	   // int prefecture_id = Integer.parseInt(prefecture_id_str);
 
 		// 検索処理を行う
 	    // DTOにセット
@@ -85,7 +95,7 @@ public class PickupSearchServlet extends HttpServlet {
 		request.setAttribute("cardList", cardList);
 		
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickuppickupSearchresult.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickupSearchresult.jsp");
 		dispatcher.forward(request, response);
 	}
 

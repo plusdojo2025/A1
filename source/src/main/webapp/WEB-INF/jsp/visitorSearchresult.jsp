@@ -48,11 +48,11 @@
 	<!-- 訪問地検索結果一覧 -->
 <h2>訪問地検索結果一覧</h2>
 	
-		  <c:if test="${empty cardList}">
+		  <c:if test="${empty visitorList}">
     <p>該当する訪問記録が見つかりませんでした。</p>
   </c:if>
 
-  <c:if test="${not empty cardList}">
+  <c:if test="${not empty visitorList}">
     <table class="result-table">
       <thead>
         <tr>
@@ -67,16 +67,16 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="card" items="${cardList}">
+        <c:forEach var="record" items="${visitorList}">
           <tr>
-            <td><c:out value="${card.start_date}" /></td>
-            <td><c:out value="${card.end_date}" /></td>
-            <td><c:out value="${card.prefecture_name}" /></td>
-            <td><c:out value="${card.place}" /></td>
-            <td><c:out value="${card.title}" /></td>
-            <td><c:out value="${card.componion}" /></td>
-            <td><c:out value="${card.emotion_name}" /></td>
-            <td><c:out value="${card.thought}" /></td>
+            <td><c:out value="${record.start_date}" /></td>
+            <td><c:out value="${record.end_date}" /></td>
+            <td><c:out value="${record.prefecture_name}" /></td>
+            <td><c:out value="${record.place}" /></td>
+            <td><c:out value="${record.title}" /></td>
+            <td><c:out value="${record.componion}" /></td>
+            <td><c:out value="${record.emotion_name}" /></td>
+            <td><c:out value="${record.thought}" /></td>
           </tr>
         </c:forEach>
       </tbody>

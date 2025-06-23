@@ -183,100 +183,36 @@ public class PickupDAO {
 		            "jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
 		            "root", "password");
 
-		        String sql = """
-		        		ここにSQL文を入力してください...
-		        		""";
+		        String sql = "SELECT p.pickup_id, p.user_id, p.prefecture_id, pf.prefecture_name, " +
+		        			 "p.pickup_place, p.remarks " +
+		        			 "FROM pickups p " +
+		        			 "JOIN prefectures pf ON p.prefecture_id = pf.prefecture_id " +
+		        			 "WHERE (p.user_id = ? OR ? IS NULL OR ? = '') " +
+		        			 "AND (p.prefecture_id = ? OR ? = 0) " +
+		        			 "AND (p.pickup_place LIKE ? OR ? IS NULL OR ? = '') " +
+		        			 "AND (p.remarks LIKE ? OR ? IS NULL OR ? = '') " +
+		        			 "ORDER BY p.pickup_id ASC";
+		        		
 		        
-		        // [ 異常 ] 意図が汲み取れない為、両方を残しました。
-		        // ご注意ください。ただ、テキストブロックで整理しただけです。
 		        // また AS 句が追加されていますが、読みやすさが向上するだけです。
-//		        sql = """
-//		        		SELECT 
-//		        			* 
-//	        			FROM 
-//	        				pickups 
-//        				WHERE
-//        					(user_id = ? 
-//        						OR ? IS NULL 
-//        						OR ? = 0)
-//        				AND 
-//        					(prefecture_id = ? 
-//        					OR ? = 0)
-//        				AND
-//        				 	(pickup_place LIKE CONCAT('%', ?, '%') 
-//    				 			OR ? IS NULL 
-//    				 			OR ? = '')
-//    				 	AND 
-//    				 		(remarks LIKE CONCAT('%', ?, '%') 
-//				 				OR ? IS NULL 
-//				 				OR ? = '')
-//				 		ORDER BY 
-//				 			pickup_id ASC;
-//		        		""";
-		        
-		        
-//		        sql = """
-//		        		SELECT 
-//		        			p.pickup_id, 
-//		        			p.user_id, 
-//		        			p.prefecture_id, 
-//		        			pf.prefecture_name, 
-//		        			p.pickup_place, 
-//		        			p.remarks 
-//		        		FROM 
-//		        			pickups AS p 
-//		        		JOIN 
-//		        			prefectures AS pf 
-//	        			ON 
-//	        				p.prefecture_id = pf.prefecture_id
-//		        		WHERE 
-//		        			(p.user_id LIKE ? 
-//	        					OR ? IS NULL 
-//	        					OR ? = '')
-//		        		AND 
-//		        			(p.prefecture_id = ? 
-//		        				OR ? = 0)
-//		        		AND 
-//		        			(p.pickup_place LIKE ? 
-//		        				OR ? IS NULL 
-//		        				OR ? = '') 
-//		        		AND 
-//		        			(p.remarks LIKE ? 
-//		        				OR ? IS NULL 
-//		        				OR ? = '') 
-//		        		ORDER BY 
-//		        			p.pickup_id ASC;
-//		        		""";
 		        
 		        // [ 予約 ] SQL文セット
 		        PreparedStatement pStmt = conn.prepareStatement(sql);
+		        	pStmt.setString(1, dto.getUser_id());
+		        	pStmt.setString(2, dto.getUser_id());
+		        	pStmt.setString(3, dto.getUser_id());
 
+		        	pStmt.setInt(4, dto.getPrefecture_id());
+		        	pStmt.setInt(5, dto.getPrefecture_id());
 
-//		        	pStmt.setString(1, "%" + dto.getUser_id()+ "%");
-//		        	pStmt.setString(2, dto.getUser_id());
-//		        	pStmt.setString(3, dto.getUser_id());
-//
-//		        	pStmt.setInt(4, dto.getPrefecture_id());
-//		        	pStmt.setInt(5, dto.getPrefecture_id());
-//		        	pStmt.setString(6, "%" + dto.getPickup_place() + "%");
-//		        	pStmt.setString(7, dto.getPickup_place());
-//		        	pStmt.setString(8, dto.getPickup_place());
-//		        	pStmt.setString(9, "%" + dto.getRemarks() + "%");
-//
-//
-//		        	pStmt.setString(1, dto.getUser_id());
-//		        	pStmt.setString(2, dto.getUser_id());
-//		        	pStmt.setString(3, dto.getUser_id());
-//		        	pStmt.setInt(4, dto.getPrefecture_id());
-//		        	pStmt.setInt(5, dto.getPrefecture_id());
-//		        	pStmt.setString(6, dto.getPickup_place());
-//		        	pStmt.setString(7, dto.getPickup_place());
-//		        	pStmt.setString(8, dto.getPickup_place());
-//		        	pStmt.setString(9, dto.getRemarks());
-//
-//		        	pStmt.setString(10, dto.getRemarks());
-//		        	pStmt.setString(11, dto.getRemarks());
-		        	
+		        	pStmt.setString(6, "%" + dto.getPickup_place() + "%");
+		        	pStmt.setString(7, dto.getPickup_place());
+		        	pStmt.setString(8, dto.getPickup_place());
+
+		        	pStmt.setString(9, "%" + dto.getRemarks() + "%");
+		        	pStmt.setString(10, dto.getRemarks());
+		        	pStmt.setString(11, dto.getRemarks());
+
 		        	// SQL文を実行し、結果表を取得する
 		        	ResultSet rs = pStmt.executeQuery();
 		        

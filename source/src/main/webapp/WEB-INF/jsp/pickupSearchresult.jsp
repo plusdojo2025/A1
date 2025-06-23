@@ -6,7 +6,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>｜TABI×TILE</title>
+<title>候補地検索結果｜TABI×TILE</title>
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
@@ -49,11 +49,11 @@
 	<!-- 候補地検索結果一覧 -->
 	<h2>候補地検索結果一覧</h2>
 	
-		  <c:if test="${empty cardList}">
+		  <c:if test="${empty pickupList}">
     <p>該当する候補地は見つかりませんでした。</p>
   </c:if>
 
-  <c:if test="${not empty cardList}">
+  <c:if test="${not empty pickupList}">
     <table class="result-table">
       <thead>
         <tr>
@@ -64,12 +64,12 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="card" items="${cardList}">
+        <c:forEach var="pickup" items="${pickupList}">
           <tr>
-            <td><c:out value="${card.user_id}" /></td>
-            <td><c:out value="${card.prefecture_name}" /></td>
-            <td><c:out value="${card.place}" /></td>
-            <td><c:out value="${card.remarks}" /></td>
+            <td><c:out value="${pickup.user_id}" /></td>
+            <td><c:out value="${pickup.prefecture_name}" /></td>
+            <td><c:out value="${pickup.place}" /></td>
+            <td><c:out value="${pickup.remarks}" /></td>
           </tr>
         </c:forEach>
       </tbody>

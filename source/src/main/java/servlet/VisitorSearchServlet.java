@@ -84,21 +84,58 @@ public class VisitorSearchServlet extends HttpServlet {
 	    // start_date と end_date を Date 型に変換
 	    Date start_date = null;
 	    Date end_date = null;
-
+	 // 日付（yyyy-MM-dd 形式）を null 許容で変換
 	    if (start_date_str != null && !start_date_str.isEmpty()) {
+	        try {
+	            start_date = Date.valueOf(start_date_str);
+	        } catch (IllegalArgumentException e) {
+	            // 日付フォーマットエラー時もnull扱いに
+	            start_date = null;
+	        }
+	    }
+
+	    if (end_date_str != null && !end_date_str.isEmpty()) {
+	        try {
+	            end_date = Date.valueOf(end_date_str);
+	        } catch (IllegalArgumentException e) {
+	            end_date = null;
+	        }
+	    }
+
+	   /* if (start_date_str != null && !start_date_str.isEmpty()) {
 	        start_date = Date.valueOf(start_date_str);  // yyyy-mm-dd形式
 	    }
 
 	    if (end_date_str != null && !end_date_str.isEmpty()) {
 	        end_date = Date.valueOf(end_date_str);  // yyyy-mm-dd形式
-	    }
+	    }*/
 
 	    // emotion_id を int 型に変換
-	    int emotion_id = Integer.parseInt(emotion_id_str);
+	 // 感情ID：nullや空文字なら 0（=条件なし）
+	    int emotion_id = 0;
+	    if (emotion_id_str != null && !emotion_id_str.isEmpty()) {
+	        try {
+	            emotion_id = Integer.parseInt(emotion_id_str);
+	        } catch (NumberFormatException e) {
+	            emotion_id = 0;
+	        }
+	    }
+
+	   // int emotion_id = Integer.parseInt(emotion_id_str);
 	    
 
 	    // prefecture_id を int 型に変換
-	    int prefecture_id = Integer.parseInt(prefecture_id_str);
+	 // 都道府県ID：同様に 0 を条件なしとする
+	    int prefecture_id = 0;
+	    if (prefecture_id_str != null && !prefecture_id_str.isEmpty()) {
+	        try {
+	            prefecture_id = Integer.parseInt(prefecture_id_str);
+	        } catch (NumberFormatException e) {
+	            prefecture_id = 0;
+	        }
+	    }
+
+	   // int prefecture_id = Integer.parseInt(prefecture_id_str);
 	    
 
 
@@ -107,9 +144,9 @@ public class VisitorSearchServlet extends HttpServlet {
 	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, photo, null, null, null, null);
 		// DB検索処理
 		VisitorDAO dao = new VisitorDAO();
-		List<VisitorDTO> cardList = dao.search(dto);
+		List<VisitorDTO> visitorList = dao.search(dto);
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("cardList", cardList);
+		request.setAttribute("visitorList", visitorList);
 		
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorSearchresult.jsp");
