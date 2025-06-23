@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmotionDAO;
 import dao.PrefectureDAO;
 import dao.VisitorDAO;
+import dto.EmotionDTO;
 import dto.PrefectureDTO;
 import dto.VisitorDTO;
 
@@ -42,6 +44,14 @@ public class VisitorSearchServlet extends HttpServlet {
 
 		// JSPに渡すためリクエスト属性にセット
 		request.setAttribute("prefectureList", prefectureList);
+		
+		//インスタンス化
+		EmotionDAO emoDao = new EmotionDAO();
+		//DBから感情一覧を取得
+		ArrayList<EmotionDTO> emoList = emoDao.selectAll();
+		System.out.println("size: " + emoList.size());
+		//JSPに渡すためリクエスト属性にセット
+		request.setAttribute("emoList", emoList);
 
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -79,7 +89,7 @@ public class VisitorSearchServlet extends HttpServlet {
 	    String componion = request.getParameter("componion");
 	    String emotion_id_str = request.getParameter("emotion_id");   // String型
 	    String thought = request.getParameter("thought");
-	    String photo = request.getParameter("photo");
+	    //String photo = request.getParameter("photo");
 
 	    // start_date と end_date を Date 型に変換
 	    Date start_date = null;
@@ -141,7 +151,7 @@ public class VisitorSearchServlet extends HttpServlet {
 
 		// 検索処理を行う
 	    // DTOにセット
-	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, photo, null, null, null, null);
+	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, null, null, null, null, null);
 		// DB検索処理
 		VisitorDAO dao = new VisitorDAO();
 		List<VisitorDTO> visitorList = dao.search(dto);

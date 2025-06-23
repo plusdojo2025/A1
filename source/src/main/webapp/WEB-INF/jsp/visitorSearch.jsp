@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- [ 短縮 ] 画像フォルダパス --%>
+<c:set var="imgsPath" value="/assets/imgs" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,27 +62,40 @@
 		<div id="tab1" class="tab_panel active">
 			<h2>訪問地検索</h2>
 		<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
-		初日<input type="date" name="start_date"><br>
-		終日<input type="date" name="end_date"><br>
+		<div class="center-form">
 		タイトル<input type="text" name="title"><br>
+		<div class="inline-group">
+		初日<input type="date" name="start_date">
+		&nbsp;&nbsp;&nbsp;
+		終日<input type="date" name="end_date"></div><br>
+		<div class="inline-group">
 		都道府県<select name="prefecture_id">
 					<option value="" disabled selected>選択してください</option>
 					<c:forEach var="prefecture" items="${prefectureList}">
 						<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
 					</c:forEach>
-			   </select><br>
-		場所<input type="text" name="place"><br>
-		同行者<input type="text" name="componion"><br>
+			   </select>
+		&nbsp;&nbsp;&nbsp;
+		場所<input type="text" name="place"></div><br>
+		<div class="inline-group">
+		同行者<input type="text" name="componion">
+		&nbsp;&nbsp;&nbsp;
 		感情<select name="emotion_id">
 				<option value="" disabled selected>選択してください</option>
-				<c:forEach var="emotion" items="${emotionList}">
-						<option value="${emotion.id}">${emotion.emoji}</option>
+				<c:forEach var="emotion" items="${emoList}">
+						<option value="${emotion.emotion_id}">${emotion.emoji}</option>
 					</c:forEach>
-			</select><br>
-		感想<input type="text" name="thought"><br>
-		写真<input type="file" name="photo"><br>
-		<input type="reset" name=ResetButton value="リセット">
-		<input type="submit" name=RegistButton value="検索"><br>
+			</select></div><br>
+		感想<br>
+		<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br>
+		<div class="inline-group">
+		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		<input type="submit" name=RegistButton value="検索" class="btn-submit"></div><br>
+		</div>
 		</form>
 		</div>
 		
@@ -87,16 +103,26 @@
 		<div id="tab2" class="tab_panel">
 			<h2>候補地検索</h2>
 		<form method="POST" action="<c:url value='PickupSearchServlet'/>">
+		<div class="center-form">
+		<div class="inline-group">
 		都道府県<select name="prefecture_id">
 					<option value="" disabled selected>選択してください</option>
 					<c:forEach var="prefecture" items="${prefectureList}">
 						<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
 					</c:forEach>
-				</select><br>
-		場所<input type="text" name="place"><br>
-		備考欄<input type="text" name="remarks"><br>
-		<input type="reset" name=ResetButton value="リセット">
-		<input type="submit" name=RegistButton value="検索"><br>
+				</select>
+		&nbsp;&nbsp;&nbsp;
+		場所<input type="text" name="place"></div><br>
+		備考欄<br>
+		<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br>
+		<div class="inline-group">		
+		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		<input type="submit" name=RegistButton value="検索" class="btn-submit"></div><br>
+		</div>
 		</form>
 		</div>
 		</div>
@@ -113,7 +139,7 @@
 <div id="overlay" class="overlay" style="display:none;"></div>
 <div id="confirmDialog" class="custom-dialog" style="display:none;">
     <p>ログアウトしてもよろしいですか？</p>
-    <img src="<c:url value='/assets/imgs/char/Door.png'/>" alt="ログアウト確認">
+    <img src="<c:url value='${imgsPath}/char/Door.png'/>" alt="ログアウト確認">
     <div class="dialog-buttons">
         <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
         <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
@@ -158,5 +184,104 @@ function handleConfirm(isConfirmed) {
     });
   });
 </script>
+<style>
+.btn-reset {
+    background-color: #e75480;  /* 濃いピンク */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-reset:hover {
+    background-color: #d94370;  /* ホバー時にさらに濃く */
+}
+
+.btn-submit {
+    background-color: #4a90e2;  /* 青色 */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #357ab8;  /* ホバー時濃い青 */
+}
+
+</style>
+<style>
+/* === フォーム中央寄せ === */
+.center-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.center-form input,
+.center-form select,
+.center-form textarea {
+  margin: 5px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* === インライン配置用 === */
+.inline-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inline-group input,
+.inline-group select {
+  width: auto;
+}
+
+/* === 感想欄の拡張 === */
+.textarea-large {
+  width: 300px;
+  max-width: 90%;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+/* === ボタンの間隔とスマホ調整 === */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* === レスポンシブ対応（600px以下はスマホ） === */
+@media screen and (max-width: 600px) {
+  .center-form input,
+  .center-form select,
+  .center-form textarea {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-reset,
+  .btn-submit {
+    width: 80%;
+    max-width: 300px;
+    font-size: 1.1rem;
+  }
+}
+</style>
 </body>
 </html>

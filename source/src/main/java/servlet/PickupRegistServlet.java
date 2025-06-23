@@ -42,7 +42,7 @@ public class PickupRegistServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 
@@ -60,7 +60,7 @@ public class PickupRegistServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 
@@ -85,8 +85,22 @@ public class PickupRegistServlet extends HttpServlet {
         dispatcher.forward(request, response);
         return;
     }*/
-    
-    int prefecture_id = Integer.parseInt(prefecture_id_str);
+    int prefecture_id = 0;
+    if (prefecture_id_str != null && !prefecture_id_str.trim().isEmpty()) {
+        try {
+            prefecture_id = Integer.parseInt(prefecture_id_str);
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "都道府県の選択が正しくありません。");
+            request.getRequestDispatcher("/WEB-INF/jsp/visitorRegist.jsp").forward(request, response);
+            return;
+        }
+    } else {
+        request.setAttribute("error", "都道府県を選択してください。");
+        request.getRequestDispatcher("/WEB-INF/jsp/visitorRegist.jsp").forward(request, response);
+        return;
+    }
+
+    //int prefecture_id = Integer.parseInt(prefecture_id_str);
 
     PickupDTO dto = new PickupDTO(0, user_id, prefecture_id, pickup_place, remarks);
     PickupDAO dao = new PickupDAO();

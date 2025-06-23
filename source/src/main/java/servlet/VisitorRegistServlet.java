@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmotionDAO;
 import dao.PrefectureDAO;
 import dao.VisitorDAO;
+import dto.EmotionDTO;
 import dto.PrefectureDTO;
 import dto.VisitorDTO;
 
@@ -40,10 +42,19 @@ public class VisitorRegistServlet extends HttpServlet {
 			// JSPに渡すためリクエスト属性にセット
 			request.setAttribute("prefectureList", prefectureList);
 			
+			//インスタンス化
+			EmotionDAO emoDao = new EmotionDAO();
+			//DBから感情一覧を取得
+			ArrayList<EmotionDTO> emoList = emoDao.selectAll();
+			System.out.println("size: " + emoList.size());
+			//JSPに渡すためリクエスト属性にセット
+			request.setAttribute("emoList", emoList);
+
+
 			// もしもログインしていなかったらログインサーブレットにリダイレクトする
 			HttpSession session = request.getSession();
 			if (session.getAttribute("user_id") == null) {
-				response.sendRedirect("/A1/LoginServlet");
+				response.sendRedirect(request.getContextPath() + "/LoginServlet");
 				return;
 			}
 	
@@ -63,13 +74,15 @@ public class VisitorRegistServlet extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/A1/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
+		// セッションからログイン中のユーザーID取得
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("ログイン中のユーザーID: " + user_id);
 
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
-			    String user_id = request.getParameter("user_id");
 			    String start_date_str = request.getParameter("start_date");  // String型として取得
 			    String end_date_str = request.getParameter("end_date");      // String型として取得
 			    String title = request.getParameter("title");
@@ -104,10 +117,34 @@ public class VisitorRegistServlet extends HttpServlet {
 			    }
 
 			    // emotion_id を int 型に変換
-			    int emotion_id = Integer.parseInt(emotion_id_str);
+			    int emotion_id = 0;
+			    if (emotion_id_str != null && !emotion_id_str.isEmpty()) {
+			        try {
+			            emotion_id = Integer.parseInt(emotion_id_str);
+			        } catch (NumberFormatException e) {
+			            emotion_id = 0;
+			        } 
+			    }
+
+			    //int emotion_id = Integer.parseInt(emotion_id_str);
 
 			    // prefecture_id を int 型に変換
-			    int prefecture_id = Integer.parseInt(prefecture_id_str);
+			    int prefecture_id = 0;
+			    if (prefecture_id_str != null && !prefecture_id_str.trim().isEmpty()) {
+			        try {
+			            prefecture_id = Integer.parseInt(prefecture_id_str);
+			        } catch (NumberFormatException e) {
+			            request.setAttribute("error", "都道府県の選択が正しくありません。");
+			            request.getRequestDispatcher("/WEB-INF/jsp/visitorRegist.jsp").forward(request, response);
+			            return;
+			        }
+			    } else {
+			        request.setAttribute("error", "都道府県を選択してください。");
+			        request.getRequestDispatcher("/WEB-INF/jsp/visitorRegist.jsp").forward(request, response);
+			        return;
+			    }
+
+			   // int prefecture_id = Integer.parseInt(prefecture_id_str);
 			    
 				
 			    // DTOにセット
