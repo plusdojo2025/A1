@@ -1,7 +1,5 @@
 /*全体の背景に関する設定*/
 html {
-	margin-left: auto;
-	margin-right: auto;
 	font-size: 20px;
 	background-color: #C1E5F5;
 }
@@ -14,8 +12,6 @@ html {
 
 /*メニューバーに関する設定*/
 ul{
-	margin: 5px;
-	padding: 0;
     background-color: #fff;
 	list-style-type:none;
 	justify-content: center;
@@ -23,22 +19,23 @@ ul{
     vertical-align:middle;
 }
 
-/*メニューバーの区切り線に関する設定*/
+/*メニューバーの区切り線に関する設定(線無しになりました。)
 .home{
-	border-right: 2px solid #000;
+	border-right: 2px solid 	#C0C0C0;
 }
 
 .regist{
-	border-right: 2px solid #000;
+	border-right: 2px solid 	#C0C0C0;
 }
 
 .search{
-	border-right: 2px solid #000;
+	border-right: 2px solid 	#C0C0C0;
 }
+*/
 
 /*メニューバーに配置された各項目に関する設定*/
 li{
-	padding: 30px 50px 30px 50px;
+	padding: 15px 50px 15px 50px;
     vertical-align:middle;
     text-align:center;
     position:relative;
@@ -60,4 +57,40 @@ a:hover{
 a:active{
     color: #000;
     text-decoration: underline;
+}
+
+/*ボタンの大きさに関する設定*/
+.output{
+	background: #fff;
+  	padding: 8px 16px;
+  	text-decoration: none;
+  	border-radius: 4px;
+}
+
+.output:link{
+    color: #fff;
+    text-decoration: none;
+}
+.output:visited{
+    color: #fff;
+    text-decoration: none;
+}
+.output:hover{
+    background-color: #256498;
+    text-decoration: none;
+}
+.output:active{
+    background-color: #256498;
+    text-decoration: none;
+}
+
+/*<main>で括られた項目を中央寄せにするための設定（機能ごとで必要な調整があれば各自記述お願いします。）*/
+main{
+	margin-left:35vw;
+	margin-right:35vw
+}
+
+/*フッターに関する設定*/
+.footer{
+	text-align:center;
 }
