@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.PickupDTO;
+import dto.UserDTO;
 
-public class PickupDAO {
+public class PickupDAO extends DAO {
 	
 	// ユーザーIDに紐づく訪問地一覧を取得
 		public List<PickupDTO> findByUser(String user_id) {
@@ -304,6 +305,212 @@ public class PickupDAO {
 	                ex.printStackTrace();
 	            }
 
-	     }		
+	     }
+	}
+
+
+    /**
+     * 
+     * ユーザーID と 候補地ID を使用して、
+     * 候補地のレコードを1件返します。
+     * 
+     * @return [ PickupDTO ] 候補地の詳細
+     */
+    public PickupDTO select(UserDTO loginUser, int pickup_id) {
+    	// DB接続
+    	super.access();
+    	
+    	// [ Entity ] 候補地
+    	PickupDTO pickupdto = new PickupDTO();
+    	
+    	System.out.println("候補地のレコードを1件取得します。");
+    	
+    	try {
+			String sql = """
+					SELECT
+						*
+					FROM
+						pickups
+					WHERE
+						user_id = ?
+					AND
+						pickup_id = ?;
+					""";
+			
+			// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] ユーザーID
+			pStmt.setString(1, 
+					loginUser.getUser_id());
+			// [ バインド ] 訪問地ID
+			pStmt.setInt(2, pickup_id);
+			
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			System.out.println("問い合わせ（取得）を実行しました。");
+			
+			// 取得したレコードが0件なら
+			if (rs.next() == false) {
+				throw new SQLException("""
+						取得したレコードの件数は0件でした。
+						バインドの入力値を変えてみてください。
+						""");
+			}
+			
+			// 結果をコレクションにコピーする
+			// 候補地ID
+			pickupdto.setPickup_id(
+					pickup_id);
+			// ユーザーID
+			pickupdto.setUser_id(
+					loginUser.getUser_id());
+			// 都道府県ID
+			pickupdto.setPrefecture_id(rs.getInt(
+					"prefecture_id"));
+			// 場所名
+			pickupdto.setPickup_place(rs.getString(
+					"pickup_place"));
+			// 備考
+			pickupdto.setRemarks(rs.getString(
+					"remarks"));
+			
+			System.out.println("取得データをパックしました...");
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			pickupdto = null;
+		} finally {
+			// DB切断
+			super.close();
+			System.out.println();
+		}
+    	
+    	// 候補地の詳細を返す
+    	return pickupdto;
+    }
+    
+    
+	/**
+	 * 
+	 * ユーザーID と 候補地ID を使用して、
+	 * 候補地のレコードを1件更新します。
+	 * 
+	 * @return [ boolean ] 更新できたか
+	 */
+	public boolean update(String user_id, PickupDTO pickupdto) {
+		// DB接続
+		super.access();
+		
+		// 更新成功か
+		boolean isSuccess = false;
+		// 成功の値
+		int success = 1;
+		
+		System.out.println("候補地ID: "+ pickupdto.getPickup_id());
+		System.out.println("以上の内容を更新します。");
+		
+		try {
+			// [ 準備 ] SQL文
+			String sql = """
+					UPDATE
+						pickups
+					SET
+						prefecture_id = ?,
+						pickup_place = ?,
+						remarks = ?
+					WHERE
+						user_id = ?
+					AND
+						pickup_id = ?;
+					""";
+			
+    		// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] 更新する列
+			pStmt.setInt(1, 
+					pickupdto.getPickup_id());
+			pStmt.setString(2, 
+					pickupdto.getPickup_place());
+			pStmt.setString(3, 
+					pickupdto.getRemarks());
+			
+			// [ バインド ] 対象のレコードを指定
+			pStmt.setString(4, 
+					user_id);
+			pStmt.setInt(5, 
+					pickupdto.getPickup_id());
+			
+			// [ 実行 ] SQLの更新
+			isSuccess = pStmt.executeUpdate() == success;
+			System.out.println("問い合わせ（更新）を実行しました...");
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}finally {
+			// DB接続
+			super.close();
+			System.out.println();
+		}
+		
+		// 更新成功か
+		return isSuccess;
+	}
+	
+	/**
+	 * 
+	 * 候補地ID を使用して、
+	 * 候補地のレコードを1件削除します。
+	 * 
+	 * @return [ boolean ] 削除できたか
+	 */
+	public boolean delete(int pickup_id) {
+		// DB接続
+		super.access();
+		
+		// 削除成功か
+		boolean isSuccess = false;
+		// 成功の値
+		int success = 1;
+		
+		System.out.println("候補地ID: "+ pickup_id);
+		System.out.println("以上の内容を更新します。");
+		
+		
+		try {
+			// [ 準備 ] SQL文
+			String sql = """
+					DELETE
+					FROM
+						pickups
+					WHERE
+						pickup_id = ?;
+					""";
+    		
+    		// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] 対象のレコードを指定
+			pStmt.setInt(1, 
+					pickup_id);
+			
+			// [ 実行 ] SQLの更新
+			isSuccess = pStmt.executeUpdate() == success;
+			System.out.println("問い合わせ（削除）を実行しました...");
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			System.out.println();
+		}finally {
+			// DB接続
+			super.close();
+			System.out.println();
+		}
+		
+		// 削除成功か
+		return isSuccess;
 	}
 }
