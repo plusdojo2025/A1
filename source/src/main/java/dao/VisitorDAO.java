@@ -25,7 +25,8 @@ public class VisitorDAO extends DAO {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 
 	        // データベースに接続する
-	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a1?"
+	        		+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
 	                "root", "password");
 
 	        // MySQL文を準備する（user_id のみで絞り込み）
@@ -64,6 +65,7 @@ public class VisitorDAO extends DAO {
 	                rs.getDate("start_date"),
 	                rs.getDate("end_date"),
 	                rs.getInt("prefecture_id"),
+	                rs.getString("prefecture_name"),
 	                rs.getString("visitor_place"),
 	                rs.getString("thought"),
 	                rs.getInt("emotion_id"),
@@ -131,6 +133,7 @@ public class VisitorDAO extends DAO {
                     rs.getDate("start_date"),
                     rs.getDate("end_date"),
                     rs.getInt("prefecture_id"),
+                    rs.getString("prefecture_name"),
                     rs.getString("visitor_place"),
                     rs.getString("thought"),
                     rs.getInt("emotion_id"),
@@ -207,7 +210,7 @@ public class VisitorDAO extends DAO {
 	     	                rs.getDate("start_date"),
 	     	                rs.getDate("end_date"),
 	     	                rs.getInt("prefecture_id"),
-	     	               rs.getString("prefecture_name"),
+	     	                rs.getString("prefecture_name"),
 	     	                rs.getString("visitor_place"),
 	     	                rs.getString("thought"),
 	     	                rs.getInt("emotion_id"),
