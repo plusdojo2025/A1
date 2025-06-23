@@ -10,7 +10,32 @@
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+	<style> 
+	.login-container {
+	display: flex;
+	flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+	}
+	.login-container form{
+	text-align:center;
+	}
+	.password-input {
+	margin-left:20px;
+	}
+	.error-message{
+	text-align:center;
+	margin-left:50px;
+	}
 	
+	.button {
+	background: #fff;
+  	padding: 8px 16px;
+  	text-decoration: none;
+  	border-radius: 4px;
+	}
+	</style>
 
 </head>
 <body>
@@ -18,7 +43,7 @@
 <!-- ヘッダー（ここから） -->
 	<header>
 		<h1>
-		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="150"></a>
+		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 		</h1>
 	</header>
 
@@ -26,12 +51,12 @@
 
 <!-- メイン（ここから） -->
 
-<div class ="login">
 
-<c:if test="${not empty errorMessage}">
-<p>${errorMessage}</p>
-</c:if>
-</div>
+<div class ="login-container">
+	<c:if test="${not empty errorMessage}">
+		<p class="error-message">${errorMessage}</p>
+	</c:if>
+
 <form id="login_form" method="POST" action="<c:url value='/LoginServlet'/>">
   <table>
     <tr>
@@ -44,7 +69,7 @@
     <tr>
       <td>
         <label>パスワード<br>
-        <input type="password" id="password" name="password" >
+        <input type="password" id="password" name="password" class="password-input">
         <span id ="buttonEye" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
         </label>
       </td>
@@ -56,9 +81,14 @@
         <p id="output"></p>
       </td>
     </tr>
+    <tr>
+    	<td>
+ 		<a href="<c:url value='/SignUpServlet' />" class="button">新規登録</a>
+    	</td>
+    </tr>
   </table>
 </form>
-	
+</div>
 <!-- メイン(ここまで) -->
 	<script>
 	/*パスワードを隠すための処理*/
@@ -75,6 +105,27 @@
 		}
 		
 	}
+	
+	'use strict';
+	document.getElementById('login_form').onsubmit = function(event) {
+	  const I = document.getElementsByName('user_id')[0].value.trim();
+	  const P = document.getElementsByName('password')[0].value.trim();
+	  const output = document.getElementById('output');
+	  if (I === '' && P === '') {
+	    output.textContent = 'IDとPWを入力してください！'	;
+	    event.preventDefault();
+	  }else if (I ==="") {
+		 output.textContent = 'IDを入力してください！';
+		 event.preventDefault();
+	  }else if (P ==="") {
+		 output.textContent = 'PWを入力してください！';
+		 event.preventDefault();  
+	  }else {
+		  output.textContent = '';
+	  }
+	  
+	  
+	};
 	</script>
 <!-- フッター(ここから) -->
 	<div class="footer">
