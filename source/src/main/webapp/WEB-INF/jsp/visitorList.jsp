@@ -60,6 +60,9 @@
    				 <button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
   				<button class="tab_btn"  data-tab="tab2">候補地一覧</button>
 			</div>
+			
+			<!-- タブ切り替え用 -->
+        <c:set var="servletName" value="${visitorServletName != null ? visitorServletName : 'PlaceSelectServlet'}" />
   	
 			<!-- ▼ 訪問地 一覧 -->
 			<div id="tab1" class="tab_panel active">
@@ -68,6 +71,7 @@
 				<div class="">
 					<c:if test="${empty visitorList}">
    						<p>訪問地の情報は見つかりませんでした。</p>
+   						<img src="<c:url value='/assets/imgs/char/Ojigi.png' />" width="100" alt="">
   					</c:if>
 
   					<c:if test="${not empty visitorList}">
@@ -86,8 +90,8 @@
   					<c:if test="${totalPagesVisitor > 1}">
   						<div class="pagination">
   							<c:forEach begin="1" end="${totalPagesVisitor}" var="i">
-  								<a href="PlaceSelectServlet?pref=${selectedPrefecture}&page=${i}" 
-			   						class="${i == currentPage ? 'active' : ''}">${i}</a>
+  								<a href="${visitorServletName}?pref=${selectedPrefecture}&page=${i}&tab=tab1"
+  									class="${i == currentPage ? 'active' : ''}">${i}</a>
 							</c:forEach>
 						</div>
 					</c:if>
@@ -101,6 +105,7 @@
 				<div class="">
 					<c:if test="${empty pickupList}">
    						<p>候補地の情報は見つかりませんでした。</p>
+   						 <img src="<c:url value='/assets/imgs/char/Ojigi.png' />" width="100" alt="">
   					</c:if>
 					
 					<c:if test="${not empty pickupList}">
@@ -119,8 +124,8 @@
 					<c:if test="${totalPagesPickup > 1}">
 						<div class="pagination">
 							<c:forEach begin="1" end="${totalPagesPickup}" var="i">
-								<a href="PlaceSelectServlet?pref=${selectedPrefecture}&page=${i}" 
-			   						class="${i == currentPage ? 'active' : ''}">${i}</a>
+								<a href="${pickupServletName}?pref=${selectedPrefecture}&page=${i}&tab=tab2"
+									class="${i == currentPage ? 'active' : ''}">${i}</a>
 			   				</c:forEach>
 						</div>
 					</c:if>

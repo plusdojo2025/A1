@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,44 +47,89 @@ public class VisitorListServlet extends HttpServlet {
         	}
         	
         String user_id = loginUser.getUser_id(); 
-        System.out.println("vログインユーザーID: " + user_id);
+        	System.out.println("vログインユーザーID: " + user_id);
 
         // タブ情報
         String tab = request.getParameter("tab");
-        	if (tab == null || (!tab.equals("tab1") && !tab.equals("tab2"))) {
-                tab = "tab1"; // デフォルトは訪問地タブ
-            }
-            request.setAttribute("activeTab", tab);
+        if (tab == null || (!tab.equals("tab1") && !tab.equals("tab2"))) {
+        	tab = "tab1"; // デフォルトは訪問地タブ
+        }
+        request.setAttribute("activeTab", tab);
             
          // セッションから都道府県IDを取得
          String prefecture_id = request.getParameter("prefecture_id"); // 絞り込み用パラメータ
-         System.out.println("Vリクエストパラメータ prefecture_id = " + prefecture_id);
+         	System.out.println("Vリクエストパラメータ prefecture_id = " + prefecture_id);
         	
+         // ページング処理
+         int page = 1;
+         int pageSize = 5;
+         String pageParam = request.getParameter("page");
+         if (pageParam != null) {
+             try {
+                 page = Integer.parseInt(pageParam);
+                 if (page < 1) page = 1;
+             } catch (NumberFormatException e) {
+                 page = 1;
+             }
+         }
+
     	try {
+    		// 一覧を取得
 			List<VisitorDTO> visitorList;
 			List<PickupDTO> pickupList;
-
+			
+			// データ取得（絞り込み）
 			if (prefecture_id != null && !prefecture_id.isEmpty()) {
 				System.out.println("都道府県で絞り込み検索を実行");
-
 			visitorList = VisitorDAO.findByUserAndPrefecture(user_id, prefecture_id);
 			pickupList = PickupDAO.findByUserAndPrefecture(user_id, prefecture_id);
-				
 			} else {
 				System.out.println("都道府県指定なしで全件取得");
-
 			visitorList = VisitorDAO.findByUser(user_id);
 			pickupList = PickupDAO.findByUser(user_id);
-			
 			}
 				System.out.println("取得した訪問地件数: " + visitorList.size());
 				System.out.println("取得した候補地件数: " + pickupList.size());
+			
+				
+			
+			// ページング処理（訪問地）
+			int totalVisitors = visitorList.size();
+			int startIndex = (page - 1) * pageSize;
+			int endIndex = Math.min(startIndex + pageSize, totalVisitors);
+				
+			List<VisitorDTO> pagedVisitorList = new ArrayList<>();
+			if (startIndex < totalVisitors) {
+				pagedVisitorList = visitorList.subList(startIndex, endIndex);
+			}	
+			request.setAttribute("visitorList", pagedVisitorList);
 
-			// リクエストにセットしてJSPへ	
-			request.setAttribute("visitorList", visitorList);
+			
+			// ページング処理（候補地）
+			int totalPickups = pickupList.size();
+			int startPickupIndex = (page - 1) * pageSize;
+			int endPickupIndex = Math.min(startPickupIndex + pageSize, totalPickups);
+
+			List<PickupDTO> pagedPickupList = new ArrayList<>();
+			if (startPickupIndex < totalPickups) {
+			    pagedPickupList = pickupList.subList(startPickupIndex, endPickupIndex);
+			}
 			request.setAttribute("pickupList", pickupList);
+			
+			
+			// JSPへ渡すデータ
+			request.setAttribute("visitorList", pagedVisitorList);
+			request.setAttribute("pickupList", pagedPickupList);
 			request.setAttribute("selectedPrefecture", prefecture_id);
-
+			request.setAttribute("currentPage", page);
+			request.setAttribute("totalPagesVisitor", (int) Math.ceil((double) visitorList.size() / pageSize));
+			request.setAttribute("totalPagesPickup", (int) Math.ceil((double) pickupList.size() / pageSize));
+			
+			
+			request.setAttribute("visitorServletName", "VisitorListServlet");
+			request.setAttribute("pickupServletName", "VisitorListServlet");
+			
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/visitorList.jsp").forward(request, response);
 
 		} catch (Exception e) {
