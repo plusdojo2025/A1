@@ -28,45 +28,47 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
-	<div class="parent">
-		<h1>
-		 	<a href="<c:url value='/HomeServlet'/>"
-		 		><img src="<c:url value='${imgsPath}/TABITILE_logo.png' />"  
-					width="150"
-	 		/></a>
-		</h1>
+	<div class="header">
+		<div class="parent">
+			<h1>
+			 	<a href="<c:url value='/HomeServlet'/>"
+			 		><img src="<c:url value='${imgsPath}/TABITILE_logo.png' />"  
+						width="150"
+		 		/></a>
+			</h1>
+			
+			<!-- ボタン設置 -->
+			<div class="menubutton"
+				><a href="<c:url value='/GachaServlet'/>"
+					><img 
+						src="<c:url value='${imgsPath}/icons/gacha.png' />" 
+						width="50" 
+				></a
+				><a href="<c:url value='/QaServlet'/>"
+					><img 
+						src="<c:url value='${imgsPath}/icons/qa.png' />" 
+						width="50" 
+				></a
+				><a href="<c:url value='/SettingServlet'/>"
+					><img 
+						src="<c:url value='${imgsPath}/icons/setting.png' />" 
+						width="50" 
+				></a
+				><a href="<c:url value='/LogoutServlet'/>"
+					onclick="showConfirmDialog(); return false;"
+					><img 
+						src="<c:url value='${imgsPath}/icons/logout.png' />" 
+						width="50" 
+				/></a
+			></div>
+		</div>
 		
-		<!-- ボタン設置 -->
-		<div class="menubutton"
-			><a href="<c:url value='/GachaServlet'/>"
-				><img 
-					src="<c:url value='${imgsPath}/icons/gacha.png' />" 
-					width="50" 
-			></a
-			><a href="<c:url value='/QaServlet'/>"
-				><img 
-					src="<c:url value='${imgsPath}/icons/qa.png' />" 
-					width="50" 
-			></a
-			><a href="<c:url value='/SettingServlet'/>"
-				><img 
-					src="<c:url value='${imgsPath}/icons/setting.png' />" 
-					width="50" 
-			></a
-			><a href="<c:url value='/LogoutServlet'/>"
-				onclick="showConfirmDialog(); return false;"
-				><img 
-					src="<c:url value='${imgsPath}/icons/logout.png' />" 
-					width="50" 
-			/></a
-		></div>
+		<!-- ニックネーム表示 -->
+		<c:if test ="${not empty sessionScope.user_id}">
+			<span class="nickname"
+				>${sessionScope.user_id.nickname}&nbsp;さん</span>
+		</c:if>
 	</div>
-	
-	<!-- ニックネーム表示 -->
-	<c:if test ="${not empty sessionScope.user_id}">
-		<span class="nickname"
-			>${sessionScope.user_id.nickname}&nbsp;さん</span>
-	</c:if>
 	<!-- メニューバー表示 -->
 	<nav
 		><ul
