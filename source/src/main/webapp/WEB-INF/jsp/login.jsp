@@ -46,7 +46,7 @@
   	margin-top: 20px; 
 	}
 	
-	.output {
+	.push-button {
 	padding: 1px 1px;
 	font-size: 18px;
 	}
@@ -91,10 +91,12 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="reset"  name="reset" value="リセット" class="output">
-        <input type="submit" name="login" value="ログイン" class="output">
+        <input type="reset"  name="reset" value="リセット" class="push-button">
+        <input type="submit" name="login" value="ログイン" class="push-button">
+        <div id="output"></div>
       </td>
     </tr>
+    
     <tr>
     	<td>
  		<a href="<c:url value='/SignUpServlet' />" class="button">新規登録はこちら</a>
@@ -102,6 +104,7 @@
     </tr>
   </table>
 </form>
+	
 </div>
 <!-- メイン(ここまで) -->
 	<script>
@@ -120,22 +123,22 @@
 		
 	}
 	
-	"use strict";
+	'use strict';
 	document.getElementById('login_form').onsubmit = function(event) {
-	  const I = document.getElementsByName("user_id")[0].value.trim();
-	  const P = document.getElementsByName("password")[0].value.trim();
-	  const output = document.getElementById("output");
-	  if (I === "" && P === "") {
-	    output.textContent = "IDとPWを入力してください！"	;
+	  const I = document.getElementsByName('user_id')[0].value.trim();
+	  const P = document.getElementsByName('password')[0].value.trim();
+	  const output = document.getElementById('output');
+	  if (I === '' && P === '') {
+	    output.textContent = 'IDとPWを入力してください！'	;
 	    event.preventDefault();
-	  }else if (I ==="") {
-		 output.textContent = "IDを入力してください！";
+	  }else if (I ==='') {
+		 output.textContent = 'IDを入力してください！';
 		 event.preventDefault();
-	  }else if (P ==="") {
-		 output.textContent = "PWを入力してください！";
+	  }else if (P ==='') {
+		 output.textContent = 'PWを入力してください！';
 		 event.preventDefault();  
 	  }else {
-		  output.textContent = "";
+		  output.textContent = '';
 	  }
 	  
 	  
