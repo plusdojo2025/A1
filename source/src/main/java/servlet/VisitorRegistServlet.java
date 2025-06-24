@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,6 +57,19 @@ public class VisitorRegistServlet extends HttpServlet {
 			if (session.getAttribute("user_id") == null) {
 				response.sendRedirect(request.getContextPath() + "/LoginServlet");
 				return;
+			}
+			
+			// 候補地の移行データ
+			VisitorDTO visitordto = (VisitorDTO) session.getAttribute("visitor");
+			if (Objects.isNull(visitordto) == false) {
+				request.setAttribute("prefecture_id", 
+						visitordto.getPrefecture_id());
+				request.setAttribute("place",
+						visitordto.getVisitor_place());
+				request.setAttribute("thought", 
+						visitordto.getThought());
+				// [ 破棄 ] 用済みになった移行データ
+				session.removeAttribute("visitor");
 			}
 	
 			// 登録ページにフォワードする
