@@ -10,11 +10,15 @@
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+
+<!-- ホーム画面 -->
+<link rel="stylesheet" href="<c:url value='assets/css/home.css'/>" >
 </head>
 <body>
 
 <!-- ヘッダー（ここから） -->
 	<header>
+	<div class="header">
 	<div class="parent">
 		<h1>
 		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
@@ -33,6 +37,7 @@
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
+	</div>
 	
 <!-- メニューバー表示 -->
 	<nav>
