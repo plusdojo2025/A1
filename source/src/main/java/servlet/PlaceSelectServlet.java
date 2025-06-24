@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.PickupDAO;
+import dao.PrefectureDAO;
 import dao.VisitorDAO;
 import dto.PickupDTO;
+import dto.PrefectureDTO;
 import dto.UserDTO;
 import dto.VisitorDTO;
 
@@ -72,12 +74,21 @@ public class PlaceSelectServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				page = 1;
 			}
-		}	
+		}
+		
+		
+		
 			
         try {
         	// 一覧を取得
             List<PickupDTO> pickupList;
             List<VisitorDTO> visitorList;
+
+            // 対象の都道府県を取得
+            PrefectureDAO prefecturedao = new PrefectureDAO();
+            PrefectureDTO prefecturedto = prefecturedao.select(Integer.parseInt(
+            		pref));
+            request.setAttribute("prefecture", prefecturedto);
             
             // データ取得（絞り込み）
             if (pref != null && !pref.isEmpty()) {
