@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user_id",loginUser);
 			
 			// ホームサーブレットにリダイレクトする(画面遷移)
-			String url = request.getContextPath() + "/HomeServlet";
+			String url = request.getContextPath() + "/BabgeServlet";
 			response.sendRedirect (url);
 		}else {//ログイン失敗
 			request.setAttribute("errorMessage", // エラーメッセージを出す

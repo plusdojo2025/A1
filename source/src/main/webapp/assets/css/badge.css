@@ -1,0 +1,75 @@
+/* グリッド定義 */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 横3列 */
+  gap: 16px; /* セル間の余白 */
+  padding: 20px; /* 内側の余白 */
+  justify-items: center; /* 水平中央揃え */
+}
+
+/* 各バッジセル */
+.badge-cell {
+  width: 120px; /* 固定幅 */
+  height: auto; /* 高さは内容に応じて */
+  text-align: center; /* 中のテキスト中央揃え */
+  background-color: #fff; /* 白背景 */
+  border: 2px solid #ccc; /* 薄いグレーの境界線 */
+  border-radius: 16px; /* 角丸 */
+  padding: 12px; /* 内側余白 */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* 影 */
+  transition: transform 0.2s; /* ホバー時の拡大アニメーション用 */
+}
+
+/* バッジにマウスを載せたときの拡大効果 */
+.badge-cell:hover {
+  transform: scale(1.05); /* 少し拡大 */
+}
+
+/* バッジ画像のスタイル */
+.badge-cell img {
+  width: 100px; /* 横幅 */
+  height: 100px; /* 高さ */
+  object-fit: contain; /* はみ出さず縮小 */
+  margin-bottom: 6px; /* 下のテキストとの余白 */
+}
+
+/* バッジ名のスタイル */
+.badge-cell p {
+  font-size: 12px; /* 小さめの文字 */
+  color: #555; /* グレー文字 */
+  margin: 0; /* 上下の余白なし */
+  word-break: keep-all; /* 単語の途中で改行しない */
+}
+
+/* 獲得バッジタイトル */
+.get-badge {
+  font-weight: bold; /* 太字 */
+  font-size: 1.2em; /* 少し大きめ */
+  text-align: center; /* 中央揃え */
+  margin-bottom: 10px; /* 下に余白 */
+}
+
+/* 獲得日などのボックス */
+.item-badge {
+  background-color: #e3effb; /* 薄い水色背景 */
+  border-radius: 15px; /* 角丸 */
+  padding: 10px 15px; /* 内側余白 */
+  width: 30vw; /* 画面幅の30% */
+  margin: 0 auto; /* 横中央揃え */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影 */
+}
+
+/* 各バッジ行 */
+.date-badge {
+  background-color: #67a7d1; /* 青背景 */
+  border: 5px solid #ffffff; /* 太めの白枠 */
+  border-radius: 8px; /* 角丸 */
+  color: #ffffff; /* 白文字 */
+  padding: 5px 10px; /* 内側余白 */
+  margin: 8px auto; /* バッジの上下余白＋中央寄せ */
+  font-size: 0.95em; /* 少し小さめ文字 */
+  display: flex; /* 横並び用 */
+  align-items: center; /* 垂直中央揃え */
+  width: 25vw; /* 横幅指定 */
+  box-sizing: border-box; /* パディング含めて幅を計算 */
+}
