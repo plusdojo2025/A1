@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>都道府県｜TABI×TILE</title>
+<!-- 一覧画面 -->
+<link rel="stylesheet" href="<c:url value='assets/css/map.css'/>" >
+
 </head>
 <body>
 <?xml version="1.0" encoding="UTF-8"?>

@@ -1,0 +1,7 @@
+ body { 
+  background: linear-gradient(270deg, #a2d4ec, #c1e5f5, #e3f2fb); 
+  background-size: 200% 200%; 
+  animation: gradientAnimation 5s infinite alternate;
+} 
+@keyframes gradientAnimation { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } 
+} 
