@@ -17,7 +17,7 @@ import dto.UserDTO;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet(urlPatterns = {"/LoginServlet"})
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("user_id");
 		String password = request.getParameter("password");
 
-		// ログイン処理を行う
+		
 		// ログイン処理を行う
 		UserDAO userdao = new UserDAO();
 		//ログイン認証
