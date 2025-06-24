@@ -6,6 +6,17 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+   <style>
+      #textPassword {
+        border: none; /* デフォルトの枠線を消す */
+      }
+      #fieldPassword {
+        border-width: thin;
+        border-style: solid;
+        width: 200px;
+      }
+    </style>
 <title>｜TABI×TILE</title>
 
 	<!-- 全体共通css -->
@@ -31,6 +42,18 @@
 				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
 				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
 			</div>
+			
+			<!-- ダイアログHTML(ここから) -->
+			<div id="overlay" class="overlay" style="display:none;"></div>
+			<div id="confirmDialog" class="custom-dialog" style="display:none;">
+			    <p>ログアウトしてもよろしいですか？</p>
+			    <img src="<c:url value='/assets/imgs/char/Door.png'/>" alt="ログアウト確認">
+			    <div class="dialog-buttons">
+			        <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
+			        <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
+			    </div>
+			</div>
+			<!-- ダイアログHTML(ここまで) -->
 		</div>
 <!-- ニックネーム表示 -->
 		<c:if test ="${not empty sessionScope.user_id }">
@@ -49,29 +72,29 @@
 	</header>
 <!-- ヘッダー(ここまで) -->
 
-    <main>
+    <main class=main>
         <form method="POST" action="<c:url value='/SignUpServlet'/>" id="signup_form">
-            <table>
                 <p>
-                    <label>ID<br>
-                    <p>※IDは変更できません</p>   
+                    <label class=label>ID<br>
+                    <p class=rule>※IDは変更できません</p>   
                     <input type="text" id="user_id" name="user_id">
                     </label>
                 </p>
-                <p>
-                    <label>パスワードを設定してください<br>
-                    <p>
-                        ※パスワードは8文字以上で、<br>
-                        大文字、小文字、数字を1文字以上使用してください。<br>
-                        パスワードを変更するには、<br>
-                        現在のパスワードの入力が必要になります。<br>
-                    </p>
+                
+                    <label class=label>パスワード<br></label>
+	                    <p class=rule>
+	                        ※パスワードは8文字以上で、<br>
+	                        大文字、小文字、数字を1文字以上使用してください。<br>
+	                        パスワードを変更するには、<br>
+	                        現在のパスワードの入力が必要になります。<br>
+	                    </p>
                     <input type="password" id="password" name="password">
                     <span id="buttonEye" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
-                    </label>
-                </p>
                 <p>
-                    <label>住んでいる地域を選択してください<br>
+                  	<label class=label>都道府県<br></label>
+	                    <p class=rule>
+	                        あなたの住んでいる都道府県を選択してください。<br>
+	                    </p>
                         <select name="prefecture_id">
                             <option value="" selected>選択してください</option>
                             <option value="1">北海道</option>
@@ -122,30 +145,30 @@
                             <option value="46">鹿児島県</option>
                             <option value="47">沖縄県</option>     
                         </select>
-                    </label>
-                </p>
+                	</p>
                 <p>
-                    <label>ニックネームを設定してください</label><br>
+                    <label class=label>ニックネーム</label><br>
+                    	<p class=rule>
+	                        アプリ内で使用する名前を入力してください。<br>
+	                    </p>
                     <input type="text" id="nickname" name="nickname">
                 </p>
                 <p colspan="2">
-                    <input type="submit" id="register" name="submit" value="登録">
+                    <input type="submit" id="register" class="push-button" name="submit" value="登録">
                     <span id="error_message"></span>
                 </p>
-            </table>
+			    <p>
+			 		<a href="<c:url value='/LoginServlet' />">＜＜＜ログイン画面に戻る</a>
+			    </p>
         </form>
-        <!-- ダイアログHTML(ここから) -->
-		<div id="overlay" class="overlay" style="display:none;"></div>
-		<div id="confirmDialog" class="custom-dialog" style="display:none;">
-		    <p>ログアウトしてもよろしいですか？</p>
-		    <img src="<c:url value='/assets/images/logo3.png' />" alt="ログアウト確認">
-		    <div class="dialog-buttons">
-		        <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
-		        <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
-		    </div>
-		</div>
-		<!-- ダイアログHTML(ここまで) -->
-    <script>
+    </main>
+
+	<footer class="footer">
+		<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
+		<p>旅のひとコマが、未来を彩るタイルになる</p>
+	</footer>
+	
+	    <script>
     /*パスワードを隠すための処理*/
     function pushHideButton() {
     var txtPass = document.getElementById("password");
@@ -194,13 +217,7 @@
             window.location.href = '<c:url value="/LogoutServlet" />';
         }
     }
-    <!-- ダイアログJS(ここまで) -->
+    <!-- ダイアログJS(ここまで) -->    
     </script>
-    </main>
-
-	<footer class="footer">
-		<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
-		<p>旅のひとコマが、未来を彩るタイルになる</p>
-	</footer>
 </body>
 </html>

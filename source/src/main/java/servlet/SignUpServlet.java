@@ -23,12 +23,6 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
-			return;
-		}*/
 		// 新規登録画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 		dispatcher.forward(request, response);
@@ -46,6 +40,8 @@ public class SignUpServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
 		int prefecture_id = Integer.parseInt(request.getParameter("prefecture_id"));
+		
+		System.out.println("取得したデータ→"+user_id);
 		
 		UserDAO uDAO = new UserDAO();
 		if (uDAO.insert(new UserDTO(user_id,password,nickname,prefecture_id))) { // 登録成功

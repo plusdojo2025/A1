@@ -15,8 +15,6 @@
 input {
 	padding:10px 0 10px 0;
 	height:15px;
-	
-	
 	}
 
 select {
@@ -25,5 +23,11 @@ select {
       height:40px;
 }
 
-
-
+.push-button{
+	background: #fff;
+  	padding: 8px 16px;
+  	text-decoration: none;
+  	border-radius: 4px;
+  	display: inline-block;
+  	margin-top: 20px;
+	} 
