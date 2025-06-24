@@ -73,13 +73,13 @@
 					<option value="" disabled selected>選択してください</option>
 					<c:forEach var="prefecture" items="${prefectureList}">
 						<option value="${prefecture.prefecture_id}"
-							<c:if test="${visitor.prefecture_id == prefecture.prefecture_id}"
+							<c:if test="${prefecture_id == prefecture.prefecture_id}"
 	                    			>selected</c:if>
 							>${prefecture.prefecture_name}</option>
 					</c:forEach>
 			   </select>
 			   	&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="place" value="${visitor.visitor_place}" /></div><br>
+		場所<input type="text" name="place" value="${place}" /></div><br>
 		  <div class="inline-group">
 		同行者<input type="text" name="componion">
 				&nbsp;&nbsp;&nbsp;
@@ -91,7 +91,7 @@
 			</select></div><br>
 		感想<br>
 		<textarea name="thought" rows="5" cols="40" class="textarea-large"
-			>${visitor.thought}</textarea><br>
+			>${thought}</textarea><br>
 	
 		写真<input type="file" name="photo"><br><br>
 				  <div class="inline-group">
