@@ -84,13 +84,10 @@ a:active{
     text-decoration: none;
 }
 
-/*<main>で括られた項目を中央寄せにするための設定（機能ごとで必要な調整があれば各自記述お願いします。）*/
-main{
-	margin-left:35vw;
-	margin-right:35vw
-}
+/* main で中央寄せしないこと（子要素にまかせて頂戴） */
 
 /*フッターに関する設定*/
 .footer{
 	text-align:center;
 }
+
