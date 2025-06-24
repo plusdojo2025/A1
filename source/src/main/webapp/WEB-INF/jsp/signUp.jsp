@@ -30,6 +30,7 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
+		<div class="header">
 		<div class="parent">
 			<h1>
 				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
@@ -59,6 +60,7 @@
 		<c:if test ="${not empty sessionScope.user_id }">
 		<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 		</c:if>
+	</div>
 	
 <!-- メニューバー表示 -->
 		<nav>
@@ -77,21 +79,26 @@
                 <p>
                     <label class=label>ID<br>
                     <p class=rule>※IDは変更できません</p>   
-                    <input type="text" id="user_id" name="user_id">
+                    <input type="text" id="user_id" class="nickname" name="user_id">
                     </label>
                 </p>
                 
-                    <label class=label>パスワード<br></label>
+                    <p>パスワード</p>
 	                    <p class=rule>
 	                        ※パスワードは8文字以上で、<br>
 	                        大文字、小文字、数字を1文字以上使用してください。<br>
 	                        パスワードを変更するには、<br>
 	                        現在のパスワードの入力が必要になります。<br>
 	                    </p>
-                    <input type="password" id="password" name="password">
-                    <span id="buttonEye" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
-                <p>
-                  	<label class=label>都道府県<br></label>
+	             <div class="pass">
+		            <p class="pass2">
+	                   <input type="password" id="password" class="pass3" name="password">
+	                   <span id="buttonEye" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
+	               	</p>
+	              </div>
+	              
+                  	<p>都道府県</p>
+                  	<label>
 	                    <p class=rule>
 	                        あなたの住んでいる都道府県を選択してください。<br>
 	                    </p>
@@ -145,19 +152,20 @@
                             <option value="46">鹿児島県</option>
                             <option value="47">沖縄県</option>     
                         </select>
-                	</p>
-                <p>
-                    <label class=label>ニックネーム</label><br>
-                    	<p class=rule>
-	                        アプリ内で使用する名前を入力してください。<br>
-	                    </p>
-                    <input type="text" id="nickname" name="nickname">
-                </p>
+                   </label>
+               <p>ニックネーム</p>
+	               	<p class=rule>
+	                    アプリ内で使用する名前を入力してください。<br>
+	                </p>
+			  	<label>         
+			  		<input type="text" id="nickname" class="nickname" name="nickname">
+              	</label>
+              
                 <p colspan="2">
-                    <input type="submit" id="register" class="push-button" name="submit" value="登録">
+                    <p class=button><input type="submit" id="register" class="push-button" name="submit" value="登録"></p>
                     <span id="error_message"></span>
                 </p>
-			    <p>
+			    <p class="back">
 			 		<a href="<c:url value='/LoginServlet' />">＜＜＜ログイン画面に戻る</a>
 			    </p>
         </form>

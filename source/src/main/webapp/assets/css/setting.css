@@ -1,29 +1,64 @@
-.rule{
-	font-size:0.7rem;
-}
-
-.label{
+/*項目名の表示に関する設定*/
+p{
 	font-size:1.2rem;
-	text-align:center;
+	text-align:left;
 }
 
+/*ページ全体の中央寄せに関する設定*/
 .main{
 	margin-left:30vw;
-	margin-right:30vw
+	margin-right:30vw;
 }
 
-input {
-	padding:10px 0 10px 0;
-	height:15px;
-	
-	
-	}
+/*フォーム欄の中央寄せに関する設定*/
+form{
+	text-align:left;
+}
 
+/*入力欄に関する設定*/
+.nickname {
+	padding:10px 0 10px 0;
+	height:20px;
+	width:40vw;
+	border-radius:10px;
+	}
+	
+/*都道府県のセレクトボックスに関する設定*/
 select {
 	padding:10px 0 10px 0;
-	  width:200px;
-      height:40px;
+	width:20vw;
+    height:40px;
 }
 
+/*提出ボタンに関する設定*/
+.push-button{
+	margin-top: 20px;
+	height:50px;
+	width:10vw;
+	text-align:center;
+}
+.button{
+		text-align:center;
+}
+
+/*パスワード入力欄に関する細かい調整*/
+.pass{
+	margin:0;
+	text-align:center;
+}
+.pass2{
+	text-align:left;
+	font-size:0.9rem;
+	margin:5px;
+}
+
+.pass3{
+	padding:10px 0 10px 0;
+	height:20px;
+	text-align:left;
+	font-size:0.9rem;
+	width:35vw;
+	border-radius:10px;
+}
 
 

@@ -36,6 +36,7 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
+		<div class="header">
 		<div class="parent">
 			<h1>
 				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
@@ -60,13 +61,13 @@
 			    </div>
 			</div>
 <!-- ダイアログHTML(ここまで) -->
-
 		</div>
 		
 <!-- ニックネーム表示 -->
 		<c:if test ="${not empty sessionScope.user_id }">
 		<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 		</c:if>
+	</div>
 	
 <!-- メニューバー表示 -->
 		<nav>
@@ -86,7 +87,7 @@
         		<input type="hidden" id="user_id" name="user_id" value='${sessionScope.user_id.user_id}'>
 		    <p>ニックネームの変更</p>
 		    <label>
-		        <input type="text" id="name" name="nickname" value='${sessionScope.user_id.nickname}'>
+		        <input type="text" id="name" class="nickname" name="nickname" value='${sessionScope.user_id.nickname}'>
 		    </label>
 		
 		    <p>都道府県の変更</p>
@@ -149,16 +150,18 @@
 			</c:if></div>
 			
 		<p>パスワードの変更</p>
-		    <label>現在のパスワード<br>
-		        <input type="password" id="password1" placeholder="現在のパスワードを入力" name="password">
-		        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton1()"></span>
-		  </label><br>
-		  <label>新しいパスワード<br>
-		          <input type="password" id="password2" name="password">
+			<div class="pass">
+			    <p class="pass2">現在のパスワード
+			        <input type="password" id="password1" class="pass3" placeholder="現在のパスワードを入力" name="password">
+			        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton1()"></span><br>
+			    </p>
+				<p class="pass2">新しいパスワード
+		          <input type="password" id="password2" class="pass3" placeholder="新しいパスワードを入力" name="password">
 		          <span id="buttonEye2" class="fa fa-eye-slash" onclick="pushHideButton2()"></span><br>
-		          <input type="submit" id="register" class="push-button" name="submit" value="変更">
 		          <span id="error_message3"></span>
-		  </label>
+		        </p>
+		      </div>
+		       	<p class=button><input type="submit" id="register" class="push-button" name="submit" value="変更"></p>
         </form>
 	</main>
 <!-- メイン(ここまで) -->
