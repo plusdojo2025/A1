@@ -1,0 +1,57 @@
+/* 一覧のカード用CSS */
+	.card_list {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 20px;
+	}
+
+	/* カード本体 */
+	.card {
+	position: relative;
+  	height: 120px;
+	background-color: #f4fbfd;
+	border: 1px solid #cce6f3;
+	border-radius: 10px;
+	box-shadow: 0 2px05px rgba(0, 0, 0, 0.08);
+	padding: 15px 20px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+	
+	/* タイトル(左上に固定) */
+   .card_title {
+   position: absolute;
+   top: 10px;
+   left: 15px;
+   margin:0;
+   font-size: 14px;
+   color: black;
+   }
+   
+ 	/* テキスト（右下） */
+	.card_text_area {
+  	position: absolute;
+  	bottom: 10px;
+  	right: 15px;
+  	text-align: right;
+	}
+	
+	
+   .card_text {
+   margin: 2px 0;
+   font-size: 16px;
+   color: #444;
+   text-align: right;
+   position: static;
+   }
+      
+	.card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	}
+	
+	
+	.pref-name {
+		text-align: center;
+	}
+      

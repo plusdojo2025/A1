@@ -54,18 +54,23 @@
 
 <!-- メイン（ここから） -->
 	<main>
-		<div class="tab_wrap">
+		<c:if test="${not empty prefecture}" 
+			><h2 class="pref-name"
+				>${prefecture.prefecture_name}</h2
+		></c:if>
+		
+		<div class="tab_wrap tab-center">
     		<!--タブメニュー-->
   			<div class="tab_area">
-   				 <button class="tab_btn active" data-tab="tab1">訪問地一覧</button>
-  				<button class="tab_btn"  data-tab="tab2">候補地一覧</button>
+   				 <button class="tab_btn <c:if test='${activeTab == "tab1"}'>active</c:if>" data-tab="tab1">訪問地一覧</button>
+  				<button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>"  data-tab="tab2">候補地一覧</button>
 			</div>
 			
 			<!-- タブ切り替え用 -->
         <c:set var="servletName" value="${visitorServletName != null ? visitorServletName : 'PlaceSelectServlet'}" />
   	
 			<!-- ▼ 訪問地 一覧 -->
-			<div id="tab1" class="tab_panel active">
+			<div id="tab1" class="tab_panel <c:if test='${activeTab == "tab1"}'>active</c:if>">
 				<h2>訪問地一覧</h2>
 				
 				<div class="">
@@ -78,9 +83,11 @@
 						<c:forEach var="visitor" items="${visitorList}">
 							<a href="<c:url value='/VisitorServlet?pk=${visitor.visitor_id}'/>">
 								<div class="card link-card">
-									<h3>${visitor.start_date} の思い出</h3>
-									<p>${visitor.prefecture_name}</p>
-									<p>${visitor.visitor_place}</p>
+									<h3 class="card_title">${visitor.start_date} の思い出</h3>
+									<div class="card_text_area">
+										<p class="card_text">${visitor.prefecture_name}</p>
+										<p class="card_text">${visitor.visitor_place}</p>
+									</div>
 								</div>
 							</a>	
 						</c:forEach>
@@ -99,7 +106,7 @@
 			</div>
 			
 			<!-- ▼ 候補地 一覧 -->
-			<div id="tab2" class="tab_panel">
+			<div id="tab2" class="tab_panel <c:if test='${activeTab == "tab2"}'>active</c:if>">
 				<h2>候補地一覧</h2>
 				
 				<div class="">
@@ -112,9 +119,11 @@
 						<c:forEach var="pickup" items="${pickupList}">
 							<a href="<c:url value='/PickupServlet?pk=${pickup.pickup_id}'/>">
 								<div class="card link-card" >
-									<h3>${pickup.prefecture_name} </h3>
-									<p>${pickup.pickup_place}</p>
-									<p>${pickup.remarks}</p>
+									<h3 class="card_title">${pickup.prefecture_name} </h3>
+									<div class="card_text_area">
+										<p class="card_text">${pickup.pickup_place}</p>
+										<p class="card_text">${pickup.remarks}</p>
+									</div>
 								</div>
 							</a>
 						</c:forEach>
@@ -186,10 +195,32 @@ function handleConfirm(isConfirmed) {
    	// コンテンツのアクティブ切り替え
    	const target = button.getAttribute('data-tab');
     tabContents.forEach(content => {
-    content.classList.remove('active');
+    // サーブレットの基本URL
+    const currentUrl = `<c:choose>
+    		<c:when test="${empty prefecture}"
+    			><c:url value="/VisitorListServlet" 
+   			/></c:when
+ 			><c:otherwise
+ 				><c:url value="/PlaceSelectServlet" 
+ 			/></c:otherwise
+		></c:choose>`;
+    
+    console.log("currentUrl: " + currentUrl);
+    
+    // tab パラメータに tab1 もしくは tab2 が入る
+    // タブ切り替え時にページ数を初期化
+    const searchParameter1 = "?tab=" + target;
+
+    // 都道府県
+    const searchParameter2 = "<c:if test='${not empty prefecture}'>&pref=${prefecture.prefecture_id}</c:if>";
+    
+    // パラメータ追加
+    window.location.href = currentUrl + searchParameter1 + searchParameter2;
+    
+    /* content.classList.remove('active');
     if (content.id === target) {
     content.classList.add('active');
-        }
+        } */
       });
     });
   });

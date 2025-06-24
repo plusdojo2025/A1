@@ -1,60 +1,67 @@
-     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
+/* tab用CSS */
     .tab_wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .tab_area {
-       display: flex;
-      flex-direction: row;
-      margin-bottom: 0;
-      border-bottom: 2px solid #ccc;
-    }
-
-    .tab_btn {
-      flex: 1;
-      padding: 14px;
-      font-size: 16px;
-      background: #f0f0f0;
-      border: none;
-      border-right: 1px solid #ccc;
-      cursor: pointer;
+      display: flex;
+      flex-direction: column;
       text-align: center;
     }
+    
+    /* タブ表示（tab_wrap とか）で使う */
+	.tab-center {
+	     /* 中央寄せ */
+	     width: 70%;
+	     margin: 0 auto;
+	}
+	
 
-    .tab_btn:last-child {
-      border-right: none;
+	/* ▼ タブ全体 */
+	.tab_area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  	margin-bottom: 0;
+  	height: 40px;
+	}
+
+	/* ▼ タブボタン共通 */
+    .tab_btn {
+    width: 150px;
+    heighf: 100%;
+    padding: 5px 10px;
+    font-size: 14px;
+    /* デフォルトの色設定 */
+    color: black;
+    background-color: #d9f0f9;
+    border: 2px solid transparent;
+    border-bottom: none;
+  	border-top-left-radius: 10px;
+  	border-top-right-radius: 10px;
+  	cursor: pointer;
+  	position: relative;
+	text-align: center;
     }
 
+    /* ▼ アクティブタブボタン */
     .tab_btn.active {
-      background-color: white;
-      font-weight: bold;
-      border-bottom: 2px solid #007BFF;
-      color: #007BFF;
+    z-index: 1;
+    background: #ffffff;
+    color: black;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
     }
 
-    .tab_panel {
-      display: none;
-      padding: 20px;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
+	/* ▼ パネルエリア */
+	.tab_panel {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: center;
     }
-
-    .tab_panel.active {
-      display: block;
+    
+    .tab_panel.active{
+   display: block; 
     }
-
-   .card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-      }
+    
+    
