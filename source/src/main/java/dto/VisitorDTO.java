@@ -14,6 +14,8 @@ public class VisitorDTO {
     private String visitor_place;          // 場所
     private String thought;        // 感想
     private int emotion_id;         // 感情ID（外部キー）
+    private String emotion_name;	// 感情名称
+    private String emoji;    		// 絵文字
     private String photo1;         // 写真1
     private String photo2;         // 写真2
     private String photo3;         // 写真3
@@ -83,6 +85,8 @@ public class VisitorDTO {
 		this.visitor_place 	= "";
 		this.thought 		= "";
 		this.emotion_id 	= -1;
+		this.emotion_name   = "";
+		this.emoji          = "";
 		this.photo1 		= "";
 		this.photo2 		= "";
 		this.photo3 		= "";
@@ -203,6 +207,26 @@ public class VisitorDTO {
 	public void setEmotion_id(int emotion_id) {
 		this.emotion_id = emotion_id;
 	}
+
+	public String getEmotion_name() {
+		return emotion_name;
+	}
+
+
+	public void setEmotion_name(String emotion_name) {
+		this.emotion_name = emotion_name;
+	}
+
+
+	public String getEmoji() {
+		return emoji;
+	}
+
+
+	public void setEmoji(String emoji) {
+		this.emoji = emoji;
+	}
+
 
 	public String getPhoto1() {
 		return photo1;
