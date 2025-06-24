@@ -152,11 +152,11 @@
 		<p>パスワードの変更</p>
 			<div class="pass">
 			    <p class="pass2">現在のパスワード
-			        <input type="password" id="password1" class="pass3" placeholder="現在のパスワードを入力" name="password">
+			        <input type="password" id="password1" class="pass3" placeholder="現在のパスワードを入力" name="password1">
 			        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton1()"></span><br>
 			    </p>
 				<p class="pass2">新しいパスワード
-		          <input type="password" id="password2" class="pass3" placeholder="新しいパスワードを入力" name="password">
+		          <input type="password" id="password2" class="pass3" placeholder="新しいパスワードを入力" name="password2">
 		          <span id="buttonEye2" class="fa fa-eye-slash" onclick="pushHideButton2()"></span><br>
 		          <span id="error_message3"></span>
 		        </p>

@@ -45,20 +45,48 @@ public class SettingServlet extends HttpServlet {
 		//リクエストパラメータを取得する。
 		request.setCharacterEncoding("UTF-8");
 		String user_id = request.getParameter("user_id");
-		String password1 = request.getParameter("password");
-		String password2 = request.getParameter("password");
+		String password1 = request.getParameter("password1");
+		String password2 = request.getParameter("password2");
 		String nickname = request.getParameter("nickname");
 		int prefecture_id = Integer.parseInt(request.getParameter("prefecture_id"));
 		
-		UserDAO uDAO = new UserDAO();
-		//現在のパスワードがあっているかを確認して、合っていれば変更処理を行う。
-		boolean isAuth;
+		System.out.println("ユーザーID"+user_id);
+		System.out.println("現在のパスワード"+password1);
+		System.out.println("変更後のパスワード"+password2);
+		System.out.println("ニックネーム"+nickname);
+		System.out.println("都道府県ID"+prefecture_id);
 		
-		isAuth = uDAO.isAuth(user_id,password1);
+		UserDAO uDAO = new UserDAO();
 	
-		if (isAuth) { // ログイン成功
-			//更新処理を行う。
-			if (uDAO.update(new UserDTO(user_id,nickname,password2, prefecture_id))) { // 更新成功
+	if (password1 != ""){
+		//現在のパスワードがあっているかを確認して、合っていれば変更処理を行う。
+			boolean isAuth;
+			
+			isAuth = uDAO.isAuth(user_id,password1);
+		
+			if (isAuth) { // ログイン成功
+
+				//更新処理を行う。
+				if (uDAO.update(new UserDTO(user_id,password2,nickname,prefecture_id))) { // 更新成功
+					System.out.println("更新処理に成功しました。");
+					UserDTO loginUser = uDAO.getLoginUser(user_id); 
+					// セッションスコープにIDを格納する
+					HttpSession session = request.getSession();
+					session.setAttribute("user_id",loginUser);
+				} else { // 更新失敗
+					System.out.println("更新に失敗しました。");
+				}
+			}else {//ログイン失敗
+				request.setAttribute("errorMessage", // エラーメッセージを出す
+						"現在のパスワードが間違っています。");
+				String view = "/WEB-INF/jsp/setting.jsp";
+				RequestDispatcher dispatcher =   // ログイン画面へ戻す
+						request.getRequestDispatcher(view);
+				dispatcher.forward(request, response);
+				
+			}
+		}else {
+			if (uDAO.update(new UserDTO(user_id,password2,nickname,prefecture_id))) { // 更新成功
 				System.out.println("更新処理に成功しました。");
 				UserDTO loginUser = uDAO.getLoginUser(user_id); 
 				// セッションスコープにIDを格納する
@@ -67,18 +95,11 @@ public class SettingServlet extends HttpServlet {
 			} else { // 更新失敗
 				System.out.println("更新に失敗しました。");
 			}
-		}else {//ログイン失敗
-			request.setAttribute("errorMessage", // エラーメッセージを出す
-					"IDまたはパスワードに間違いがあります。");
-			String view = "/WEB-INF/jsp/setting.jsp";
-			RequestDispatcher dispatcher =   // ログイン画面へ戻す
-					request.getRequestDispatcher(view);
-			dispatcher.forward(request, response);
 		}
-		
+
 		// 設定ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 		dispatcher.forward(request, response);
 	}
-
 }
+

@@ -142,26 +142,26 @@ public class UserDAO extends DAO{
 		
 		try {
 			// SQL文を準備する
-			String sql = "UPDATE users SET password = ?, nickname = ?, prefecture_id = ? WHERE user_id = ? ";
+			String sql = "UPDATE users SET  nickname = ?, password = ?, prefecture_id = ? WHERE user_id = ? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
-			// パスワードに対する処理
-			if (info.getPassword() != null) {
-				pStmt.setString(1, info.getPassword());
+			//ニックネームに対する処理
+			if (info.getNickname() != null) {
+				pStmt.setString(1,info.getNickname());
 			} else {
 				pStmt.setString(1, "");
 			}
 			
-			//ニックネームに対する処理
-			if (info.getNickname() != null) {
-				pStmt.setString(2,info.getNickname());
+			// パスワードに対する処理
+			if (info.getPassword() != null) {
+				pStmt.setString(2, info.getPassword());
 			} else {
 				pStmt.setString(2, "");
 			}
 			
 			//都道府県IDに対する処理
 			pStmt.setInt(3,info.getPrefecture_id());
-			
+
 			//ユーザーIDに対する処理
 			if (info.getUser_id() != null) {
 				pStmt.setString(4,info.getUser_id());
