@@ -2,13 +2,14 @@
 	.card_list {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
-	padding: 20px;
+	gap: 25px;
+	padding: 30px;
 	}
 
 	/* カード本体 */
 	.card {
 	position: relative;
+	overflow: hidden;
   	height: 120px;
 	background-color: #f4fbfd;
 	border: 1px solid #cce6f3;
@@ -16,6 +17,7 @@
 	box-shadow: 0 2px05px rgba(0, 0, 0, 0.08);
 	padding: 15px 20px;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	margin-bottom: 10px;
 	}
 	
 	/* タイトル(左上に固定) */
@@ -24,7 +26,7 @@
    top: 10px;
    left: 15px;
    margin:0;
-   font-size: 14px;
+   font-size: 24px;
    color: black;
    }
    
@@ -36,22 +38,109 @@
   	text-align: right;
 	}
 	
+	/* テキストを前面に出す */
+	.card_title,
+	.card_text_area {
+	z-index: 2;
+	}
 	
+	/* 白いぼかしレイヤーを重ねる */
+	.card:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	opacity: 0.2;
+	z-index: 1;
+	}
+
    .card_text {
    margin: 2px 0;
-   font-size: 16px;
+   font-size: 20px;
    color: #444;
    text-align: right;
    position: static;
    }
-      
-	.card:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+   
+   /* --- カードホバーで拡大 --- */ 
+   .card:hover {
+   transform: scale(1.03);
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .pref-name {
+	text-align: center;
+	}
+    
+    /* 前の戻るボタン */
+    .return-buttons {
+  	text-align: center;
+  	margin-top: 40px;
 	}
 	
-	
-	.pref-name {
-		text-align: center;
+	.return-buttons a {
+	background: #6fb1d8;
+	border-radius: 50px;
+	border-bottom: 4px solid #2a7fc1;
+	color: #FFF;
+	font-weight: 600;
+	max-width: 240px;
+	margin: 0 auto;
+	padding: 10px 25px 10px 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	transition: 0.3s ease-in-out;
 	}
-      
+    
+    /* ＜ を左に表示 */
+    .return-buttons a:before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #FFF;
+    border-left: 3px solid #FFF;
+    transform: rotate(-45deg) translateY(48%);
+    position: absolute;
+    top: 48%;
+    left: 20px;
+    border-radius: 1px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    }
+    
+    /* キラッとエフェクト用: shineアニメーション */
+    .return-buttons a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background-image: linear-gradient(130deg, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 55%);
+    animation: shine 3s infinite;
+    z-index: 0;
+    }
+    
+    /* クリック時 */
+    .return-buttons a:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    }
+    
+    @keyframes shine {
+    	33% {
+    	left: 100%;
+    	}
+    	100% {
+    	left: 100%;
+    	}
+    	}

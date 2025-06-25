@@ -3,6 +3,11 @@
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*, dto.VisitorDTO, dto.PickupDTO" %>
+
+<%-- [ 短縮 ] 画像フォルダパス --%>
+<c:set var="imgsPath" value="/assets/imgs" />
+<%-- [ 短縮 ] ユーザーフォルダパス --%>
+<c:set var="mediaPath" value="/media/${sessionScope.user_id.user_id}" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,43 +26,43 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
-	<div class="header">
-	<div class="parent">
-		 <a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
+		<div class="header">
+			<div class="parent">
+		 		<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
 		
 <!-- ボタン設置 -->
-		<div class="menubutton">
-			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
-			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
-			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
-			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
-		</div>
-	</div>
+			<div class="menubutton">
+				<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
+				<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
+				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
+				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
+			</div>
+			</div>
+	
 <!-- ニックネーム表示 -->
-	<c:if test ="${not empty sessionScope.user_id }">
-	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
-	</c:if>
-	</div>
+			<c:if test ="${not empty sessionScope.user_id }">
+			<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
+			</c:if>
+		</div>
 
 <!-- メニューバー表示 -->
-	<nav>
-		<ul>
-			<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-			<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-			<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li class="list"><a href="<c:url value='/ListServlet'/>">一覧</a>
-		</ul>
-	</nav>
-	
+		<nav>
+			<ul>
+				<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
+				<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
+				<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
+				<li class="list"><a href="<c:url value='/ListServlet'/>">一覧</a>
+			</ul>
+		</nav>
 	</header>
+	
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
 	<main>
-		<c:if test="${not empty prefecture}" 
-			><h2 class="pref-name"
-				>${prefecture.prefecture_name}</h2
-		></c:if>
+		<c:if test="${not empty prefecture}" >
+			<h2 class="pref-name">${prefecture.prefecture_name}</h2>
+		</c:if>
 		
 		<div class="tab_wrap tab-center">
     		<!--タブメニュー-->
@@ -81,16 +86,21 @@
 
   					<c:if test="${not empty visitorList}">
 						<c:forEach var="visitor" items="${visitorList}">
-							<a href="<c:url value='/VisitorServlet?pk=${visitor.visitor_id}'/>">
-								<div class="card link-card">
-									<h3 class="card_title">${visitor.start_date} の思い出</h3>
+							<a href="<c:url value='/VisitorServlet?pk=${visitor.visitor_id}' />">
+								<div class="card link-card"
+           							style="background-image: url('<c:url value="${mediaPath}/${visitor.photo1}" />');
+           							background-size: cover;
+           							background-position: center;
+           							color: #fff;
+           							<!-- text-shadow: 0 1px 3px rgba(0,0,0,0.7); -->">
+								<h3 class="card_title">${visitor.start_date} の思い出</h3>
 									<div class="card_text_area">
 										<p class="card_text">${visitor.prefecture_name}</p>
 										<p class="card_text">${visitor.visitor_place}</p>
 									</div>
-								</div>
-							</a>	
-						</c:forEach>
+								</div>			
+								</a>		
+							</c:forEach>
   					</c:if>
   					
   					<!-- ▼ 訪問地 ページネーション -->
@@ -141,6 +151,18 @@
 				</div>
 			</div>
 		</div>
+		
+		<c:if test="${not empty prefecture}" >
+			<div class="tab_wrap tab-center">
+				<div class="return-buttons">
+  					<a href="<c:url value='/HomeServlet'/>">前のページに戻る</a>
+				</div>
+			</div>
+		</c:if>
+		
+		
+		
+		
 	</main>
 <!-- メイン(ここまで) -->
 
