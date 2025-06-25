@@ -13,6 +13,13 @@ public class AreaDTO {
 		this.prefecture_id = prefecture_id;
 	}
 	
+	// [ コンストラクタ ] 空引数
+	public AreaDTO() {
+		this.area_id 		= -1;
+		this.area_name 	= "";
+		this.prefecture_id = -1;
+	}
+	
 	// getterとsetter
 	public int getArea_id() {
 		return area_id;
