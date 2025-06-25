@@ -9,20 +9,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>候補地の詳細｜TABI×TILE</title>
-<!-- 全体共通css -->
-<link rel="stylesheet" href="<c:url value='${cssPath}/common.css'/>">
-<link rel="stylesheet" href="<c:url value='${cssPath}/custom.css'/>">
-
-<style>
-	/* 移行ダイアログ */
-	#moved-confirmDialog.custom-dialog p {
-		/* テキストをダイアログの枠内に納める */
-		white-space: normal;
-	}
-</style>
-
+	<meta charset="UTF-8">
+	<title>候補地の詳細｜TABI×TILE</title>
+	<!-- 全体共通css -->
+	<link rel="stylesheet" href="<c:url value='${cssPath}/common.css'/>">
+	<link rel="stylesheet" href="<c:url value='${cssPath}/custom.css'/>">
+	<!-- 個別css -->
+	<link rel="stylesheet" href="<c:url value='${cssPath}/detail.css'/>">
 </head>
 <body>
 
@@ -95,50 +88,72 @@
 		><form
 	    	method="POST"
 	    	action="<c:url value='/PickupServlet' />"
+	    	class="container-center"
 	        ><div
-	            ><label
-	                ><span
-	                    >都道府県</span
-	                ><select name="prefecture"
-	                    ><option value="" 
-	                    	disabled
-	                    		>選択してください</option
-                    		><c:forEach 
-		                    	var="pre" 
-		                    	items="${prefList}"
-	                    	><option 
-	                    		value="${pre.prefecture_id}"
-	                    		<c:if test="${pickup.prefecture_id == pre.prefecture_id}"
-	                    			>selected</c:if>
-                    				>${pre.prefecture_name}</option
-                   		></c:forEach
-	                ></select
-	            ></label
-	            ><label
-	                ><span
-	                    >場所</span
-	                ><input type="text" 
-	                    name="place"
-	                    value="${pickup.pickup_place}"
-	            /></label
+	            ><table
+	            	class="table-center"
+					><tr
+						><td
+							><label 
+								for="prefecture"
+								>都道府県</label
+						></td
+						><td
+							><label 
+								for="place"
+								>場所</label
+						></td
+					></tr
+					><tr
+						><td
+							><select
+								id="prefecture" 
+								name="prefecture"
+				                    ><option value="" 
+				                    	disabled
+				                    		>選択してください</option
+				                   		><c:forEach 
+					                    	var="pre" 
+					                    	items="${prefList}"
+				                    	><option 
+				                    		value="${pre.prefecture_id}"
+				                    		<c:if test="${pickup.prefecture_id == pre.prefecture_id}"
+				                    			>selected</c:if>
+				                   				>${pre.prefecture_name}</option
+				                  		></c:forEach
+				                ></select
+				            ></td
+						><td
+							><input type="text"
+								id="place" 
+				                name="place"
+				                value="${pickup.pickup_place}"
+				       /></td
+					></tr
+				></table
+	            ><div
+		            ><label
+		                ><span
+		                    >備考</span
+		                ><br/><textarea name="remarks"
+		                	rows="10"
+		                	class="remarks"
+		                    >${pickup.remarks}</textarea
+		            ></label
+	        	></div
 	        ></div
-	        ><div
-	            ><label
-	                ><span
-	                    >備考</span
-	                ><textarea name="remarks"
-	                    >${pickup.remarks}</textarea
-	            ></label
-	        ></div
-	        ><div
+	        ><div class="contents-btn"
 	            ><button type="button"
 	                name="DeleteButton"
+	                class="btn delete"
 	                >削除</button
 	            ><button type="button"
 	                name="UpdateButton"
+	                class="btn update"
 	                >更新</button
 	            ><button type="button"
 	            	name="VisitorButton"
+	            	class="btn moved	"
 	                >訪問</button
 	        ></div
 	        ><div
