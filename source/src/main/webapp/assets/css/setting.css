@@ -1,5 +1,5 @@
 /*項目名の表示に関する設定*/
-p{
+#name_form p{
 	font-size:1.2rem;
 	text-align:left;
 }

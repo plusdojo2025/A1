@@ -3,7 +3,7 @@
 }
 
 /*項目名の表示に関する設定*/
-p{
+#signup_form　p　{
 	font-size:1.2rem;
 	text-align:left;
 }
