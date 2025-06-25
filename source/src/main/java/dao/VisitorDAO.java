@@ -6,8 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
+import dto.AreaDTO;
+import dto.PrefectureFootprintDTO;
 import dto.UserDTO;
 import dto.VisitorDTO;
 
@@ -331,6 +336,111 @@ public class VisitorDAO extends DAO {
             }
         }
     }
+    
+    /**
+     * 各都道府県に訪れた回数を取得します。
+     * @return [ ArrayList ] 各都道府県に訪れた回数のリスト
+     */
+    public Map<String, PrefectureFootprintDTO> prefectureFootprint(String user_id) {
+    	// [ 宣言 ] 使用するモデルのインスタンス
+    	AreaDAO areadao = new AreaDAO();
+    	
+    	// 全地方取得（各都道府県対応）
+    	List<AreaDTO> areaList = areadao.selectAll();
+    	
+		// DB接続
+		super.access();
+		
+		// 各都道府県に訪れた回数のリスト
+		Map<String, PrefectureFootprintDTO> prefecturefootprintMap = new HashMap<String, PrefectureFootprintDTO>();
+		System.out.println("各都道府県に訪れた回数を取得します。");
+		
+		try {
+			// [ 準備 ] SQL文
+			String sql = """
+					SELECT
+						vis.prefecture_id,
+						pre.prefecture_name,
+						COUNT(vis.prefecture_id) AS footprint
+					FROM
+						visitors AS vis
+					JOIN
+						prefectures AS pre
+					ON
+						vis.prefecture_id = pre.prefecture_id
+					WHERE
+						vis.user_id = ?
+					GROUP BY
+						vis.prefecture_id;
+					""";
+			
+			// [ 予約 ] SQL文セット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// [ バインド ] 対象のレコードを指定
+			pStmt.setString(1, 
+					user_id);
+			
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			System.out.println("問い合わせ（取得）を実行しました。");
+			
+			// 結果をコレクションにコピーする
+			while (rs.next()) {
+				// 都道府県ID
+				int prefecture_id = rs.getInt(
+						"vis.prefecture_id");
+				
+				// [ Entity ] 地方
+				AreaDTO areadto = areaList
+						.stream()
+						// [ stream / 中間操作 ] 対象の都道府県を検索
+						.filter(area -> 
+									area.getPrefecture_id() == prefecture_id)
+						// [ stream / 短絡終端操作 ] ストリームの最初の要素
+						.findFirst()
+						// [ Optional ] 値が存在するなら取得
+						// それ以外は例外処理へ
+						.get();
+				
+				// [ Entity ] 対象の都道府県に訪れた回数
+				PrefectureFootprintDTO prefecturefootprint = new PrefectureFootprintDTO();
+				// 地方名
+				prefecturefootprint.setArea_name(
+						areadto.getArea_name());
+				// 都道府県ID
+				prefecturefootprint.setPrefecture_id(
+						prefecture_id);
+				// 都道府県名
+				prefecturefootprint.setPrefecture_name(rs.getString(
+						"pre.prefecture_name"));
+				// 訪れた回数
+				prefecturefootprint.setPrefecture_footprint(rs.getInt(
+						"footprint"));
+				// 訪れた水準値を訪れた回数から決める
+				prefecturefootprint.setFootprint_level();
+				// 各都道府県に訪れた回数リストに追加
+				prefecturefootprintMap.put(
+						// key: pref + 都道府県ID
+						String.format("pref%d", prefecture_id),
+						// value: [ Entity ] 対象の都道府県に訪れた回数
+						prefecturefootprint);
+			}
+			System.out.println("取得データをパックしました...");
+			
+		} catch (SQLException|NoSuchElementException e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			prefecturefootprintMap = null;
+		} finally {
+			// DB切断
+			super.close();
+			System.out.println();
+		}
+		
+		// 各都道府県に訪れた回数のリストを返します。
+		return prefecturefootprintMap;
+	}
     
     
     /**
