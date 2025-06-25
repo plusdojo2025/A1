@@ -57,15 +57,19 @@ public class PrefectureFootprintDTO {
 		
 		if (this.prefecture_footprint >= 10) {
 			// 10 以上
-			footprint_level = 10;
+			footprint_level = 5;
+		}
+		else if (this.prefecture_footprint >= 7) {
+			// 7 以上
+			footprint_level = 4;
 		}
 		else if (this.prefecture_footprint >= 5) {
 			// 5 以上
-			footprint_level = 5;
+			footprint_level = 3;
 		}
 		else if (this.prefecture_footprint >= 3) {
 			// 3 以上
-			footprint_level = 3;
+			footprint_level = 2;
 		}
 		else if (this.prefecture_footprint >= 1) {
 			// 1 以上
