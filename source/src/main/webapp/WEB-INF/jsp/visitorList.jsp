@@ -198,12 +198,12 @@ function handleConfirm(isConfirmed) {
     // サーブレットの基本URL
     const currentUrl = `<c:choose>
     		<c:when test="${empty prefecture}"
-    			><c:url value="/VisitorListServlet" 
+    			><c:url value="/ListServlet" 
    			/></c:when
  			><c:otherwise
  				><c:url value="/PlaceSelectServlet" 
  			/></c:otherwise
-		></c:choose>`;
+		></c:choose>`
     
     console.log("currentUrl: " + currentUrl);
     

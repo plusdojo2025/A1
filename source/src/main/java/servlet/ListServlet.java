@@ -126,8 +126,8 @@ public class ListServlet extends HttpServlet {
 			request.setAttribute("totalPagesPickup", (int) Math.ceil((double) pickupList.size() / pageSize));
 			
 			
-			request.setAttribute("visitorServletName", "VisitorListServlet");
-			request.setAttribute("pickupServletName", "VisitorListServlet");
+			request.setAttribute("visitorServletName", "ListServlet");
+			request.setAttribute("pickupServletName", "ListServlet");
 			
 			
 			request.getRequestDispatcher("/WEB-INF/jsp/visitorList.jsp").forward(request, response);
