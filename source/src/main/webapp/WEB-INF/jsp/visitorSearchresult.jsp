@@ -57,11 +57,11 @@
 	<input type="hidden" name="user_id" value="${e.user_id}">
 	訪問開始日<input type="text" name="start_date" value="${e.start_date}"><br>
 	訪問終了日<input type="text" name="end_date" value="${e.end_date}"><br>
-<!-- 都道府県<input type="text" name="prefecture_name" value="${e.prefecture_name}"><br> -->
+    都道府県<input type="text" name="prefecture_name" value="${e.prefecture_name}"><br>
 	場所<input type="text" name="visitor_place" value="${e.visitor_place}"><br>
 	タイトル<input type="text" name="title" value="${e.title}"><br>
 	同行者<input type="text" name="componion" value="${e.componion}"><br>
-	<!--  感情<input type="text" name="emotion_name" value="${e.emoji}"><br> -->
+	感情<input type="text" name="emotion_name" value="${e.emoji}"><br> 
 	感想<input type="text" name="thought" value="${e.thought}"><br>
 	
 	</form>

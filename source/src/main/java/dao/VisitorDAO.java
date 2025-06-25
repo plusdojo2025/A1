@@ -176,28 +176,58 @@ public class VisitorDAO extends DAO {
 	            "root", "password");
 	        
 	        //SQLを準備
-	        String sql = "SELECT v.*, p.prefecture_name FROM visitors v " +
-                    "JOIN prefectures p ON v.prefecture_id = p.prefecture_id " +
-                    "WHERE v.user_id LIKE ? AND v.title LIKE ? AND v.componion LIKE ? " +
-                    "AND (v.start_date >= ? OR ? IS NULL) AND (v.end_date <= ? OR ? IS NULL) " +
-                    "AND (v.prefecture_id = ? OR ? = 0) AND v.visitor_place LIKE ? AND v.thought LIKE ? " +
-                    "AND (v.emotion_id = ? OR ? = 0) ORDER BY v.visitor_id";
+	        String sql =
+	        		"SELECT v.*,p.prefecture_name,e.emoji "
+					+ "FROM visitors v "
+					+ "LEFT JOIN prefectures p ON v.prefecture_id = p.prefecture_id "
+					+ "LEFT JOIN emotions e ON v.emotion_id = e.emotion_id "
+					+ "WHERE v.user_id LIKE ? AND v.title LIKE ? AND v.componion LIKE ? "
+					+ "AND v.visitor_place LIKE ? "
+					+ "AND v.thought LIKE ? ";
+					//+ "ORDER BY visitor_id ";
+	        	//日付と都道府県と感情のif文を書く
+
+	        if (dto.getStart_date() != null) {
+	            sql = sql + " AND v.start_date = ?";
+	        }
+	        if (dto.getEnd_date() != null) {
+	            sql = sql + " AND v.end_date = ?";
+	        }
+	        if (dto.getPrefecture_id() != 0) {
+	            sql = sql + " AND v.prefecture_id = ?";
+	        }
+	        if (dto.getEmotion_id() != 0) {
+	            sql = sql + " AND v.emotion_id = ?";
+	        }
+
+	        sql = sql + " ORDER BY v.visitor_id";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
-	        	pStmt.setString(1, "%" + dto.getUser_id() + "%");
-	        	pStmt.setString(2, "%" + dto.getTitle() + "%");
-	        	pStmt.setString(3, "%" + dto.getComponion() + "%");
-	        	pStmt.setDate(4, dto.getStart_date());
-	        	pStmt.setDate(5, dto.getStart_date());
-	        	pStmt.setDate(6, dto.getEnd_date());
-	        	pStmt.setDate(7, dto.getEnd_date());
-	        	pStmt.setInt(8, dto.getPrefecture_id());
-	        	pStmt.setInt(9, dto.getPrefecture_id());
-	        	pStmt.setString(10, "%" + dto.getVisitor_place() + "%");
-	        	pStmt.setString(11, "%" + dto.getThought() + "%");
-	        	pStmt.setInt(12, dto.getEmotion_id());
-	        	pStmt.setInt(13, dto.getEmotion_id());
-
+	        //順番に呼び出し
+        	int num = 1;
+	        	pStmt.setString(num++, "%" + dto.getUser_id() + "%");
+	        	pStmt.setString(num++, "%" + dto.getTitle() + "%");
+	        	pStmt.setString(num++, "%" + dto.getComponion() + "%");
+	        	//pStmt.setDate(4, dto.getStart_date());
+	        	//pStmt.setDate(5, dto.getEnd_date());
+	        	//pStmt.setInt(6, dto.getPrefecture_id());
+	        	pStmt.setString(num++, "%" + dto.getVisitor_place() + "%");
+	        	pStmt.setString(num++, "%" + dto.getThought() + "%");
+	        	//pStmt.setInt(9, dto.getEmotion_id());
+	        	//日付と都道府県と感情のif文を書く
+	        	if(dto.getStart_date() != null) {
+	        	    pStmt.setDate(num++, dto.getStart_date());
+	        	}
+	        	if(dto.getEnd_date() != null) {
+	        	    pStmt.setDate(num++, dto.getEnd_date());
+	        	}
+	        	if(dto.getPrefecture_id() != 0) {
+	        	    pStmt.setInt(num++, dto.getPrefecture_id());
+	        	}
+	        	if(dto.getEmotion_id() != 0) {
+	        	    pStmt.setInt(num++, dto.getEmotion_id());
+	        	}
+	        	
             	// SQL文を実行し、結果表を取得する
 	     		ResultSet rs = pStmt.executeQuery();
 	     	        
@@ -210,7 +240,6 @@ public class VisitorDAO extends DAO {
 	     	                rs.getDate("start_date"),
 	     	                rs.getDate("end_date"),
 	     	                rs.getInt("prefecture_id"),
-	     	                rs.getString("prefecture_name"),
 	     	                rs.getString("visitor_place"),
 	     	                rs.getString("thought"),
 	     	                rs.getInt("emotion_id"),
@@ -220,6 +249,12 @@ public class VisitorDAO extends DAO {
 	     	                rs.getString("photo4"),
 	     	                rs.getString("photo5")
 	     	            );
+	        		    // ✅ prefecture_name を visitor にセット！
+	        		    visitor.setPrefecture_name(rs.getString("prefecture_name"));
+	        		    // ✅ emoji を visitor にセット！
+	        		    visitor.setEmoji(rs.getString("emoji"));
+
+
 	     	            visitorList.add(visitor);
 	     	        }
 		} catch (SQLException e) {

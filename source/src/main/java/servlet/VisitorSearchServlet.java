@@ -1,7 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import dao.PrefectureDAO;
 import dao.VisitorDAO;
 import dto.EmotionDTO;
 import dto.PrefectureDTO;
+import dto.UserDTO;
 import dto.VisitorDTO;
 
 /**
@@ -72,15 +74,19 @@ public class VisitorSearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
-			return;
-		}
+		
+		
+		//ユーザーIDを取得している
+		UserDTO userdto = (UserDTO)session.getAttribute("user_id");
+		
+		
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-	    String user_id = request.getParameter("user_id");
+		
+	    String user_id = userdto.getUser_id();
 	    String start_date_str = request.getParameter("start_date");  // String型として取得
 	    String end_date_str = request.getParameter("end_date");      // String型として取得
 	    String title = request.getParameter("title");
@@ -89,36 +95,29 @@ public class VisitorSearchServlet extends HttpServlet {
 	    String componion = request.getParameter("componion");
 	    String emotion_id_str = request.getParameter("emotion_id");   // String型
 	    String thought = request.getParameter("thought");
-	    //String photo = request.getParameter("photo");
 
 	    // start_date と end_date を Date 型に変換
-	    Date start_date = null;
-	    Date end_date = null;
-	 // 日付（yyyy-MM-dd 形式）を null 許容で変換
-	    if (start_date_str != null && !start_date_str.isEmpty()) {
-	        try {
-	            start_date = Date.valueOf(start_date_str);
-	        } catch (IllegalArgumentException e) {
-	            // 日付フォーマットエラー時もnull扱いに
-	            start_date = null;
-	        }
-	    }
+//	    VisitorDTO visitordto = (VisitorDTO)setStart_date(start_date_str);
+//	    VisitorDTO visidto = (VisitorDTO)setEnd_date(end_date_str);
+	    //utilldate型にしている
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    
+	    java.sql.Date start_date = null;
+	    java.sql.Date end_date = null;
 
-	    if (end_date_str != null && !end_date_str.isEmpty()) {
-	        try {
-	            end_date = Date.valueOf(end_date_str);
-	        } catch (IllegalArgumentException e) {
-	            end_date = null;
-	        }
-	    }
-
-	   /* if (start_date_str != null && !start_date_str.isEmpty()) {
-	        start_date = Date.valueOf(start_date_str);  // yyyy-mm-dd形式
-	    }
-
-	    if (end_date_str != null && !end_date_str.isEmpty()) {
-	        end_date = Date.valueOf(end_date_str);  // yyyy-mm-dd形式
-	    }*/
+	    //Date start_date = null ;
+	    //Date end_date = null;
+		try { //DTOがSQLDATE型だからutilldate型をSQLDATE型にしている
+		    if (start_date_str != null && !start_date_str.isEmpty()) {
+		        start_date = new java.sql.Date(sdf.parse(start_date_str).getTime());
+		    }
+		    if (end_date_str != null && !end_date_str.isEmpty()) {
+		        end_date = new java.sql.Date(sdf.parse(end_date_str).getTime());
+		    }
+		} catch (ParseException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
 
 	    // emotion_id を int 型に変換
 	 // 感情ID：nullや空文字なら 0（=条件なし）
@@ -130,8 +129,6 @@ public class VisitorSearchServlet extends HttpServlet {
 	            emotion_id = 0;
 	        }
 	    }
-
-	   // int emotion_id = Integer.parseInt(emotion_id_str);
 	    
 
 	    // prefecture_id を int 型に変換
@@ -144,11 +141,7 @@ public class VisitorSearchServlet extends HttpServlet {
 	            prefecture_id = 0;
 	        }
 	    }
-
-	   // int prefecture_id = Integer.parseInt(prefecture_id_str);
 	    
-
-
 		// 検索処理を行う
 	    // DTOにセット
 	    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, null, null, null, null, null);

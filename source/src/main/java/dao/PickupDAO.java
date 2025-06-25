@@ -175,8 +175,8 @@ public class PickupDAO extends DAO {
 		
 		// 検索用メソッド
 		public List<PickupDTO> search(PickupDTO dto) {
-		    List<PickupDTO> pickupList = new ArrayList<>();
 		    Connection conn = null;
+		    List<PickupDTO> pickupList = new ArrayList<>();
 
 		    try {
 		        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -184,35 +184,35 @@ public class PickupDAO extends DAO {
 		            "jdbc:mysql://localhost:3306/a1?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
 		            "root", "password");
 
-		        String sql = "SELECT p.pickup_id, p.user_id, p.prefecture_id, pf.prefecture_name, " +
-		        			 "p.pickup_place, p.remarks " +
-		        			 "FROM pickups p " +
-		        			 "JOIN prefectures pf ON p.prefecture_id = pf.prefecture_id " +
-		        			 "WHERE (p.user_id = ? OR ? IS NULL OR ? = '') " +
-		        			 "AND (p.prefecture_id = ? OR ? = 0) " +
-		        			 "AND (p.pickup_place LIKE ? OR ? IS NULL OR ? = '') " +
-		        			 "AND (p.remarks LIKE ? OR ? IS NULL OR ? = '') " +
-		        			 "ORDER BY p.pickup_id ASC";
+		        String sql = 	    //p=pickups, pf=prefectures    		
+		        		"SELECT p.*, pf.prefecture_name  "
+						+ "FROM pickups p "
+		        		+ "LEFT JOIN prefectures pf ON p.prefecture_id = pf.prefecture_id "
+						+ "WHERE p.user_id LIKE ? AND p.pickup_place LIKE ? "
+						+ "AND p.remarks LIKE ?";
+						//+ "ORDER BY pickup_id ";
+		        //都道府県のif文
+		        if (dto.getPrefecture_id() != 0) {
+		            sql = sql + " AND p.prefecture_id = ?";
+		        }
+		        
+		        sql = sql + " ORDER BY p.pickup_id";
+
 		        		
 		        
 		        // また AS 句が追加されていますが、読みやすさが向上するだけです。
 		        
 		        // [ 予約 ] SQL文セット
 		        PreparedStatement pStmt = conn.prepareStatement(sql);
-		        	pStmt.setString(1, dto.getUser_id());
-		        	pStmt.setString(2, dto.getUser_id());
-		        	pStmt.setString(3, dto.getUser_id());
-
-		        	pStmt.setInt(4, dto.getPrefecture_id());
-		        	pStmt.setInt(5, dto.getPrefecture_id());
-
-		        	pStmt.setString(6, "%" + dto.getPickup_place() + "%");
-		        	pStmt.setString(7, dto.getPickup_place());
-		        	pStmt.setString(8, dto.getPickup_place());
-
-		        	pStmt.setString(9, "%" + dto.getRemarks() + "%");
-		        	pStmt.setString(10, dto.getRemarks());
-		        	pStmt.setString(11, dto.getRemarks());
+		        //順番に呼び出し
+	        	int num = 1;
+		        	pStmt.setString(num++, "%" + dto.getUser_id() + "%");
+		        	pStmt.setString(num++, "%" + dto.getPickup_place() + "%");
+		        	pStmt.setString(num++, "%" + dto.getRemarks() + "%");
+		        	//都道府県のif文
+		        	if(dto.getPrefecture_id() != 0) {
+		        	    pStmt.setInt(num++, dto.getPrefecture_id());
+		        	}
 
 		        	// SQL文を実行し、結果表を取得する
 		        	ResultSet rs = pStmt.executeQuery();
@@ -223,10 +223,15 @@ public class PickupDAO extends DAO {
 		        				rs.getInt("pickup_id"),
 		        				rs.getString("user_id"),
 		        				rs.getInt("prefecture_id"),
-		        				rs.getString("prefecture_name"),
 		        				rs.getString("pickup_place"),
 		        				rs.getString("remarks")
 		        			);
+		        		    // ここでprefecture_nameをセットする（SQLにJOINしていることが前提）
+		        		    // ✅ prefecture_name を pickup にセット！
+		        		    pickup.setPrefecture_name(rs.getString("prefecture_name"));
+		        		    // ▼ デバッグ出力（ここ！）
+		        		    System.out.println("都道府県名 = " + pickup.getPrefecture_name());
+
 		        			// 候補地リストに追加
 		        			pickupList.add(pickup);
 		        		}

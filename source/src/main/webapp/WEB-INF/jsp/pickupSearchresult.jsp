@@ -52,34 +52,23 @@
 	<main>
 	<!-- 候補地検索結果一覧 -->
 	<h2>候補地検索結果一覧</h2>
-	
-		  <c:if test="${empty pickupList}">
-    <p>該当する候補地は見つかりませんでした。</p>
-  </c:if>
+	<hr>
+<c:forEach var="pickup" items="${pickupList}">
+	<form method="POST" action="<c:url value='/PickupSearchServlet'/>"> 
+	<tr>
+        <td>${pickup.pickup_id}</td>
+        <td>${pickup.pickup_place}</td>
+        <td>${pickup.prefecture_name}</td>  <!-- ← ここ -->
+        <td>${pickup.remarks}</td>
+  </tr>
+  </form>
+</c:forEach>
 
-  <c:if test="${not empty pickupList}">
-    <table class="result-table">
-      <thead>
-        <tr>
-          <th>ユーザーID</th>
-          <th>都道府県</th>
-          <th>場所</th>
-          <th>備考</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="pickup" items="${pickupList}">
-          <tr>
-            <td><c:out value="${pickup.user_id}" /></td>
-            <td><c:out value="${pickup.prefecture_name}" /></td>
-            <td><c:out value="${pickup.place}" /></td>
-            <td><c:out value="${pickup.remarks}" /></td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
-  </c:if>
-		
+<c:if test="${empty pickupList}">
+<p>指定された条件に一致するデータはありません。</p>
+
+</c:if>
+			
 	</main>
 <!-- メイン(ここまで) -->
 

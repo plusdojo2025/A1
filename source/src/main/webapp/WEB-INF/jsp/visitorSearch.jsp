@@ -114,7 +114,7 @@
 		&nbsp;&nbsp;&nbsp;
 		場所<input type="text" name="pickup_place"></div><br>
 		備考欄<br>
-		<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br>
+		<textarea name="remarks" rows="5" cols="40" class="textarea-large"></textarea><br>
 		<div class="inline-group">		
 		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
 		&nbsp;&nbsp;&nbsp;

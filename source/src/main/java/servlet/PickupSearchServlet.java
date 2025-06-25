@@ -16,6 +16,7 @@ import dao.PickupDAO;
 import dao.PrefectureDAO;
 import dto.PickupDTO;
 import dto.PrefectureDTO;
+import dto.UserDTO;
 
 /**
  * Servlet implementation class PickupSearchServlet
@@ -61,15 +62,15 @@ public class PickupSearchServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
-			return;
-		}
+		
+		//ユーザーIDを取得している
+		UserDTO userdto = (UserDTO)session.getAttribute("user_id");
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-	    String user_id = request.getParameter("user_id");
+	    String user_id = userdto.getUser_id();
 	    String prefecture_id_str = request.getParameter("prefecture_id");
-	    String place = request.getParameter("place");
+	    String pickup_place = request.getParameter("pickup_place");
 	    String remarks = request.getParameter("remarks");
 
 	    // prefecture_id を int 型に変換
@@ -87,12 +88,12 @@ public class PickupSearchServlet extends HttpServlet {
 
 		// 検索処理を行う
 	    // DTOにセット
-	    PickupDTO dto = new PickupDTO(0, user_id, prefecture_id, place, remarks);
+	    PickupDTO dto = new PickupDTO(0, user_id, prefecture_id, pickup_place, remarks);
 		// DB検索処理
 	    PickupDAO dao = new PickupDAO();
-		List<PickupDTO> cardList = dao.search(dto);
+		List<PickupDTO> pickupList = dao.search(dto);
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("cardList", cardList);
+		request.setAttribute("pickupList", pickupList);
 		
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickupSearchresult.jsp");
