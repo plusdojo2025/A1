@@ -1,0 +1,75 @@
+/* 一覧のカード用CSS */
+	.card_list {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	padding: 30px;
+	max-width: 600px;
+	margin: 0 auto;
+	}
+
+	/* カード本体 */
+	.card {
+	position: relative;
+	overflow: hidden;
+  	height: 120px;
+	background-color: #f4fbfd;
+	border: 1px solid #cce6f3;
+	border-radius: 10px;
+	box-shadow: 0 2px05px rgba(0, 0, 0, 0.08);
+	padding: 15px 20px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	margin-bottom: 10px;
+	width: 100%;
+	}
+	
+	/* タイトル(左上に固定) */
+   .card_title {
+   position: absolute;
+   top: 10px;
+   left: 15px;
+   margin:0;
+   font-size: 24px;
+   color: black;
+   }
+   
+ 	/* テキスト（右下） */
+	.card_text_area {
+  	position: absolute;
+  	bottom: 10px;
+  	right: 15px;
+  	text-align: right;
+	}
+	
+	/* テキストを前面に出す */
+	.card_title,
+	.card_text_area {
+	z-index: 2;
+	}
+	
+	/* 白いぼかしレイヤーを重ねる */
+	.card:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	opacity: 0.2;
+	z-index: 1;
+	}
+
+   .card_text {
+   margin: 2px 0;
+   font-size: 20px;
+   color: #444;
+   text-align: right;
+   position: static;
+   }
+   
+   /* --- カードホバーで拡大 --- */ 
+   .card:hover {
+   transform: scale(1.03);
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   }

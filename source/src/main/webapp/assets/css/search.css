@@ -25,22 +25,47 @@
 }
 
 
-/* === フォーム中央寄せ === */
+/* === 入力フォーム全体調整 === */
 .center-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
+
+/* === ラベルとフォームを縦並びに === */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: 90%;
+  text-align: left;
+}
+
+
+/* === input・select・textarea共通化 === */
 .center-form input,
 .center-form select,
 .center-form textarea {
-  margin: 5px;
-  width: 300px;
-  max-width: 90%;
-  text-align: center;
+	margin: 5px;
+	width: 100%;
+	max-width: 420px;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
 }
+
+/* === ラベル（タイトルなど）をはっきり見せる === */
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
 
 /* === インライン配置用 === */
 .inline-group {

@@ -91,8 +91,7 @@
            							style="background-image: url('<c:url value="${mediaPath}/${visitor.photo1}" />');
            							background-size: cover;
            							background-position: center;
-           							color: #fff;
-           							<!-- text-shadow: 0 1px 3px rgba(0,0,0,0.7); -->">
+           							color: #fff;">
 								<h3 class="card_title">${visitor.start_date} の思い出</h3>
 									<div class="card_text_area">
 										<p class="card_text">${visitor.prefecture_name}</p>

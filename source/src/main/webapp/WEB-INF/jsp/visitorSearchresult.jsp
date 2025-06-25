@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%-- [ 短縮 ] 画像フォルダパス --%>
+<c:set var="imgsPath" value="/assets/imgs" />
+<%-- [ 短縮 ] ユーザーフォルダパス --%>
+<c:set var="mediaPath" value="/media/${sessionScope.user_id.user_id}" />
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,6 +19,7 @@
 
 <!-- 結果表示 -->
 <link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
+<link rel="stylesheet" href="<c:url value='assets/css/result.css'/>">
 </head>
 <body>
 <!-- ヘッダー（ここから） -->
@@ -49,11 +56,44 @@
 <!-- ヘッダー(ここまで) -->
 <!-- メイン（ここから） -->
 	<main>
+	
 	<!-- 訪問地検索結果一覧 -->
-<h2>訪問地検索結果一覧</h2>
-<hr>
-	<c:forEach var="e" items="${visitorList}" >
-	<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
+		<h2>訪問地 検索結果</h2>
+		
+		<c:if test="${empty visitorList}">
+			<p>指定された条件に一致するデータはありません。</p>
+			<img src="<c:url value='/assets/imgs/char/Ojigi.png' />" width="100" alt="">
+    	</c:if>
+
+		<c:if test="${not empty visitorList}">
+            <c:forEach var="e" items="${visitorList}">
+            	<a href="<c:url value='/VisitorServlet?pk=${e.visitor_id}' />">
+            		<div class="card link-card"
+            			style="background-image: url('<c:url value="${mediaPath}/${visitor.photo1}" />');
+                               background-size: cover;
+                               background-position: center;
+                               color: #fff;">
+					<h3 class="card_title">${e.start_date} の思い出</h3>
+						<div class="card_text_area">
+							<p class="card_text">${e.prefecture_name}</p>
+							<p class="card_text">${e.visitor_place}</p>
+						</div>
+					</div>			
+				</a>		
+			</c:forEach>
+  		</c:if>
+		
+		<!-- ▼ 候補地 ページネーション -->
+					<c:if test="${totalPagesPickup > 1}">
+						<div class="pagination">
+							<c:forEach begin="1" end="${totalPagesPickup}" var="i">
+								<a href="${pickupServletName}?pref=${selectedPrefecture}&page=${i}&tab=tab2"
+									class="${i == currentPage ? 'active' : ''}">${i}</a>
+			   				</c:forEach>
+						</div>
+					</c:if>						
+
+<%-- 	<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
 	<input type="hidden" name="user_id" value="${e.user_id}">
 	訪問開始日<input type="text" name="start_date" value="${e.start_date}"><br>
 	訪問終了日<input type="text" name="end_date" value="${e.end_date}"><br>
@@ -63,13 +103,8 @@
 	同行者<input type="text" name="componion" value="${e.componion}"><br>
 	感情<input type="text" name="emotion_name" value="${e.emoji}"><br> 
 	感想<input type="text" name="thought" value="${e.thought}"><br>
-	
-	</form>
-	<hr>
-</c:forEach>
-<c:if test="${empty visitorList}">
-<p>指定された条件に一致するデータはありません。</p>
-</c:if>
+	</form> --%>
+
 	
 	
 		
