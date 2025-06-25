@@ -2,8 +2,12 @@
     pageEncoding="UTF-8"%>
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- [ 短縮 ] CSSフォルダパス --%>
+<c:set var="cssPath" value="/assets/css" />
 <%-- [ 短縮 ] 画像フォルダパス --%>
 <c:set var="imgsPath" value="/assets/imgs" />
+<%-- [ 短縮 ] ユーザーフォルダパス --%>
+<c:set var="mediaPath" value="/media/${sessionScope.user_id.user_id}" />
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -80,7 +84,7 @@
 					</c:forEach>
 			   </select>
 			   	&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="place" value="${place}" /></div><br>
+		場所<input type="text" name="visitor_place" value="${place}" /></div><br>
 		  <div class="inline-group">
 		同行者<input type="text" name="componion">
 				&nbsp;&nbsp;&nbsp;
@@ -94,7 +98,11 @@
 		<textarea name="thought" rows="5" cols="40" class="textarea-large"
 			>${thought}</textarea><br>
 	
-		写真<input type="file" name="photo"><br><br>
+		写真<input type="file" name="photo1"><br><br>
+		<input type="file" name="photo2"><br><br>
+		<input type="file" name="photo3"><br><br>
+		<input type="file" name="photo4"><br><br>
+		<input type="file" name="photo5"><br><br>
 				  <div class="inline-group">
 		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
 		&nbsp;&nbsp;&nbsp;
@@ -121,9 +129,9 @@
 					</c:forEach>
 				</select>
 		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="place" ></div><br>
+		場所<input type="text" name="pickup_place" ></div><br>
 		備考欄<br>
-				<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br><br>
+				<textarea name="remarks" rows="5" cols="40" class="textarea-large"></textarea><br><br>
 				  <div class="inline-group">
 		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
 		&nbsp;&nbsp;&nbsp;
