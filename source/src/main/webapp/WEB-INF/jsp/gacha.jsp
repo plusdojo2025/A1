@@ -7,9 +7,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>｜TABI×TILE</title>
-
+<!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+
+<!-- ガチャ画面用css -->
 <link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>">
 </head>
 <body>
@@ -19,15 +21,15 @@
 	<div class="header">
 	<div class="parent">
 		<h1>
-			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
+			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
 		</h1>
 		
 <!-- ボタン設置 -->
 		<div class="menubutton">
-			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
+			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
+			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
+			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="0" ></a>
 		</div>
 	</div>
 <!-- ニックネーム表示 -->
@@ -42,7 +44,7 @@
 			<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
 			<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
 			<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+			<li class="list"><a href="<c:url value='/ListServlet'/>">一覧</a>
 		</ul>
 	</nav>
 	

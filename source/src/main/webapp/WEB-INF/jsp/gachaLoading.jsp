@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Now Loading...｜TABI×TILE</title>
+<!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
+<!-- ガチャ画面用css -->
 <link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>">
 </head>
 <body>
