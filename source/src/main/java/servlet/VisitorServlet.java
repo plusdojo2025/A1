@@ -158,19 +158,19 @@ public class VisitorServlet extends HttpServlet {
 		String fileFullPath;
 		
 //		// [ 本番 ] フルパス指定
-//		String proPath = getServletContext().getRealPath(
-//				Env.MEDIA_DIR);
-//	     // 各ユーザーのフォルダ名（とパス）
-//		proPath += loginUser.getUser_id() +"\\";
-//        System.out.println("本番環境: ");
-//        System.out.println(proPath);
+		String proPath = getServletContext().getRealPath(
+				Env.MEDIA_DIR);
+	     // 各ユーザーのフォルダ名（とパス）
+		proPath += loginUser.getUser_id() +"\\";
+        System.out.println("本番環境: ");
+        System.out.println(proPath);
 		
-		// [ 開発 ] フルパス指定
-		String devPath = Env.devPath + Env.MEDIA_DIR;
-     // 各ユーザーのフォルダ名（とパス）
-		devPath += loginUser.getUser_id() +"\\";
-		System.out.println("開発環境: ");
-		System.out.println(devPath);
+//		// [ 開発 ] フルパス指定
+//		String devPath = Env.devPath + Env.MEDIA_DIR;
+//     // 各ユーザーのフォルダ名（とパス）
+//		devPath += loginUser.getUser_id() +"\\";
+//		System.out.println("開発環境: ");
+//		System.out.println(devPath);
         System.out.println();
         
 		
@@ -268,10 +268,10 @@ public class VisitorServlet extends HttpServlet {
 		try {
 			// 対象となるフォルダパス
 			String target;
-//			// [ 本番 ] ユーザーフォルダまでのパス
-//			target = proPath;
-			// [ 開発 ] ユーザーフォルダまでのパス
-			target = devPath;
+			// [ 本番 ] ユーザーフォルダまでのパス
+			target = proPath;
+//			// [ 開発 ] ユーザーフォルダまでのパス
+//			target = devPath;
 			
 			// [ 取得 ] ファイルオブジェからフォルダ作成する
 			File user_dir = new File(target);
@@ -331,11 +331,11 @@ public class VisitorServlet extends HttpServlet {
 				} else {
 					// 削除を行う
 					System.out.println("ファイル削除を実行します。");
-//					// [ 本番 ] 旧ファイルフルパス
-//					fileFullPath = proPath + old;
+					// [ 本番 ] 旧ファイルフルパス
+					fileFullPath = proPath + old;
 					
-					// [ 開発 ] 旧ファイルフルパス
-					fileFullPath = devPath + old;
+//					// [ 開発 ] 旧ファイルフルパス
+//					fileFullPath = devPath + old;
 					
 					// 対象のファイルを削除
 					this.deleteMediaFile(fileFullPath);
@@ -384,21 +384,21 @@ public class VisitorServlet extends HttpServlet {
 				
 				// [ 判定 ] 旧ファイルが存在する場合
 				if (Objects.isNull(old) == false) {
-//					// [ 本番 ] 旧ファイルフルパス
-//					fileFullPath = proPath + old;
+					// [ 本番 ] 旧ファイルフルパス
+					fileFullPath = proPath + old;
 					
-					// [ 開発 ] 旧ファイルフルパス
-					fileFullPath = devPath + old;
+//					// [ 開発 ] 旧ファイルフルパス
+//					fileFullPath = devPath + old;
 					
 					// 対象のファイルを削除
 					this.deleteMediaFile(fileFullPath);
 				}
 				
-//				// [ 本番 ] 新規ファイルフルパス
-//				fileFullPath = proPath + fileName;
+				// [ 本番 ] 新規ファイルフルパス
+				fileFullPath = proPath + fileName;
 				
-				// [ 開発 ] 新規ファイルフルパス
-				fileFullPath = devPath + fileName;
+//				// [ 開発 ] 新規ファイルフルパス
+//				fileFullPath = devPath + fileName;
 				
 				// 場所（location） は フルパス で指定してある
 				System.out.println("ファイル書き起こし中...");
