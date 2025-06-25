@@ -10,8 +10,6 @@
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-
-<!-- ガチャ画面用css -->
 <link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>">
 
 </head>
@@ -19,6 +17,7 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
+	<div class="header">
 	<div class="parent">
 		<h1>
 			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
@@ -36,6 +35,7 @@
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
+	</div>
 
 <!-- メニューバー表示 -->
 	<nav>
@@ -52,7 +52,39 @@
 
 <!-- メイン（ここから） -->
 	<main>
+		<%-- <div class="panel">
+		<p><c:out value="${errorMsg}" /></p>
 
+		<div class="error-image">
+			<img src="assets/imgs/char/Ojigi.png" alt="お辞儀" width="100">
+		</div>
+
+		<div class="button-row">
+			<form action="HomeServlet" method="get">
+				<button type="submit" class="error-button">ホームへ戻る</button>
+			</form>
+			<c:if test="${not empty showHistoryButton}">
+				<form action="GachaResultServlet" method="get">
+					<button type="submit" class="error-button">今日の結果を見る</button>
+				</form>
+			</c:if>
+		</div>
+	</div> --%>
+	
+	<div class="panel">
+		<p>${errorMsg}</p>
+		<div class="error-image">
+			<img src="img/error_icon.png" alt="エラー画像" width="100">
+		</div>
+		<div class="button-row">
+			<form action="HomeServlet" method="get">
+				<button type="submit">はい</button>
+			</form>
+			<form action="GachaResultServlet" method="get">
+				<button type="submit">今日の結果を見る</button>
+			</form>
+		</div>
+	</div>
 	</main>
 <!-- メイン(ここまで) -->
 
