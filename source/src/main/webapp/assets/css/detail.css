@@ -1,0 +1,107 @@
+/* 移行ダイアログ */
+#moved-confirmDialog.custom-dialog p {
+    /* テキストをダイアログの枠内に納める */
+    white-space: normal;
+}
+
+/* コンテナ（中央寄せ） */
+.container-center {
+    margin: 0px auto;
+    width: 50%;
+}
+
+/* 二列の入力欄（テーブル） */
+.table-center {
+    /* 枠線を見えない状態にする */
+    border-collapse:collapse;
+    width: 100%; 
+}
+
+/* 入力の一列 */	
+.table-center td {
+    /* 一列の幅 */
+    width: 50%;
+}
+
+/* 備考 */
+.remarks {
+    /* 親の幅に準拠させる */
+    width: 100%
+}
+
+
+/* 操作する */
+.contents-btn {
+    /* 表示形式: 横並び */
+    display: flex;
+    /* 3列に（1fr: 列数指定） */
+    gap: 1fr 1fr 1fr;
+    /* 列の間に入れる余白 */
+    column-gap: 50px;
+    /* 横の中央寄せ */
+    justify-content: center;
+}
+
+/* ボタン全体 */
+.btn {
+    /* 線を消す */
+    border: none;
+    /* 横長に余白を付ける */
+    padding: 10px 25px;
+    /* 角丸を付ける */
+    border-radius: 10px;
+}
+
+
+/* 削除ボタン */
+.btn.delete {
+  background-color: #E79BB7;
+    color: #FFF;
+    font-weight: bold;
+}
+.btn.delete:hover {
+  background-color: #D9769B;
+}
+.btn.delete:active {
+  background-color: #CC4F7F;
+}
+
+/* 更新ボタン */
+.btn.update {
+  background-color: #8DA9E0;
+    color: #FFF;
+    font-weight: bold;
+}
+.btn.update:hover {
+  background-color: #5F87D2;
+}
+.btn.update:active {
+  background-color: #406AC2;
+}
+
+/* 移行ボタン */
+.btn.moved {
+  background-color: #9BD8A2;
+    color: #FFF;
+    font-weight: bold;
+}
+.btn.moved:hover {
+  background-color: #6FC67B;
+}
+.btn.moved:active {
+  background-color: #4CA85C;
+}
+
+
+/* 入力欄 */
+input,
+select
+{
+    width: 70%;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.remarks {
+    border-radius: 5px;
+}
