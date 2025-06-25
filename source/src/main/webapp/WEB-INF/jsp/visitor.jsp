@@ -296,8 +296,8 @@
     <p>更新してもよろしいですか？</p>
     <img src="<c:url value='${imgsPath}/char/Question.png'/>" alt="更新確認">
     <div class="dialog-buttons">
-        <button class="btn-yes" onclick="handleUpdateConfirm(true)">更新</button>
         <button class="btn-no" onclick="handleUpdateConfirm(false)">キャンセル</button>
+        <button class="btn-yes" onclick="handleUpdateConfirm(true)">更新</button>
     </div>
 </div>
 <!-- [ ダイアログ / HTML ] 更新 (ここまで) -->
