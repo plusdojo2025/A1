@@ -1,5 +1,5 @@
 /*項目名の表示に関する設定*/
-#name_form p{
+#setting_form p{
 	font-size:1.2rem;
 	text-align:left;
 }
@@ -15,11 +15,11 @@ form{
 	text-align:left;
 }
 
-/*入力欄に関する設定*/
+/*ニックネーム入力欄に関する設定*/
 .nickname {
 	padding:10px 0 10px 0;
-	height:20px;
-	width:40vw;
+	height:30px;
+	width:30vw;
 	border-radius:10px;
 	}
 	
@@ -27,18 +27,32 @@ form{
 select {
 	padding:10px 0 10px 0;
 	width:20vw;
-    height:40px;
+    height:50px;
+    font-size:0.9rem;
 }
 
 /*提出ボタンに関する設定*/
 .push-button{
-	margin-top: 20px;
-	height:50px;
-	width:10vw;
-	text-align:center;
+  	width: 120px;
+  	height: 50px;
+ 	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	font-size: 25px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+  	white-space: nowrap;
+  	background-color: #8da9e0;
+ 	color: white;
 }
-.button{
-		text-align:center;
+
+.push-button:hover {
+ 	background-color: #5f87d2;
+}
+
+.push-button:active {
+ 	background-color: #406ac2;
 }
 
 /*パスワード入力欄に関する細かい調整*/
@@ -54,11 +68,20 @@ select {
 
 .pass3{
 	padding:10px 0 10px 0;
-	height:20px;
+	height:30px;
 	text-align:left;
 	font-size:0.9rem;
 	width:35vw;
 	border-radius:10px;
 }
 
+/*パスワードの目に関する設定*/
+.pass {
+  border: none; /* デフォルトの枠線を消す */
+}
+#password1, #password2{
+  border-width: thin;
+  border-style: solid;
+  width: 30vw;
+}
 

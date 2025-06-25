@@ -41,8 +41,6 @@ public class SignUpServlet extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		int prefecture_id = Integer.parseInt(request.getParameter("prefecture_id"));
 		
-		System.out.println("取得したデータ→"+user_id);
-		
 		UserDAO uDAO = new UserDAO();
 		if (uDAO.insert(new UserDTO(user_id,password,nickname,prefecture_id))) { // 登録成功
 

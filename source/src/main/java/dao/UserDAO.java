@@ -183,4 +183,47 @@ public class UserDAO extends DAO{
 	return result;
 	}
 	
+	//パスワードが入力されていない場合、それ以外の要素を更新する。（設定画面に使用）
+	public boolean passupdate(UserDTO info) {
+		
+		//ドライバの読み込みおよびデータベースの接続
+		super.access();
+		
+		boolean result = false;
+		
+		try {
+			// SQL文を準備する
+			String sql = "UPDATE users SET  nickname = ?, prefecture_id = ? WHERE user_id = ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			//ニックネームに対する処理
+			if (info.getNickname() != null) {
+				pStmt.setString(1,info.getNickname());
+			} else {
+				pStmt.setString(1, "");
+			}
+			
+			//都道府県IDに対する処理
+			pStmt.setInt(2,info.getPrefecture_id());
+
+			//ユーザーIDに対する処理
+			if (info.getUser_id() != null) {
+				pStmt.setString(3,info.getUser_id());
+			} else {
+				pStmt.setString(3, "");
+			}
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			super.close();
+		}
+	return result;
+	}
 }

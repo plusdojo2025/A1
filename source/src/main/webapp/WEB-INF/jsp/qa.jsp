@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>TABI×TILE</title>
+	<title>Q&A｜TABI×TILE</title>
 	<!-- 全体共通css -->
 	<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 	<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
@@ -64,6 +64,7 @@
 
 <!-- メイン（ここから） -->
 	<main>
+	<h1>よくあるご質問</h1>
 		<p>ログイン・ログアウトについて</p>
 			<details>
 				<summary>Q.ログイン時にパスワードを忘れてしまった。</summary>

@@ -14,11 +14,38 @@
 	margin-right:30vw;
 }
 
-/*フォーム欄の中央寄せに関する設定*/
+/* 全体の中央寄せ */
+ .login-container {
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center; 
+	 justify-content: center;
+ }
+
+/* フォームを中央に寄せる */
+.login-container form {
+	text-align:center;
+	position: relative;
+}
+
+/*フォーム欄の左寄せに関する設定*/
 form{
 	text-align:left;
 }
 
+/* 目のアイコンを入力欄の中に配置 */
+#buttonEye {
+ 	cursor: pointer;
+ 	font-size: 25px;
+ 	color: #666;
+}
+
+/* エラーメッセージ中央寄せ */
+.error-message {
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
 /*入力欄に関する設定*/
 .nickname {
 	padding:10px 0 10px 0;
@@ -36,14 +63,28 @@ select {
 
 /*提出ボタンに関する設定*/
 .push-button{
-	margin-top: 20px;
-	height:50px;
-	width:10vw;
-	text-align:center;
+  	width: 120px;
+  	height: 50px;
+ 	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	font-size: 25px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+  	white-space: nowrap;
+  	background-color: #8da9e0;
+ 	color: white;
 }
-.button{
-		text-align:center;
+
+.push-button:hover {
+ 	background-color: #5f87d2;
 }
+
+.push-button:active {
+ 	background-color: #406ac2;
+}
+
 
 /*パスワード入力欄に関する細かい調整*/
 .pass{
@@ -66,6 +107,83 @@ select {
 	border-radius:10px;
 }
 
-.back{
-	font-size:0.7rem;
+/*パスワードの目に関する設定*/
+#pass {
+  border: none; /* デフォルトの枠線を消す */
 }
+#password {
+  border-width: thin;
+  border-style: solid;
+  width: 200px;
+}
+
+/*ログインページに戻るボタンに関する設定*/
+/* 前の戻るボタン */
+    .return-buttons {
+  	text-align: center;
+  	margin-top: 40px;
+	}
+	
+	.return-buttons a {
+	background: #6FB1D8;
+	border-radius: 50px;
+	border-bottom: 4px solid #2A7FC1;
+	color: #FFF;
+	font-weight: 600;
+	max-width: 240px;
+	margin: 0 auto;
+	padding: 10px 25px 10px 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	transition: 0.3s ease-in-out;
+	}
+
+    /* ＜ を左に表示 */
+    .return-buttons a:before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #FFF;
+    border-left: 3px solid #FFF;
+    transform: rotate(-45deg) translateY(48%);
+    position: absolute;
+    top: 48%;
+    left: 20px;
+    border-radius: 1px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+    }
+
+    /* キラッとエフェクト用: shineアニメーション */
+    .return-buttons a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background-image: linear-gradient(130deg, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 55%);
+    animation: shine 3s infinite;
+    z-index: 0;
+    }
+
+    /* クリック時 */
+    .return-buttons a:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+    }
+
+    @keyframes shine {
+    	33% {
+    	left: 100%;
+    	}
+    	100% {
+    	left: 100%;
+    	}
+    	}

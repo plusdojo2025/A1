@@ -18,7 +18,7 @@
         width: 200px;
       }
     </style>
-<title>TABI×TILE</title>
+<title>設定｜TABI×TILE</title>
 
 	<!-- 全体共通css -->
 	<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
@@ -208,7 +208,6 @@
         return false;            
         }
     }
-	
     <!-- ダイアログJS(ここから) -->
     function showConfirmDialog() {
         document.getElementById('overlay').style.display = 'block';
