@@ -15,6 +15,7 @@ import dao.PickupDAO;
 import dao.PrefectureDAO;
 import dto.PickupDTO;
 import dto.PrefectureDTO;
+import dto.UserDTO;
 
 /**
  * Servlet implementation class PickupRegistServlet
@@ -59,18 +60,21 @@ public class PickupRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
-			return;
-		}
-
+		
+		//ユーザーIDを取得している
+		UserDTO userdto = (UserDTO)session.getAttribute("user_id");
 
 	// リクエストパラメータを取得する
 	request.setCharacterEncoding("UTF-8");
-    String user_id = request.getParameter("user_id");
+    String user_id = userdto.getUser_id();
     String prefecture_id_str = request.getParameter("prefecture_id");
     String pickup_place = request.getParameter("pickup_place");
     String remarks = request.getParameter("remarks");
+    
+    System.out.println("ログインユーザーID: " + user_id);
+    System.out.println("都道府県ID: " + prefecture_id_str);
+    System.out.println("場所: " + pickup_place);
+    System.out.println("備考: " + remarks);
 
     // 入力値保持用（戻ったときのため）
     request.setAttribute("user_id", user_id);
@@ -106,10 +110,16 @@ public class PickupRegistServlet extends HttpServlet {
     PickupDAO dao = new PickupDAO();
 
     boolean result = dao.insert(dto);
+    
+    System.out.println("★登録内容確認：");
+    System.out.println("user_id = " + dto.getUser_id());
+    System.out.println("prefecture_id = " + dto.getPrefecture_id());
+    System.out.println("pickup_place = " + dto.getPickup_place());
+    System.out.println("remarks = " + dto.getRemarks());
 
     if (result) {
         // 成功：登録画面へリダイレクト（リセットされた状態）
-        response.sendRedirect("/webapp/PickupRegistServlet");
+		response.sendRedirect(request.getContextPath() + "/PickupRegistServlet");
     } else {
         // 失敗：入力値保持して戻る
         request.setAttribute("errorMessage", "登録に失敗しました。もう一度お試しください。");
