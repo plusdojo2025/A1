@@ -17,8 +17,8 @@ import dto.PickupDTO;
 import dto.UserDTO;
 import dto.VisitorDTO;
 
-@WebServlet("/VisitorListServlet")
-public class VisitorListServlet extends HttpServlet {
+@WebServlet("/ListServlet")
+public class ListServlet extends HttpServlet {
 
 	// DAOをインスタンス化
 	private VisitorDAO VisitorDAO = new VisitorDAO();
