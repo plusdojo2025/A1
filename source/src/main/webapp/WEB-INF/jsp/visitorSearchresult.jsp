@@ -47,41 +47,27 @@
 	<main>
 	<!-- 訪問地検索結果一覧 -->
 <h2>訪問地検索結果一覧</h2>
+<hr>
+	<c:forEach var="e" items="${visitorList}" >
+	<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
+	<input type="hidden" name="user_id" value="${e.user_id}">
+	訪問開始日<input type="text" name="start_date" value="${e.start_date}"><br>
+	訪問終了日<input type="text" name="end_date" value="${e.end_date}"><br>
+<!-- 都道府県<input type="text" name="prefecture_name" value="${e.prefecture_name}"><br> -->
+	場所<input type="text" name="visitor_place" value="${e.visitor_place}"><br>
+	タイトル<input type="text" name="title" value="${e.title}"><br>
+	同行者<input type="text" name="componion" value="${e.componion}"><br>
+	<!--  感情<input type="text" name="emotion_name" value="${e.emoji}"><br> -->
+	感想<input type="text" name="thought" value="${e.thought}"><br>
 	
-		  <c:if test="${empty visitorList}">
-    <p>該当する訪問記録が見つかりませんでした。</p>
-  </c:if>
-
-  <c:if test="${not empty visitorList}">
-    <table class="result-table">
-      <thead>
-        <tr>
-          <th>訪問開始日</th>
-          <th>訪問終了日</th>
-          <th>都道府県</th>
-          <th>場所</th>
-          <th>タイトル</th>
-          <th>同行者</th>
-          <th>感情</th>
-          <th>感想</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="record" items="${visitorList}">
-          <tr>
-            <td><c:out value="${record.start_date}" /></td>
-            <td><c:out value="${record.end_date}" /></td>
-            <td><c:out value="${record.prefecture_name}" /></td>
-            <td><c:out value="${record.place}" /></td>
-            <td><c:out value="${record.title}" /></td>
-            <td><c:out value="${record.componion}" /></td>
-            <td><c:out value="${record.emotion_name}" /></td>
-            <td><c:out value="${record.thought}" /></td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
-  </c:if>
+	</form>
+	<hr>
+</c:forEach>
+<c:if test="${empty visitorList}">
+<p>指定された条件に一致するデータはありません。</p>
+</c:if>
+	
+	
 		
 	</main>
 <!-- メイン(ここまで) -->

@@ -51,7 +51,7 @@
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
-	<main>
+	<main class="main">
 	<div class="tab_wrap">
     <!--タブメニュー-->
   	<div class="tab_area">
@@ -76,7 +76,7 @@
 					</c:forEach>
 			   </select>
 		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="place"></div><br>
+		場所<input type="text" name="visitor_place"></div><br>
 		<div class="inline-group">
 		同行者<input type="text" name="componion">
 		&nbsp;&nbsp;&nbsp;
@@ -112,7 +112,7 @@
 					</c:forEach>
 				</select>
 		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="place"></div><br>
+		場所<input type="text" name="pickup_place"></div><br>
 		備考欄<br>
 		<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br>
 		<div class="inline-group">		
