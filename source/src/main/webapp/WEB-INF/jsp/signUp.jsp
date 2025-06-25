@@ -22,7 +22,8 @@
 	<!-- 全体共通css -->
 	<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 	<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-	<!-- Q&A画面用css -->
+	
+	<!-- 新規登録画面用css -->
 	<link rel="stylesheet" href="<c:url value='assets/css/signup.css'/>">
 	
 </head>
@@ -35,42 +36,10 @@
 			<h1>
 				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
 			</h1>
-			
-<!-- ボタン設置 -->
-			<div class="menubutton">
-				<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-				<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
-			</div>
-			
-			<!-- ダイアログHTML(ここから) -->
-			<div id="overlay" class="overlay" style="display:none;"></div>
-			<div id="confirmDialog" class="custom-dialog" style="display:none;">
-			    <p>ログアウトしてもよろしいですか？</p>
-			    <img src="<c:url value='/assets/imgs/char/Door.png'/>" alt="ログアウト確認">
-			    <div class="dialog-buttons">
-			        <button class="btn-no" onclick="handleConfirm(false)">キャンセル</button>
-			        <button class="btn-yes" onclick="handleConfirm(true)">ログアウト</button>
-			    </div>
-			</div>
-			<!-- ダイアログHTML(ここまで) -->
-		</div>
-<!-- ニックネーム表示 -->
-		<c:if test ="${not empty sessionScope.user_id }">
-		<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
-		</c:if>
 	</div>
 	
 <!-- メニューバー表示 -->
-		<nav>
-			<ul>
-				<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
-				<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
-				<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-				<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
-			</ul>
-		</nav>
+		
 	</header>
 <!-- ヘッダー(ここまで) -->
 
@@ -171,12 +140,14 @@
         </form>
     </main>
 
-	<footer class="footer">
+<!-- フッター(ここから) -->
+	<div class="footer">
 		<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
 		<p>旅のひとコマが、未来を彩るタイルになる</p>
-	</footer>
+	</div>
+<!-- フッター（ここまで） -->
 	
-	    <script>
+<script>
     /*パスワードを隠すための処理*/
     function pushHideButton() {
     var txtPass = document.getElementById("password");
@@ -211,21 +182,7 @@
         return false;                   
         }
     }   
-    
-    <!-- ダイアログJS(ここから) -->
-    function showConfirmDialog() {
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('confirmDialog').style.display = 'block';
-    }
-
-    function handleConfirm(isConfirmed) {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('confirmDialog').style.display = 'none';
-        if (isConfirmed) {
-            window.location.href = '<c:url value="/LogoutServlet" />';
-        }
-    }
-    <!-- ダイアログJS(ここまで) -->    
+  
     </script>
 </body>
 </html>

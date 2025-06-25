@@ -20,30 +20,31 @@
 
 <!-- ヘッダー（ここから） -->
 	<header>
-		<h1>
-		<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
-		</h1>
+		<div class="header">
+		<div class="parent">
+		<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
+		
 		
 		<!-- ボタン設置 -->
-	<div class="">
-		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+	<div class="menubutton">
+		<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
+		<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
+		<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
+		<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
 	</div>
-	
+	</div>
 	<!-- ニックネーム表示 -->
 	<c:if test ="${not empty sessionScope.user_id }">
 	<span class="nickname">${sessionScope.user_id.nickname}&nbsp;さん</span>
 	</c:if>
-	
+	</div>
 <!-- メニューバー表示 -->	
 	<nav>
 		<ul>
 			<li><a href="<c:url value='/HomeServlet'/>">ホーム</a></li>
 			<li><a href="<c:url value='/VisitorRegistServlet'/>">登録</a></li>
 			<li><a href="<c:url value='/VisitorSearchServlet'/>">検索</a></li>
-			<li><a href="<c:url value='/VisitorListServlet'/>">一覧</a></li>
+			<li><a href="<c:url value='/ListServlet'/>">一覧</a></li>
 		</ul>
 	</nav>
 	

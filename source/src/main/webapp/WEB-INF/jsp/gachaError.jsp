@@ -20,9 +20,7 @@
 	<header>
 	<div class="header">
 	<div class="parent">
-		<h1>
 			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
-		</h1>
 		
 <!-- ボタン設置 -->
 		<div class="menubutton">

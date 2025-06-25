@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>  
 <%-- [ 読込 ] jstl を扱えるように --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- [ 短縮 ] コンテキストパス --%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<%-- [ 短縮 ] アセッツパス --%>
-<c:set var="assetsPath" value="${contextPath}/assets" />
 
 <!doctype html>
 <html>
@@ -27,15 +22,15 @@
 		<div class="header">
 		<div class="parent">
 			<h1>
-				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
+				<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
 			</h1>
 			
 <!-- ボタン設置 -->
 			<div class="menubutton">
-				<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-				<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+				<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
+				<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
+				<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
+				<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
 			</div>
 			
 			<!-- ダイアログHTML(ここから) -->
@@ -61,7 +56,7 @@
 				<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
 				<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
 				<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-				<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+				<li class="list"><a href="<c:url value='/ListServlet'/>">一覧</a>
 			</ul>
 		</nav>
 	</header>	

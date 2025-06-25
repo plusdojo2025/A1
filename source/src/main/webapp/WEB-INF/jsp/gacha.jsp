@@ -10,7 +10,6 @@
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-
 <!-- ガチャ画面用css -->
 <link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>">
 </head>
@@ -20,10 +19,8 @@
 	<header>
 	<div class="header">
 	<div class="parent">
-		<h1>
 			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
-		</h1>
-		
+			
 <!-- ボタン設置 -->
 		<div class="menubutton">
 			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>

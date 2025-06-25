@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="<c:url value='assets/css/home.css'/>">
 
 <!-- 一覧画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/list.css'/>">
 
 <!-- 日本地図用css -->
@@ -33,9 +34,11 @@
 <link rel="stylesheet" href="<c:url value='assets/css/qa.css'/>">
 
 <!-- 登録画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/regist.css'/>">
 
 <!-- 検索画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/search.css'/>">
 
 <!-- 設定画面用css -->
@@ -50,16 +53,14 @@
 	<header>
 	<div class="header">
 	<div class="parent">
-		<h1>
-			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="250"></a>
-		</h1>
-		
+			<a href="<c:url value='/HomeServlet'/>"><img src="<c:url value='/assets/imgs/TABITILE_logo.png' />" width="300"></a>
+			
 <!-- ボタン設置 -->
 		<div class="menubutton">
-			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="50" ></a>
-			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="50" ></a>
-			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="50" ></a>
-			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="50" ></a>
+			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
+			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
+			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
+			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
 		</div>
 	</div>
 <!-- ニックネーム表示 -->
@@ -74,7 +75,7 @@
 			<li class="home"><a href="<c:url value='/HomeServlet'/>">ホーム</a>
 			<li class="regist"><a href="<c:url value='/VisitorRegistServlet'/>">登録</a>
 			<li class="search"><a href="<c:url value='/VisitorSearchServlet'/>">検索</a>
-			<li class="list"><a href="<c:url value='/VisitorListServlet'/>">一覧</a>
+			<li class="list"><a href="<c:url value='/ListServlet'/>">一覧</a>
 		</ul>
 	</nav>
 	
