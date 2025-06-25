@@ -23,11 +23,12 @@ public class LogoutServlet extends HttpServlet {
 		// セッションスコープを破棄する
 		HttpSession session = request.getSession();
 		session.invalidate();
+		System.out.println("ログアウトを実行しました...");
 
 		// ログインページにリダイレクトする
-		response.sendRedirect("/A1/LoginServlet");
+		// [ ロケーション ] LoginServlet
+		String url = request.getContextPath() + "/LoginServlet";
+		// [ 転送 ]  代替の場所（URL）に
+		response.sendRedirect (url);
 	}
-
-
-
 }
