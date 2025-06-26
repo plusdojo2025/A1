@@ -1,6 +1,8 @@
-main{
+main,
+.footer
+{
 	margin: 0 auto;
-	width: 60vw;
+	width: 80vw;
 }
 
 main p {
@@ -32,4 +34,5 @@ padding: 10px;             /* 少し内側に余白 */
 border-radius: 8px;        /* 角丸で柔らかく */
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 軽い影で浮かせる */
 margin-top: 5px;
+width: 100%; /* 親要素内で全幅指定 */
 }
