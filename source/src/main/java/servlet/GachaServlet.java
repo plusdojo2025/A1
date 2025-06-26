@@ -61,6 +61,7 @@ public class GachaServlet extends HttpServlet {
 		// 1日1回制限の確認
         boolean hasDrawnToday = gachaDao.hasDrawnToday(user.getUser_id());
         if (hasDrawnToday) {
+        	System.out.println("ガチャサーブレットからgachaResult.jspに飛ぶよ");
             request.setAttribute("errorMessage", "本日はすでにガチャを引いています。");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaResult.jsp");
             dispatcher.forward(request, response);
@@ -73,6 +74,7 @@ public class GachaServlet extends HttpServlet {
 
 		// 候補地がない場合はエラーページへ
 		if (pickupList == null || pickupList.isEmpty()) {
+			System.out.println("ガチャサーブレットからgachaError.jspに飛ぶよ");
 			request.setAttribute("errorMessage", "行きたい場所が登録されていません。");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaError.jsp");
             dispatcher.forward(request, response);
@@ -82,7 +84,8 @@ public class GachaServlet extends HttpServlet {
 		// 候補地からランダムで1件選出
 		Random rand = new Random();
 		PickupDTO selected = pickupList.get(rand.nextInt(pickupList.size()));
-
+		
+		System.out.println(selected.getPrefecture_name());
 		// 結果をDBに保存
 		/*
 		 * gachaDao.saveResult(user.getUser_id(), selected.getPickup_id());
@@ -99,6 +102,7 @@ public class GachaServlet extends HttpServlet {
         gachaDao.saveResult(user.getUser_id(), selected.getPickup_id());
 
         // セッションに選ばれた場所を保存し、ローディング画面へ
+        System.out.println("ガチャサーブレットからgachaLoading.jspに飛ぶよ");
         session.setAttribute("selectedPickup", selected);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaLoading.jsp");
         dispatcher.forward(request, response);

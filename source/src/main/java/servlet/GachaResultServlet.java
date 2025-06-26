@@ -48,8 +48,10 @@ public class GachaResultServlet extends HttpServlet {
 
         if (result != null) {
             session.setAttribute("selectedPickup", result);
+            System.out.println("ガチャ結果サーブレットからgachaResult.jspに飛ぶよ");
             request.getRequestDispatcher("/WEB-INF/jsp/gachaResult.jsp").forward(request, response);
         } else {
+        	System.out.println("ガチャ結果サーブレットからgachaError.jspに飛ぶよ");
             request.setAttribute("errorMessage", "本日のガチャ結果が見つかりませんでした。");
             request.getRequestDispatcher("/WEB-INF/jsp/gachaError.jsp").forward(request, response);
         }

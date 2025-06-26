@@ -49,6 +49,7 @@ public class PickupDAO extends DAO {
 	        				pic.user_id = ?;
 		        		""";
 		        
+		        System.out.println(sql);
 		        // [ 予約 ] SQL文セット
 		        PreparedStatement pStmt = conn.prepareStatement(sql);
 		        pStmt.setString(1, user_id);  // ユーザーID

@@ -13,7 +13,7 @@ public class GachaDAO extends DAO {
 	// 1日1回制限チェック
     public boolean hasDrawnToday(String userId) {
         boolean result = false;
-
+        
         try {
             access();
 
@@ -28,7 +28,9 @@ public class GachaDAO extends DAO {
             ps.setString(1, userId);
             ps.setTimestamp(2, start);
             ps.setTimestamp(3, end);
-
+            
+            System.out.println("一日一回チェック通りました。");
+            
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 result = rs.getInt(1) > 0;
@@ -57,7 +59,9 @@ public class GachaDAO extends DAO {
             ps.setInt(3, pickupId);
 
             ps.executeUpdate();
-
+            
+            System.out.println("ガチャ結果を保存するところ通りました～");
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -78,9 +82,11 @@ public class GachaDAO extends DAO {
                 JOIN pickups p ON g.pickup_id = p.pickup_id
                 WHERE g.user_id = ? AND DATE(g.turned_date) = CURDATE()
                 ORDER BY g.turned_date DESC
-                LIMIT 1
+                LIMIT 1;
             """;
-
+            
+            System.out.println("UserDAOで取得したデータ"+sql);
+            
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userId);
 
