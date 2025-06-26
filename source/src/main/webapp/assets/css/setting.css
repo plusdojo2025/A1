@@ -80,15 +80,15 @@ select {
 	border-radius:10px;
 }
 
-	/* パスワード入力と目アイコンを揃えるために親を相対位置に */
-	.password-wrapper {
+/* パスワード入力と目アイコンを揃えるために親を相対位置に */
+.password-wrapper {
 	position: relative;
 	display: inline-block;
-	}
+}
 	
-	/* 目のアイコンを入力欄の中に配置 */
-	#buttonEye1,
-	#buttonEye2  {
+/* 目のアイコンを入力欄の中に配置 */
+#buttonEye1,
+#buttonEye2  {
   	position: absolute;
   	right: 10px;
   	top: 50%;
@@ -96,18 +96,16 @@ select {
   	cursor: pointer;
   	font-size: 30px;
   	color: #666;
-	}
+}
 	
-
-	
-	/* 入力フォーム */
-	.form-group {
+/* 入力フォーム */
+.form-group {
 	width: 100%;
 	max-width: 400px; /* 入力欄の幅を揃える */
 	margin-bottom: 15px;
 }
 	
-	.main input[name="nickname"] {
+.main input[name="nickname"] {
 	margin: 5px 0;
 	width: 100%;
 	height: 44px;
@@ -116,9 +114,9 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	box-sizing: border-box;
-	}
+}
 	
-	.form-group select[name="prefecture_id"] {
+.form-group select[name="prefecture_id"] {
 	margin: 5px 0;
 	width: 100%;
 	height: 44px;
@@ -127,9 +125,9 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	box-sizing: border-box;
-	}
+}
 	
-	.main input[name="password1"] {
+.main input[name="password1"] {
 	margin: 5px 0;
 	height: 44px;
 	font-size: 18px;
@@ -137,9 +135,9 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	box-sizing: border-box;
-	}
+}
 	
-	.main input[name="password2"] {
+.main input[name="password2"] {
 	margin: 5px 0;
 	height: 44px;
 	font-size: 18px;
@@ -147,4 +145,4 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	box-sizing: border-box;
-	}
+}

@@ -32,30 +32,38 @@
     <h1>新規登録</h1>
         <form method="POST" action="<c:url value='/SignUpServlet'/>" id="signup_form">
         <!-- ID入力欄 -->
-            <p>ID</p>
+        <div class="form-group">
+            <h2>ID</h2>
+            	<div class=text>
                 <div class=rule>
                 	※IDは変更できません。
-                </div>   
-		        <input type="text" id="user_id" class="nickname" name="user_id">
+                </div></div>
+		        <input type="text" id="user_id" class="user_id" name="user_id">
+		</div>
+		
 		<!-- パスワード入力欄 -->
-            <p>パスワード</p>
-             <div class=rule>
+		<div class="form-group">
+            <h2>パスワード</h2>
+            <div class=text>
+             <div class="rule">
                  ※パスワードは8文字以上で、<br>
-                 大文字、小文字、数字を1文字以上使用してください。<br>
-                 パスワードを変更するには、<br>
-                 現在のパスワードの入力が必要になります。<br>
-             </div>
-             <div class="pass">
-	            <p class="pass2">
-                   <input type="password" id="password" class="pass3" name="password">
+                   &nbsp;&nbsp;大文字、小文字、数字を1文字以上使用してください。<br>
+                   &nbsp;&nbsp;パスワードを変更するには、<br>
+                   &nbsp;&nbsp;現在のパスワードの入力が必要になります。<br>
+             </div></div>
+             <div class="password-wrapper">
+                   <input type="password" id="password" class="password" name="password">
                    <span id="buttonEye" class="fa fa-eye-slash" onclick="pushHideButton()"></span>
-               	</p>
              </div>
+         </div>
+         
         <!-- 都道府県選択欄 -->
-          	<p>都道府県</p>
+        <div class="form-group">
+          	<h2>都道府県</h2>
+          		<div class=text>
 	             <div class=rule>
-	                 あなたの住んでいる都道府県を選択してください。<br>
-	             </div>
+	                 あなたの住んでいる都道府県を選択してください。
+	             </div></div>
 	                <select name="prefecture_id">
 	                    <option value="" selected>選択してください</option>
 	                    <option value="1">北海道</option>
@@ -106,17 +114,21 @@
 	                    <option value="46">鹿児島県</option>
 	                    <option value="47">沖縄県</option>     
 	                </select>
+	            </div>
 	   <!-- ニックネーム入力欄 -->
-               <p>ニックネーム</p>
-	               	<p class=rule>
-	                    アプリ内で使用する名前を入力してください。<br>
-	                </p>
+	   <div class="form-group">
+               <h2>ニックネーム</h2>
+               		<div class=text>
+	               	<div class=rule>
+	                    アプリ内で使用する名前を入力してください。
+	                </div></div>
 	           <input type="text" id="nickname" class="nickname" name="nickname">
+       </div>
        <!-- 登録ボタン -->       
-            <p colspan="2">
-                <p class=button><input type="submit" id="register" class="push-button" name="submit" value="登録"></p>
+           
+                <input type="submit" id="register" class="push-button" name="submit" value="登録">
                 <span id="error_message" style="color:red;"></span>
-            </p>
+           
 		<!-- ログイン画面に戻るボタン -->
 		    <div class="return-buttons">
 		 		<a href="<c:url value='/LoginServlet' />">ログイン画面に戻る</a>

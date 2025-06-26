@@ -1,17 +1,20 @@
+
 .rule{
-	font-size:0.7rem;
+  font-size: 25px;
+  text-align: start;         /* ← 左寄せ */
+  margin: 0 auto;           /* ← 中央寄せ（ブロック） */
+ 
 }
 
 /*項目名の表示に関する設定*/
-#signup_form　p　{
+/* #signup_form　p　{
 	font-size:1.2rem;
 	text-align:left;
 }
-
+ */
 /*ページ全体の中央寄せに関する設定*/
 .main{
-	margin-left:30vw;
-	margin-right:30vw;
+text-align:center;
 }
 
 /* 全体の中央寄せ */
@@ -28,10 +31,7 @@
 	position: relative;
 }
 
-/*フォーム欄の左寄せに関する設定*/
-form{
-	text-align:left;
-}
+
 
 /* 目のアイコンを入力欄の中に配置 */
 #buttonEye {
@@ -65,7 +65,7 @@ select {
 .push-button{
   	width: 120px;
   	height: 50px;
- 	display: flex;
+ 	display: inline-flex;
   	align-items: center;
   	justify-content: center;
   	font-size: 25px;
@@ -75,6 +75,7 @@ select {
   	white-space: nowrap;
   	background-color: #8da9e0;
  	color: white;
+ 	margin: 20px auto;
 }
 
 .push-button:hover {
@@ -92,29 +93,22 @@ select {
 	text-align:center;
 }
 
-.pass2{
-	text-align:left;
-	font-size:0.9rem;
-	margin:5px;
+/* パスワード入力と目アイコンを揃えるために親を相対位置に */
+.password-wrapper {
+	position: relative;
+	display: inline-block;
+	width: 100%;
 }
-
-.pass3{
-	padding:10px 0 10px 0;
-	height:20px;
-	text-align:left;
-	font-size:0.9rem;
-	width:35vw;
-	border-radius:10px;
-}
-
-/*パスワードの目に関する設定*/
-#pass {
-  border: none; /* デフォルトの枠線を消す */
-}
-#password {
-  border-width: thin;
-  border-style: solid;
-  width: 200px;
+	
+/* 目のアイコンを入力欄の中に配置 */
+#buttonEye {
+  	position: absolute;
+  	right: 10px;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	cursor: pointer;
+  	font-size: 30px;
+  	color: #666;
 }
 
 /*ログインページに戻るボタンに関する設定*/
@@ -187,3 +181,56 @@ select {
     	left: 100%;
     	}
     	}
+    	
+   /* 入力フォーム */
+	.form-group {
+	width: 100%;
+	max-width: 400px; /* 入力欄の幅を揃える */
+	white-space: nowrap; /* 折り返しをしない */
+	margin: 0 auto;
+}
+	
+	.main input[name="user_id"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.form-group select[name="prefecture_id"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.main input[name="password"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.main input[name="nickname"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
