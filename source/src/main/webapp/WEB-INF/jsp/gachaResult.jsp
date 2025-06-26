@@ -55,8 +55,8 @@
     <div class="balloon">
         <c:choose>
             <c:when test="${not empty sessionScope.selectedPickup}">
-                <p><strong>${sessionScope.selectedPickup.pickup_place}</strong> に決定！！</p>
-                <p>地域：${sessionScope.selectedPickup.prefecture_name}</p>
+                <p>${sessionScope.selectedPickup.pickup_place}</p>
+                <p><strong>地域：${sessionScope.selectedPickup.prefecture_name}</strong> に決定！！</p>
                 <p>メモ：${sessionScope.selectedPickup.remarks}</p>
 
                 <p><a class="goto-link" href="<c:url value='/PickupServlet?pk=${sessionScope.selectedPickup.pickup_id}' />">
@@ -69,16 +69,18 @@
                 <div class="error-panel">
 				    <img src="<c:url value='/assets/imgs/char/Ojigi.png' />" alt="エラー" class="error-icon" />
 				
-				    <p class="error-message">行きたい場所が登録されていません。</p>
+				    <p class="error-message">本日はもう引いています。</p>
 				
 				    <div class="error-buttons">
-				        <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a>
-				        <a href="<c:url value='/PickupRegistServlet'/>" class="link">場所を登録する</a>
+				        <a href="<c:url value='/GachaResultServlet'/>" class="link">結果を確認する</a>
 				    </div>
 				</div>
             </c:otherwise>
         </c:choose>
     </div>
+    <div class="returned-buttons">
+			<a href="<c:url value='/HomeServlet'/>">ホームに戻る</a>
+	</div>
 	</main>
 <!-- メイン(ここまで) -->
 

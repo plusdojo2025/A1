@@ -67,9 +67,13 @@
 			<p class="error-message">行きたい場所が登録されていません。</p>
 			
 			<div class="error-buttons">
-				<a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a>
-				<a href="<c:url value='/RegistServlet'/>" class="btn">場所を登録する</a>
+				<%-- <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a> --%>
+				<a href="<c:url value='/PickupRegistServlet'/>" class="btn">場所を登録する</a>
 			</div>
+		</div>
+		
+		<div class="returned-buttons">
+			<a href="<c:url value='/HomeServlet'/>">ホームに戻る</a>
 		</div>
 	</main>
 <!-- メイン(ここまで) -->
