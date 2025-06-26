@@ -1,3 +1,293 @@
+
+/* -------------------------------------
+ * ■ 各地方の訪問水準値
+ * -------------------------------------
+ * 
+ * 地方名　　｜原色　　　｜薄さ１　　｜薄さ２　　｜薄さ３　　｜薄さ４　　
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 北海道地方｜ #8886D9 ｜ #A09FE0 ｜ #BBB9E8 ｜ #D4D3EF ｜ #E6E5F5
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 東北地方　｜ #619FEB ｜ #83B2F0 ｜ #A4C6F5 ｜ #C6D9FA ｜ #E3ECFD
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 関東地方　｜ #3DA942 ｜ #66BB6A ｜ #8ECD8F ｜ #B6DFB7 ｜ #DDF1DC
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 中部地方　｜ #99CC33 ｜ #B2D65C ｜ #CBE085 ｜ #E4EAAD ｜ #F3F3D2
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 近畿地方　｜ #F2C100 ｜ #F5CD33 ｜ #F8D966 ｜ #FBE599 ｜ #FEF1CC
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 中国地方　｜ #FF9900 ｜ #FFAE33 ｜ #FFC366 ｜ #FFD899 ｜ #FFECCC
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 四国地方　｜ #FD9FAB ｜ #FEB4C0 ｜ #FFC9D5 ｜ #FFDEE9 ｜ #FFF2F5
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 九州・沖縄｜ #FF6460 ｜ #FF837F ｜ #FFA19F ｜ #FFC0BF ｜ #FFE0DF
+ * 地方　　　｜         ｜         ｜         ｜         ｜ 
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * 
+ */
+
+
+/* [ svg ] 都道府県 */
 #todouhuken {
 	padding: 5%
 }
+
+
+
+/* -------------------------------------
+ * ● 北海道地方
+ * -------------------------------------
+ */
+
+/* level: 1 */
+#todouhuken .hokkaido-1{
+	fill: #E6E5F5;
+}
+
+/* level: 2 */
+#todouhuken .hokkaido-2{
+	fill: #D4D3EF;
+}
+
+/* level: 3 */
+#todouhuken .hokkaido-3{
+	fill: #BBB9E8;
+}
+
+/* level: 4 */
+#todouhuken .hokkaido-4{
+	fill: #A09FE0;
+}
+
+/* level: 5 */
+#todouhuken .hokkaido-5{
+	fill: #8886D9;
+}
+
+
+
+/* -------------------------------------
+ * ● 東北地方
+ * -------------------------------------
+ * 東北地方　｜ #619FEB ｜ #83B2F0 ｜ #A4C6F5 ｜ #C6D9FA ｜ #E3ECFD
+ */
+
+/* level: 1 */
+#todouhuken .touhoku-1 {
+	fill: #E3ECFD;
+}
+
+/* level: 2 */
+#todouhuken .touhoku-2 {
+	fill: #C6D9FA;
+}
+
+/* level: 3 */
+#todouhuken .touhoku-3 {
+	fill: #A4C6F5;
+}
+
+/* level: 4 */
+#todouhuken .touhoku-4 {
+	fill: #83B2F0;
+}
+
+/* level: 5 */
+#todouhuken .touhoku-5 {
+	fill: #619FEB;
+}
+
+
+
+/* -------------------------------------
+ * ● 関東地方
+ * -------------------------------------
+ */
+/* level: 1 */
+#todouhuken .kantou-1 {
+	fill: #DDF1DC;
+}
+
+/* level: 2 */
+#todouhuken .kantou-2 {
+	fill: #B6DFB7;
+}
+
+/* level: 3 */
+#todouhuken .kantou-3 {
+	fill: #8ECD8F;
+}
+
+/* level: 4 */
+#todouhuken .kantou-4 {
+	fill: #66BB6A;
+}
+
+/* level: 5 */
+#todouhuken .kantou-5 {
+	fill: #3DA942;
+}
+
+
+
+/* -------------------------------------
+ * ● 中部地方
+ * -------------------------------------
+ */
+
+/* level: 1 */
+#todouhuken .tyubu-1 {
+	fill: #F3F3D2;
+}
+
+/* level: 2 */
+#todouhuken .tyubu-2 {
+	fill: #E4EAAD;
+}
+
+/* level: 3 */
+#todouhuken .tyubu-3 {
+	fill: #CBE085;
+}
+
+/* level: 4 */
+#todouhuken .tyubu-4 {
+	fill: #B2D65C;
+}
+
+/* level: 5 */
+#todouhuken .tyubu-5 {
+	fill: #99CC33;
+}
+
+
+/* -------------------------------------
+ * ● 近畿地方
+ * -------------------------------------
+ * 近畿地方　｜ #F2C100 ｜ #F5CD33 ｜ #F8D966 ｜ #FBE599 ｜ #FEF1CC
+ */
+
+/* level: 1 */
+#todouhuken .kinki-1 {
+	fill: #FEF1CC;
+}
+
+/* level: 2 */
+#todouhuken .kinki-2 {
+	fill: #FBE599;
+}
+
+/* level: 3 */
+#todouhuken .kinki-3 {
+	fill: #F8D966;
+}
+
+/* level: 4 */
+#todouhuken .kinki-4 {
+	fill: #F5CD33;
+}
+
+/* level: 5 */
+#todouhuken .kinki-5 {
+	fill: #F2C100;
+}
+
+
+
+/* -------------------------------------
+ * ● 中国地方
+ * -------------------------------------
+ * 中国地方　｜ #FF9900 ｜ #FFAE33 ｜ #FFC366 ｜ #FFD899 ｜ #FFECCC
+ */
+
+/* level: 1 */
+#todouhuken .tyugoku-1 {
+	fill: #FFECCC;
+}
+
+/* level: 2 */
+#todouhuken .tyugoku-2 {
+	fill: #FFD899;
+}
+
+/* level: 3 */
+#todouhuken .tyugoku-3 {
+	fill: #FFC366;
+}
+
+/* level: 4 */
+#todouhuken .tyugoku-4 {
+	fill: #FFAE33;
+}
+
+/* level: 5 */
+#todouhuken .tyugoku-5 {
+	fill: #FF9900;
+}
+
+
+
+/* -------------------------------------
+ * ● 四国地方
+ * -------------------------------------
+ * 四国地方　｜ #FD9FAB ｜ #FEB4C0 ｜ #FFC9D5 ｜ #FFDEE9 ｜ #FFF2F5
+ */
+
+/* level: 1 */
+#todouhuken .sikoku-1 {
+	fill: #FFF2F5;
+}
+
+/* level: 2 */
+#todouhuken .sikoku-2 {
+	fill: #FFDEE9;
+}
+
+/* level: 3 */
+#todouhuken .sikoku-3 {
+	fill: #FFC9D5;
+}
+
+/* level: 4 */
+#todouhuken .sikoku-4 {
+	fill: #FEB4C0;
+}
+
+/* level: 5 */
+#todouhuken .sikoku-5 {
+	fill: #FD9FAB;
+}
+
+
+
+/* -------------------------------------
+ * ● 九州・沖縄地方
+ * -------------------------------------
+ * 九州・沖縄｜ #FF6460 ｜ #FF837F ｜ #FFA19F ｜ #FFC0BF ｜ #FFE0DF
+ */
+
+/* level: 1 */
+#todouhuken .kyusyu-1 {
+	fill: #FFE0DF;
+}
+
+/* level: 2 */
+#todouhuken .kyusyu-2 {
+	fill: #FFC0BF;
+}
+
+/* level: 3 */
+#todouhuken .kyusyu-3 {
+	fill: #FFA19F;
+}
+
+/* level: 4 */
+#todouhuken .kyusyu-4 {
+	fill: #FF837F;
+}
+
+/* level: 5 */
+#todouhuken .kyusyu-5 {
+	fill: #FF6460;
+}
+
+
