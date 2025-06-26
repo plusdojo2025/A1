@@ -27,20 +27,40 @@ public class BabgeServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        if (session != null) {
-            UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-            if (loginUser != null) {
-                String userId = loginUser.getUser_id();
-
-                BadgeDAO dao = new BadgeDAO();
-                List<BadgeDTO> badgeList = dao.getAllBadgesWithUserStatus(userId);
-
-                session.setAttribute("badgeList", badgeList);
-                request.getRequestDispatcher("/WEB-INF/jsp/babge.jsp").forward(request, response);
-                return;
-            }
+        //セッションが存在していれば、その中から"user_id"というキーで保存されているオブジェクトを取り出す
+	    //そのオブジェクトはUserDTO型であることがわかっているので、キャストする
+	    UserDTO loginUser = null;
+	    if (session != null) {
+	    	//セッションからObject型を取得
+	        Object obj = session.getAttribute("user_id");
+	        //型がUserDTOか確認
+	        if (obj instanceof UserDTO) {
+	        	//UserDTO型にキャストして代入
+	            loginUser = (UserDTO) obj;
+	        }
+	    }
+	    
+        //ログインしていないときはログイン画面へ
+        if (loginUser == null) {
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            return;
         }
+        
+        /// ユーザーIDを取り出す
+     	String userId = loginUser.getUser_id();
+     	System.out.println("[BabgeServlet] ログインユーザーID: " + userId);
 
-        response.sendRedirect("LoginServlet");
+     	
+     	// バッジ一覧を取得
+        BadgeDAO dao = new BadgeDAO();
+        List<BadgeDTO> badgeList = dao.getAllBadgesWithUserStatus(userId);
+        System.out.println("[BabgeServlet] 取得したバッジ数: " + badgeList.size());
+
+        // セッションにバッジ情報を保存
+        session.setAttribute("badgeList", badgeList);
+        
+        // 最終的にホーム画面へ遷移
+        String url = request.getContextPath() + "/HomeServlet";
+		response.sendRedirect (url);
     }
 }

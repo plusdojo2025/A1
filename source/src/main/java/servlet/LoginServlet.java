@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BadgeDAO;
 import dao.UserDAO;
 import dto.UserDTO;
-
 
 /**
  * Servlet implementation class LoginServlet
@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 		UserDAO userdao = new UserDAO();
 		//ログイン認証
 		boolean isAuth = userdao.isAuth(userId,password);
+		System.out.println("ログイン認証結果: " + isAuth);
 		if (isAuth) { // ログイン成功
 		 UserDTO loginUser = userdao.getLoginUser(userId); 
 		 
@@ -56,10 +57,16 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id",loginUser);
 			
-			// ホームサーブレットにリダイレクトする(画面遷移)
+			// バッジチェック＆セッションにバッジ一覧格納
+		    BadgeDAO badgeDao = new BadgeDAO();
+		    badgeDao.checkAndGrantBadges(userId); // バッジ自動付与
+		    session.setAttribute("badgeList", badgeDao.getAllBadgesWithUserStatus(userId));
+			
+			// バッジサーブレットにリダイレクトする(画面遷移)
 			String url = request.getContextPath() + "/BabgeServlet";
 			response.sendRedirect (url);
 		}else {//ログイン失敗
+			System.out.println("ログイン失敗：ID/PWが一致しない");
 			request.setAttribute("errorMessage", // エラーメッセージを出す
 					"IDまたはパスワードに間違いがあります。");
 			String view = "/WEB-INF/jsp/login.jsp";
