@@ -35,12 +35,14 @@ public class GachaResultServlet extends HttpServlet {
 			throws ServletException, IOException {
     	HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user_id");
-
+        
+        //ログインしていなかったらログインページに遷移する。
         if (user == null) {
             response.sendRedirect("LoginServlet");
             return;
         }
-
+        
+        //ガチャ結果を取得するためのDAOを実行する
         GachaDAO dao = new GachaDAO();
         PickupDTO result = dao.getTodayResult(user.getUser_id());
 

@@ -37,6 +37,12 @@ public class GachaServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user_id") == null) {
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+			return;
+		}
     	// ガチャページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gacha.jsp");
 		dispatcher.forward(request, response);
@@ -49,13 +55,6 @@ public class GachaServlet extends HttpServlet {
 		// セッションからログインユーザー情報を取得
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO) session.getAttribute("user_id");
-
-		// ログインしていない場合はログインページにリダイレクト
-		if (user == null) {
-			response.sendRedirect("LoginServlet");
-			return;
-		}
-
 		
 		GachaDAO gachaDao = new GachaDAO();
 		

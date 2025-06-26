@@ -19,7 +19,7 @@ import dto.PickupDTO;
 @WebServlet("/GachaLoadingServlet")
 public class GachaLoadingServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+	
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -38,14 +38,17 @@ public class GachaLoadingServlet extends HttpServlet {
             return;
         }
 
-        // 1日1回制限のチェック
+        
         GachaDAO dao = new GachaDAO();
+        /*
+        //一日一回の制約に関する確認（GachaServletで既に実行しているため要らない可能性が高い）
         if (dao.hasDrawnToday(userId)) {
             request.setAttribute("errorMsg", "本日のガチャはすでに引かれています。");
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaError.jsp");
             dispatcher.forward(request, response);
             return;
         }
+       	*/
 
         // ランダムで1件選ぶ
         Random rand = new Random();
@@ -56,8 +59,9 @@ public class GachaLoadingServlet extends HttpServlet {
 
         // 結果をセッションへ
         session.setAttribute("selectedPickup", selectedPickup);
-
-        // ローディング画面へ遷移（JSで結果に飛ぶ）
+        
+        System.out.print("ここまで行ったよ");
+         // ローディング画面へ遷移（JSで結果に飛ぶ）
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaLoading.jsp");
         dispatcher.forward(request, response);
     }

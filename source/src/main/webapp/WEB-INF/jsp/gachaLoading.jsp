@@ -21,7 +21,7 @@
 <!-- 自動遷移（3秒後） -->
 <script>
 	setTimeout(function () {
-		window.location.href = "<c:url value='/GachaLoadingServlet'/>";
+		window.location.href = "<c:url value='/GachaResultServlet'/>";
 	}, 2000);
 </script>
 
