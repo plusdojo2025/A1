@@ -84,12 +84,16 @@
         		<input type="hidden" id="user_id" name="user_id" value='${sessionScope.user_id.user_id}'>
 
         	<!-- ニックネームの入力欄 -->
-		    <p>ニックネームの変更</p>
+        	<div class="form-group">
+		    <h2>ニックネームの変更</h2>
 		    <label>
 		        <input type="text" id="name" class="nickname" name="nickname" value='${sessionScope.user_id.nickname}'>
 		    </label>
+		    </div>
+		    
 			<!-- 都道府県の入力欄 -->
-		    <p>都道府県の変更</p>
+			<div class="form-group">
+		    <h2>都道府県の変更</h2>
 		    <label>
 		        <select name="prefecture_id">
 		                <option value='${sessionScope.user_id.prefecture_id}' selected>選択してください</option>
@@ -142,25 +146,38 @@
 		                <option value="47">沖縄県</option>     
 		            </select>
 		    </label>
+		    </div>
 		    <!-- エラーメッセージの表示場所 -->
 		<div class ="login-container">
 			<c:if test="${not empty errorMessage}">
 				<p class="error-message">${errorMessage}</p>
 			</c:if></div>
 			
-		<p>パスワードの変更</p>
+		<h2>パスワードの変更</h2>
 			<div class="pass">
-			    <p class="pass2">現在のパスワード
+			<div class="form-group">
+			    <h3 class="pass2">現在のパスワード</h3>
+			    <div class="password-wrapper">
 			        <input type="password" id="password1" class="pass3" placeholder="現在のパスワードを入力" name="password1">
 			        <span id="buttonEye1" class="fa fa-eye-slash" onclick="pushHideButton1()"></span><br>
-			    </p>
-				<p class="pass2">新しいパスワード
+			    </div>
+			</div>
+			
+			<div class="form-group">
+				<h3 class="pass2">新しいパスワード</h3>
+				<div class="password-wrapper">
 		          <input type="password" id="password2" class="pass3" placeholder="新しいパスワードを入力" name="password2">
 		          <span id="buttonEye2" class="fa fa-eye-slash" onclick="pushHideButton2()"></span><br>
 		          <span id="error_message3"></span>
-		        </p>
+		        </div>
+		    </div>
+		    
 		      </div>
-		       	<p class=button><input type="submit" id="register" class="push-button" name="submit" value="変更"></p>
+		      	
+		      	
+		       	<input type="submit" id="register" name="submit" class="push-button" value="変更">
+        		
+        		
         </form>
 	</main>
 <!-- メイン(ここまで) -->

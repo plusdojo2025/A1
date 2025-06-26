@@ -10,9 +10,15 @@
 	margin-right:30vw;
 }
 
+h2 {
+	margin-top: 70px;
+}
+
 /*フォーム欄の中央寄せに関する設定*/
 form{
-	text-align:left;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;	
 }
 
 /*ニックネーム入力欄に関する設定*/
@@ -35,7 +41,6 @@ select {
 .push-button{
   	width: 120px;
   	height: 50px;
- 	display: flex;
   	align-items: center;
   	justify-content: center;
   	font-size: 25px;
@@ -61,7 +66,7 @@ select {
 	text-align:center;
 }
 .pass2{
-	text-align:left;
+	text-align:center;
 	font-size:0.9rem;
 	margin:5px;
 }
@@ -75,13 +80,71 @@ select {
 	border-radius:10px;
 }
 
-/*パスワードの目に関する設定*/
-.pass {
-  border: none; /* デフォルトの枠線を消す */
-}
-#password1, #password2{
-  border-width: thin;
-  border-style: solid;
-  width: 30vw;
-}
+	/* パスワード入力と目アイコンを揃えるために親を相対位置に */
+	.password-wrapper {
+	position: relative;
+	display: inline-block;
+	}
+	
+	/* 目のアイコンを入力欄の中に配置 */
+	#buttonEye1,
+	#buttonEye2  {
+  	position: absolute;
+  	right: 10px;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	cursor: pointer;
+  	font-size: 30px;
+  	color: #666;
+	}
+	
 
+	
+	/* 入力フォーム */
+	.form-group {
+	width: 100%;
+	max-width: 400px; /* 入力欄の幅を揃える */
+	margin-bottom: 15px;
+}
+	
+	.main input[name="nickname"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.form-group select[name="prefecture_id"] {
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.main input[name="password1"] {
+	margin: 5px 0;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
+	
+	.main input[name="password2"] {
+	margin: 5px 0;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	}
