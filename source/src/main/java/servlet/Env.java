@@ -17,7 +17,7 @@ public class Env {
 	 * <h4>JSTLで画像ファイルパスを取得するには... </h4>
 	 * <p>< c:url value="/media/ファイル名.拡張子" /></p>
 	 */
-	public static final String MEDIA_DIR = "/media/";
+	public static final String MEDIA_DIR = "/assets/imgs/";
 	
 	/**
 	 * <h3>テスト環境（PC）</h3>
@@ -27,6 +27,7 @@ public class Env {
 	 * <img width="500" src="https://images.prismic.io/and-engineer/00634997-474f-4b33-be33-03e930dc9c06_img_soutaizettaipath_02.png?auto=compress%2Cformat&w=768" />
 	 */
 	public static final String devPath = "C:\\[ここからパスを入力してください]"; 
+//	public static final String devPath = "C:\\Users\\user\\Documents\\workspace\\plusdojo2025\\A1\\source\\src\\main\\webapp";
 	
 }
 

@@ -8,7 +8,7 @@
 <%-- [ 短縮 ] 画像フォルダパス --%>
 <c:set var="imgsPath" value="/assets/imgs" />
 <%-- [ 短縮 ] ユーザーフォルダパス --%>
-<c:set var="mediaPath" value="/media/${sessionScope.user_id.user_id}" />
+<c:set var="mediaPath" value="${imgsPath}/${sessionScope.user_id.user_id}" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
