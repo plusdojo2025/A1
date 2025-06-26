@@ -236,54 +236,149 @@ viewBox=はSVGの座標系と拡大縮小の範囲を設定している -->
   <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=20">
     <path id="nagano" class="cls-1 ${preFoots.pref20.footprint_color}" d="M2583.56,2293.71l-7.37-14.69-20.11-14.69,3.35-47.19,4.69-14.25-9.39-10.24-48.94-8.46-6.71-18.25,20.11-26.27,29.5-10.69,25.47-19.37v-19.81l-26.82-7.12-5.7-22.26-26.49-4.45-50.96,37.39-9.39,1.78-50.96,15.13-5.36-25.82-17.43-6.23-51.83,31.77-1.58,4.29-6.92,41.7-29.5,29.68-10.58,8.68,11.25,11.2-12.74,27.6-9.39,17.36,16.1,9.79-13.42,30.27-16.76,8.46-34.19,3.11s-10.72,20.48-8.04,20.48,39.49,12.47,39.49,12.47l22.86,34.28,16.08,27.15-8.72,22.26-13.42,14.18,13.42,18.31h35.53l22.63,1.01.83-1.31,74.19-32.64,6.25-20.18,22.93-32.91,3.3-4.74-3.35-3.55c0,1.09-.09-9.62-.09-9.62l11.4-37.84,42.24-21.59,41.57,14.02,30.17,1.78,13.55-9.74-.82-.29.03.05Z"/>
   </a>  
+  
     <!-- SVG内で文字を表示 -->
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=1">
     <text class="cls-2" transform="translate(3535.62 620.3) scale(1.05 1)"><tspan x="0" y="0">北海道</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=2">  
     <text class="cls-2" transform="translate(3018.29 1256.98) scale(1.05 1)"><tspan x="0" y="0">青森県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=5">  
     <text class="cls-2" transform="translate(2946.89 1482.28) scale(1.05 1)"><tspan x="0" y="0">秋田県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=3">
     <text class="cls-2" transform="translate(3205.52 1526.07) scale(1.05 1)"><tspan x="0" y="0">岩手県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=6">  
     <text class="cls-2" transform="translate(2888.12 1740.07) scale(1.05 1)"><tspan x="0" y="0">山形県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=4">
     <text class="cls-2" transform="translate(3098.48 1723.22) scale(1.05 1)"><tspan x="0" y="0">宮城県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=7">
     <text class="cls-2" transform="translate(2938.83 2001.51) scale(1.05 1)"><tspan x="0" y="0">福島県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=9">
     <text class="cls-2" transform="translate(2804.54 2147.76) scale(1.05 1)"><tspan x="0" y="0">栃木県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=8">
     <text class="cls-2" transform="translate(2891.95 2254.12) scale(1.05 1)"><tspan x="0" y="0">茨城県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=12">
     <text class="cls-2" transform="translate(2914.6 2358.7) scale(1.05 1)"><tspan x="0" y="0">千葉県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=10">
     <text class="cls-2" transform="translate(2584.34 2172.21) scale(1.05 1)"><tspan x="0" y="0">群馬県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=11">
     <text class="cls-2" transform="translate(2688.15 2292.14) scale(1.05 1)"><tspan x="0" y="0">埼玉県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=13">
     <text class="cls-2" transform="translate(2702.4 2361.27) scale(1.05 1)"><tspan x="0" y="0">東京都</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=14">
     <text class="cls-2" transform="translate(2657.03 2419.79) scale(1.05 1)"><tspan x="0" y="0">神奈川県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=15">
     <text class="cls-2" transform="translate(2634.93 1921.69) scale(1.05 1)"><tspan x="0" y="0">新潟県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=20">
     <text class="cls-2" transform="translate(2343.17 2254.12) scale(1.05 1)"><tspan x="0" y="0">長野県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=19">
     <text class="cls-2" transform="translate(2477.05 2385.58) scale(1.05 1)"><tspan x="0" y="0">山梨県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=22">
     <text class="cls-2" transform="translate(2341.37 2507.82) scale(1.05 1)"><tspan x="0" y="0">静岡県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=16">
     <text class="cls-2" transform="translate(2116.09 2172.21) scale(1.05 1)"><tspan x="0" y="0">富山県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=21">
     <text class="cls-2" transform="translate(2047.11 2367.14) scale(1.05 1)"><tspan x="0" y="0">岐阜県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=23">
     <text class="cls-2" transform="translate(2116.09 2502.22) scale(1.05 1)"><tspan x="0" y="0">愛知県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=17">
     <text class="cls-2" transform="translate(1892.34 2211.1) scale(1.05 1)"><tspan x="0" y="0">石川県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=18">
     <text class="cls-2" transform="translate(1845.05 2306.18) scale(1.05 1)"><tspan x="0" y="0">福井県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=25">
     <text class="cls-2" transform="translate(1825.39 2470.14) scale(1.05 1)"><tspan x="0" y="0">滋賀県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=24">
     <text class="cls-2" transform="translate(1921.5 2627.95) scale(1.05 1)"><tspan x="0" y="0">三重県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=26">
     <text class="cls-2" transform="translate(1635.37 2452.28) scale(1.05 1)"><tspan x="0" y="0">京都府</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=27">
     <text class="cls-2" transform="translate(1595.43 2610.58) scale(1.05 1)"><tspan x="0" y="0">大阪府</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=29">
     <text class="cls-2" transform="translate(1748.09 2650.91) scale(1.05 1)"><tspan x="0" y="0">奈良県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=30">
     <text class="cls-2" transform="translate(1597.59 2780.15) scale(1.05 1)"><tspan x="0" y="0">和歌山県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=28">
     <text class="cls-2" transform="translate(1467.29 2502.22) scale(1.05 1)"><tspan x="0" y="0">兵庫県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=31">
     <text class="cls-2" transform="translate(1240.28 2419.1) scale(1.05 1)"><tspan x="0" y="0">鳥取県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=33">
     <text class="cls-2" transform="translate(1200.4 2542.35) scale(1.05 1)"><tspan x="0" y="0">岡山県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=32">
     <text class="cls-2" transform="translate(854.88 2497.57) scale(1.05 1)"><tspan x="0" y="0">島根県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=34">
     <text class="cls-2" transform="translate(934.96 2605.03) scale(1.05 1)"><tspan x="0" y="0">広島県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=35">
     <text class="cls-2" transform="translate(624.42 2685.19) scale(1.05 1)"><tspan x="0" y="0">山口県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=37">
     <text class="cls-2" transform="translate(1223.1 2659.33) scale(1.05 1)"><tspan x="0" y="0">香川県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=36">
     <text class="cls-2" transform="translate(1331.75 2731.42) scale(1.05 1)"><tspan x="0" y="0">徳島県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=38">
     <text class="cls-2" transform="translate(934.96 2788.47) scale(1.05 1)"><tspan x="0" y="0">愛媛県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=39">
     <text class="cls-2" transform="translate(1128.47 2788.47) scale(1.05 1)"><tspan x="0" y="0">高知県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=43">
     <text class="cls-2" transform="translate(379.47 3025.5) scale(1.05 1)"><tspan x="0" y="0">熊本県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=40">
     <text class="cls-2" transform="translate(374.14 2810.9) scale(1.05 1)"><tspan x="0" y="0">福岡県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=44">
     <text class="cls-2" transform="translate(590.17 2880.79) scale(1.05 1)"><tspan x="0" y="0">大分県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=41">
     <text class="cls-2" transform="translate(227.88 2870.91) scale(1.05 1)"><tspan x="0" y="0">佐賀県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=45">
     <text class="cls-2" transform="translate(571.07 3078.36) scale(1.05 1)"><tspan x="0" y="0">宮崎県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=46">
     <text class="cls-2" transform="translate(319.23 3204.15) scale(1.05 1)"><tspan x="0" y="0">鹿児島県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=42">
     <text class="cls-2" transform="translate(156.1 2966.58) scale(1.05 1)"><tspan x="0" y="0">長崎県</tspan></text>
+  </a>
+  <a xlink:href="<c:url value='/PlaceSelectServlet'/>?pref=47">
     <text class="cls-2" transform="translate(4168.13 3194.27) scale(1.05 1)"><tspan x="0" y="0">沖縄県</tspan></text>
+  </a>
 </svg>
 </body>
 </html>
