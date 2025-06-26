@@ -74,7 +74,7 @@
 			</details>
 			<details>
 				<summary>Q.IDの変更をしたい</summary>
-					<div>
+					<div class=text>
 						A.ユーザーIDは一度登録すると変更ができないものとなっております。ご了承ください。
 					</div>
 			</details>
@@ -149,18 +149,18 @@
 	
 	<!-- ダイアログJS(ここから) -->
 	<script>
-	function showConfirmDialog() {
-	    document.getElementById('overlay').style.display = 'block';
-	    document.getElementById('confirmDialog').style.display = 'block';
-	}
-	
-	function handleConfirm(isConfirmed) {
-	    document.getElementById('overlay').style.display = 'none';
-	    document.getElementById('confirmDialog').style.display = 'none';
-	    if (isConfirmed) {
-	        window.location.href = '<c:url value="/LogoutServlet" />';
-	    }
-	}
+		function showConfirmDialog() {
+		    document.getElementById('overlay').style.display = 'block';
+		    document.getElementById('confirmDialog').style.display = 'block';
+		}
+		
+		function handleConfirm(isConfirmed) {
+		    document.getElementById('overlay').style.display = 'none';
+		    document.getElementById('confirmDialog').style.display = 'none';
+		    if (isConfirmed) {
+		        window.location.href = '<c:url value="/LogoutServlet" />';
+		    }
+		}
 	</script>
 	<!-- ダイアログJS(ここまで) -->
 </body>
