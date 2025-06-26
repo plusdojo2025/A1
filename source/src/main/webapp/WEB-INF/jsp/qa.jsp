@@ -142,10 +142,10 @@
 			</details>
 	</main>
 
-	<footer class="footer">
+	<div class="footer">
 		<p class="copyright">TABI×TILE　&copy; 2025 Always First.</p>
 		<p>旅のひとコマが、未来を彩るタイルになる</p>
-	</footer>
+	</div>
 	
 	<!-- ダイアログJS(ここから) -->
 	<script>
