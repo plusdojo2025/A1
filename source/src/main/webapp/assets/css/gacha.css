@@ -1,37 +1,42 @@
-/* ガチャメイン画面 */
+/* =========================
+   メインエリアの調整
+========================= */
 main {
   text-align: center;
-  background-color: #d0efff;
-  padding: 60px 20px;
+  padding: 60px 20px; /* 上下左右の余白 */
 }
 
-/* タイトル */
+/* =========================
+   タイトル部分（例：説明文）
+========================= */
 .gacha-title {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 40px;
 }
 
-/* ガチャ画像 */
+/* =========================
+   ガチャ画像（カプセルなど）
+========================= */
 .gacha-image {
   width: 250px;
   height: auto;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  padding: 20px;
+  border-radius: 12px;
+  background-color: transparent;
 }
 
-/* ガチャボタン */
+/* =========================
+   ガチャボタン
+========================= */
 .gacha-button-area {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .gacha-button {
-  background-color: #007acc;
-  color: #fff;
+  background-color: #8da9e0;  /* やや薄い青 */
+  color: white;
   font-size: 1.2rem;
-  padding: 15px 40px;
+  padding: 12px 30px;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -39,40 +44,18 @@ main {
 }
 
 .gacha-button:hover {
-  background-color: #005e99;
+  background-color: #5f87d2;
 }
 
-/* ローディングのアニメーション */
-.loading-icon {
-  box-sizing: border-box;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  box-shadow:
-    0 -30px 0 #eee,
-    21px -21px 0 #ddd,
-    30px 0 0 #ccc,
-    21px 21px 0 #bbb,
-    0 30px 0 #aaa,
-    -21px 21px 0 #999,
-    -30px 0 0 #666,
-    -21px -21px 0 #000;
-  animation: rotate 1s steps(8) infinite;
-}
-
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* loadingを真ん中に配置 */
+/* =========================
+   ローディング用レイアウト
+========================= */
 .loading-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  text-align: center;
 }
 
 .loading-text {
@@ -80,12 +63,14 @@ main {
   font-weight: bold;
 }
 
-/* capsule.jsp用の吹き出し */
+/* =========================
+   カプセル表示用の吹き出し
+========================= */
 .balloon {
   position: relative;
   display: inline-block;
   padding: 15px 20px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 20px;
   margin-top: 20px;
   box-shadow: 0 0 5px #ccc;
@@ -97,48 +82,15 @@ main {
   bottom: -20px;
   left: 30px;
   border: 10px solid transparent;
-  border-top-color: #fff;
+  border-top-color: #ffffff;
 }
 
-/* パネル */
-.panel {
-  background: #fff;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 40px auto;
-  width: 80%;
-  box-shadow: 0 0 10px #ccc;
-}
-
-/* お辞儀の画像を中央に配置 */
-.error-image {
-  margin: 20px auto;
-  text-align: center;
-}
-
-/* ボタン横並び + サイズ統一 */
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.error-button {
-  padding: 10px 30px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  color: black;
-  cursor: pointer;
-  min-width: 160px;
-  text-align: center;
-}
-
-/* エラーパネル全体 */
+/* =========================
+   エラーパネル（共通）
+========================= */
 .error-panel {
-  background-color: #fff0f0;
-  border: 2px solid #ff9999;
+  background-color: #fff0f0; /* 薄いピンク背景 */
+  border: 2px solid #ff9999; /* 枠線はやや濃いピンク */
   border-radius: 16px;
   padding: 30px;
   max-width: 600px;
@@ -147,38 +99,51 @@ main {
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
 }
 
-/* エラーアイコン */
+/* ウサギなどのアイコン画像 */
 .error-icon {
   width: 120px;
   margin-bottom: 20px;
 }
 
-/* エラーメッセージ */
+/* メッセージ本文 */
 .error-message {
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: bold;
-  color: #cc0000;
-  margin-bottom: 20px;
+  color: #333;
+  margin: 20px 0;
 }
 
-/* エラーボタン */
+/* =========================
+   エラー時のボタンやリンクの配置
+========================= */
 .error-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
+/* 共通ボタンスタイル */
 .error-buttons .btn {
   background-color: #ff6666;
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 12px 24px;
-  font-size: 1em;
+  padding: 14px 28px;
+  font-size: 1.1em;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .error-buttons .btn:hover {
   background-color: #e60000;
+}
+
+/* 登録リンクのデザイン */
+.error-buttons .link {
+  font-size: 1.1em;
+  color: #333;
+  text-decoration: underline;
 }

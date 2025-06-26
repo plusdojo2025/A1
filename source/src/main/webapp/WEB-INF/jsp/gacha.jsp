@@ -52,7 +52,7 @@
   <h2 class="gacha-title">行きたい場所からランダムで<br>一日一回ガチャが引けます</h2>
 
   <div class="gacha-box">
-    <img src="<c:url value='/assets/imgs/icon/gacha.png' />" alt="ガチャ画像" class="gacha-image">
+    <img src="<c:url value='/assets/imgs/icons/gacha.png' />" alt="ガチャ画像" class="gacha-image">
   </div>
 
   <div class="gacha-button-area">

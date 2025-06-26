@@ -64,8 +64,18 @@
 				</a></p>
             </c:when>
             <c:otherwise>
-                <p>行きたい場所が登録されていません。</p>
-                <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a>
+                <%-- <p>行きたい場所が登録されていません。</p>
+                <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a> --%>
+                <div class="error-panel">
+				    <img src="<c:url value='/assets/imgs/char/Ojigi.png' />" alt="エラー" class="error-icon" />
+				
+				    <p class="error-message">行きたい場所が登録されていません。</p>
+				
+				    <div class="error-buttons">
+				        <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a>
+				        <a href="<c:url value='/PickupRegistServlet'/>" class="link">場所を登録する</a>
+				    </div>
+				</div>
             </c:otherwise>
         </c:choose>
     </div>
