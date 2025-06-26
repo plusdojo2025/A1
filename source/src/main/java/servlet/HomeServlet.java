@@ -25,6 +25,7 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+		// [ リソース ] home.jsp
 		String view = "/WEB-INF/jsp/home.jsp";
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -35,72 +36,14 @@ public class HomeServlet extends HttpServlet {
 			return;
 		} 
 		
+		// [ Entity ] ログイン中のユーザー
 		UserDTO userdto = (UserDTO) session.getAttribute("user_id");
+		// [ 宣言 ] 使用するモデルのインスタンス
 		VisitorDAO visitordao = new VisitorDAO();
-		Map<String, PrefectureFootprintDTO> prefectureFootprintList = visitordao.prefectureFootprint(userdto.getUser_id());
-			
-		for(Map.Entry<String, PrefectureFootprintDTO> data : prefectureFootprintList.entrySet()) {
-			PrefectureFootprintDTO dto = data.getValue();
-			String colorCN = null;
-			
-			switch (dto.getArea_name()) {
-				case "北海道地方":
-					// 北海道地方 + 訪問レベル
-					colorCN = String.format("hokkaido-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "東北地方":
-					// 東北地方 + 訪問レベル
-					colorCN = String.format("touhoku-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "関東地方":
-					// 関東地方 + 訪問レベル
-					colorCN = String.format("kantou-%d", 
-							dto.getFootprint_level());
-					colorCN = "kantou-3";
-					break;
-				
-				case "中部地方":
-					// 中部地方 + 訪問レベル
-					colorCN = String.format("tyubu-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "近畿地方":
-					// 近畿地方 + 訪問レベル
-					colorCN = String.format("kinki-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "中国地方":
-					// 中国地方 + 訪問レベル
-					colorCN = String.format("tyugoku-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "四国地方":
-					// 四国地方 + 訪問レベル
-					colorCN = String.format("sikoku-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				case "九州地方（沖縄含む）":
-					// 地方 + 訪問レベル
-					colorCN = String.format("kyusyu-%d", 
-							dto.getFootprint_level());
-					break;
-				
-				default:
-					break;
-			}
-			// 色クラスを格納
-			dto.setFootprint_color(colorCN);
-		}
-		
-		request.setAttribute("preFoots", prefectureFootprintList);
+		// [ 取得 ] ユーザーの各都道府県に訪れた回数（色クラス名対応済み）
+		Map<String, PrefectureFootprintDTO> preFootsMap = visitordao.prefectureFootprint(userdto.getUser_id());
+		// [ セット ] 取得した訪れた回数に応じた色クラス表
+		request.setAttribute("preFoots", preFootsMap);
 		
 		// ログイン済みなのでhome.jspにフォワード
 		RequestDispatcher dispatcher = request.
