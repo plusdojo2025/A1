@@ -69,7 +69,7 @@
             <c:forEach var="e" items="${visitorList}">
             	<a href="<c:url value='/VisitorServlet?pk=${e.visitor_id}' />">
             		<div class="card link-card"
-            			style="background-image: url('<c:url value="${mediaPath}/${visitor.photo1}" />');
+            			style="background-image: url('<c:url value="${mediaPath}/${e.photo1}" />');
                                background-size: cover;
                                background-position: center;
                                color: #fff;">
@@ -84,14 +84,24 @@
   		</c:if>
 		
 		<!-- ▼ 候補地 ページネーション -->
-					<c:if test="${totalPagesPickup > 1}">
-						<div class="pagination">
-							<c:forEach begin="1" end="${totalPagesPickup}" var="i">
-								<a href="${pickupServletName}?pref=${selectedPrefecture}&page=${i}&tab=tab2"
-									class="${i == currentPage ? 'active' : ''}">${i}</a>
-			   				</c:forEach>
-						</div>
-					</c:if>						
+		<c:if test="${totalPages > 1}">
+			<div class="pagination">
+				<c:forEach begin="1" end="${totalPages}" var="i">
+					<form method="post" action="<c:url value='/VisitorSearchServlet'/>" style="display:inline;">
+      					<input type="hidden" name="page" value="${i}">
+      					<input type="hidden" name="start_date" value="${param.start_date}">
+      					<input type="hidden" name="end_date" value="${param.end_date}">
+      					<input type="hidden" name="title" value="${param.title}">
+      					<input type="hidden" name="prefecture_id" value="${param.prefecture_id}">
+      					<input type="hidden" name="visitor_place" value="${param.visitor_place}">
+      					<input type="hidden" name="componion" value="${param.componion}">
+      					<input type="hidden" name="emotion_id" value="${param.emotion_id}">
+      					<input type="hidden" name="thought" value="${param.thought}">
+      					<button type="submit" class="${i == currentPage ? 'active' : ''}">${i}</button>
+    				</form> 
+			   	</c:forEach>
+			</div>
+		</c:if>						
 
 <%-- 	<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
 	<input type="hidden" name="user_id" value="${e.user_id}">

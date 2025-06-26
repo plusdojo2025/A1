@@ -148,8 +148,40 @@ public class VisitorSearchServlet extends HttpServlet {
 		// DB検索処理
 		VisitorDAO dao = new VisitorDAO();
 		List<VisitorDTO> visitorList = dao.search(dto);
+		
+		// --- ページング処理ここから ---
+		// ページング処理ここから
+		int page = 1;
+		int pageSize = 5;
+		String pageParam = request.getParameter("page");
+		if (pageParam != null) {
+		    try {
+		        page = Integer.parseInt(pageParam);
+		        if (page < 1) page = 1;
+		    } catch (NumberFormatException e) {
+		        page = 1;
+		    }
+		}
+		
+		// ページング処理
+		int totalVisitors = visitorList.size();
+		int totalPages = (int) Math.ceil((double) totalVisitors / pageSize);
+		int startIndex = (page - 1) * pageSize;
+		int endIndex = Math.min(startIndex + pageSize, totalVisitors);
+
+		List<VisitorDTO> pagedVisitorList = new ArrayList<>();
+		if (startIndex < totalVisitors) {
+			pagedVisitorList = visitorList.subList(startIndex, endIndex);
+		}	
+		request.setAttribute("visitorList", pagedVisitorList);
+		
+		
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("visitorList", visitorList);
+		request.setAttribute("visitorList", pagedVisitorList);
+		request.setAttribute("currentPage", page);			// 現在ページ
+		request.setAttribute("totalPages", totalPages);		// 総ページ数
+		// --- ページング処理ここまで ---
+		
 		
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorSearchresult.jsp");
