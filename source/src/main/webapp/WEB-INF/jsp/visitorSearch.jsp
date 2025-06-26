@@ -61,70 +61,107 @@
 		<!-- 訪問地登録 -->
 		<div id="tab1" class="tab_panel active">
 			<h2>訪問地検索</h2>
-		<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
-		<div class="center-form">
-		タイトル<input type="text" name="title"><br>
-		<div class="inline-group">
-		初日<input type="date" name="start_date">
-		&nbsp;&nbsp;&nbsp;
-		終日<input type="date" name="end_date"></div><br>
-		<div class="inline-group">
-		都道府県<select name="prefecture_id">
-					<option value="" disabled selected>選択してください</option>
-					<c:forEach var="prefecture" items="${prefectureList}">
-						<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
-					</c:forEach>
-			   </select>
-		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="visitor_place"></div><br>
-		<div class="inline-group">
-		同行者<input type="text" name="componion">
-		&nbsp;&nbsp;&nbsp;
-		感情<select name="emotion_id">
-				<option value="" disabled selected>選択してください</option>
-				<c:forEach var="emotion" items="${emoList}">
-						<option value="${emotion.emotion_id}">${emotion.emoji}</option>
-					</c:forEach>
-			</select></div><br>
-		感想<br>
-		<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea><br>
-		<div class="inline-group">
-		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		<input type="submit" name=RegistButton value="検索" class="btn-submit"></div><br>
+				<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
+					
+					<div class="center-form">
+						<div class="form-group">
+							<label for="title">タイトル</label>
+							<input type="text" name="title"><br>
+						</div>
+						
+						<div class="inline-group">
+							<div class="form-group">
+								<label for="start_date">初日</label>
+								<input type="date" name="start_date">
+							</div>
+							<div class="form-group">
+								<label for="end_date">終日</label>
+								<input type="date" name="end_date">
+							</div>
+						</div>
+					
+						<div class="inline-group">
+							<div class="form-group">
+								<label for="prefecture_id">都道府県</label>
+									<select name="prefecture_id">
+										<option value="" disabled selected>選択してください</option>
+											<c:forEach var="prefecture" items="${prefectureList}">
+												<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
+											</c:forEach>
+			   						</select>
+			   				</div>
+							<div class="form-group">
+								<label for="place">場所</label>
+								<input type="text" name="visitor_place">
+							</div>
+						</div>
+					
+						<div class="inline-group">
+							<div class="form-group">
+								<label for="componion">同行者</label>
+								<input type="text" name="componion">
+							</div>
+							
+							<div class="form-group">
+								<label for="emotion_id">感情</label>
+									<select name="emotion_id">
+										<option value="" disabled selected>選択してください</option>
+										<c:forEach var="emotion" items="${emoList}">
+											<option value="${emotion.emotion_id}">${emotion.emoji}</option>
+										</c:forEach>
+									</select>
+							</div>
+						</div>
+					
+							<div class="form-group">
+								<label for="thought">感想</label>
+								<textarea name="thought" rows="5" cols="40" class="textarea-large"></textarea>
+							</div>
+		</div>							
+							
+		<div class="search_buttons">
+			<input type="reset" name=ResetButton value="リセット" class="btn-reset">
+			<input type="submit" name=RegistButton value="検索" class="btn-submit">
 		</div>
+
 		</form>
 		</div>
 		
-		<!-- 候補地登録 -->
+		<!-- 候補地検索 -->
 		<div id="tab2" class="tab_panel">
 			<h2>候補地検索</h2>
-		<form method="POST" action="<c:url value='PickupSearchServlet'/>">
-		<div class="center-form">
-		<div class="inline-group">
-		都道府県<select name="prefecture_id">
-					<option value="" disabled selected>選択してください</option>
-					<c:forEach var="prefecture" items="${prefectureList}">
-						<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
-					</c:forEach>
-				</select>
-		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="pickup_place"></div><br>
-		備考欄<br>
-		<textarea name="remarks" rows="5" cols="40" class="textarea-large"></textarea><br>
-		<div class="inline-group">		
-		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		<input type="submit" name=RegistButton value="検索" class="btn-submit"></div><br>
-		</div>
-		</form>
-		</div>
+				<form method="POST" action="<c:url value='PickupSearchServlet'/>">
+					<div class="center-form">
+						<div class="inline-group">
+							<div class="form-group">
+								<label for="prefecture_id">※都道府県</label>
+									<select name="prefecture_id">
+									<option value="" disabled selected>選択してください</option>
+										<c:forEach var="prefecture" items="${prefectureList}">
+											<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
+										</c:forEach>
+									</select>
+								</div>
+									
+							<div class="form-group">
+								<label for="place">場所</label>
+								<input type="text" name="pickup_place">
+							</div>
+						</div>	
+							
+							<div class="form-group">
+								<label for="remarks">備考欄</label>					
+								<textarea name="remarks" rows="5" cols="40" class="textarea-large"></textarea>
+							</div>	
+					</div>
+		
+					<div class="search_buttons">	
+						<input type="reset" name=ResetButton value="リセット" class="btn-reset">
+						<input type="submit" name=RegistButton value="検索" class="btn-submit">
+					</div>
+		
+				</form>
+			</div>
 		</div>
 	</main>
 <!-- メイン(ここまで) -->

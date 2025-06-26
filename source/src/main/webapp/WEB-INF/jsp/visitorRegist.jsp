@@ -63,85 +63,141 @@
     <button class="tab_btn active" data-tab="tab1">訪問地</button>
     <button class="tab_btn" data-tab="tab2">候補地</button> 
   	</div>  
-		<!-- 訪問地登録 -->
-		<div id="tab1" class="tab_panel active">
-			<h2>訪問地登録</h2>
-		<form method="POST" action="<c:url value='/VisitorRegistServlet'/>" enctype="multipart/form-data"  id="visitorForm" >
-		<div class="center-form">
-		タイトル<input type="text" name="title"><br>
-		  <div class="inline-group">
-		※初日<input type="date" name="start_date" required>
-				&nbsp;&nbsp;&nbsp;
-		※終日<input type="date" name="end_date" required></div><br>
-		  <div class="inline-group">
-		※都道府県<select name="prefecture_id" required>
-					<option value="" disabled selected>選択してください</option>
-					<c:forEach var="prefecture" items="${prefectureList}">
-						<option value="${prefecture.prefecture_id}"
-							<c:if test="${prefecture_id == prefecture.prefecture_id}"
-	                    			>selected</c:if>
-							>${prefecture.prefecture_name}</option>
-					</c:forEach>
-			   </select>
-			   	&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="visitor_place" value="${place}" /></div><br>
-		  <div class="inline-group">
-		同行者<input type="text" name="componion">
-				&nbsp;&nbsp;&nbsp;
-		感情<select name="emotion_id">
-				<option value="" disabled selected>選択してください</option>
-				<c:forEach var="emotion" items="${emoList}">
-						<option value="${emotion.emotion_id}">${emotion.emoji}</option>
-					</c:forEach>
-			</select></div><br>
-		感想<br>
-		<textarea name="thought" rows="5" cols="40" class="textarea-large"
-			>${thought}</textarea><br>
 	
-		写真<input type="file" name="photo1"><br><br>
-		<input type="file" name="photo2"><br><br>
-		<input type="file" name="photo3"><br><br>
-		<input type="file" name="photo4"><br><br>
-		<input type="file" name="photo5"><br><br>
-				  <div class="inline-group">
-		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		<input type="button" name=RegistButton value="登録" class="btn-submit" onclick="validateAndShowDialog('visitor')" /></div><br>
-		※欄は必須項目です
-                <span id="error_message"></span>
-                </div>
+	<!-- 訪問地登録 -->
+	<div id="tab1" class="tab_panel active">
+		<h2>訪問地登録</h2>
+			<form method="POST" action="<c:url value='/VisitorRegistServlet'/>" enctype="multipart/form-data"  id="visitorForm" >
+				<div class="center-form">
+					<div class="form-group">
+						<label for="title">タイトル</label>
+						<input type="text" id="title" name="title">
+					</div>
+					
+		  <div class="inline-group">
+		  	<div class="form-group">	
+				<label for="start_date">※初日</label>
+				<input type="date" name="start_date" required>
+			</div>
+			<div class="form-group">
+				<label for="end_date">※終日</label>
+				<input type="date" name="end_date" required>
+			</div>
+		</div>
+		
+			
+		<div class="inline-group">
+			<div class="form-group">
+				<label for="prefecture_id">※都道府県</label>
+				<select name="prefecture_id" required>
+					<option value="" disabled selected>選択してください</option>
+						<c:forEach var="prefecture" items="${prefectureList}">
+							<option value="${prefecture.prefecture_id}"
+								<c:if test="${prefecture_id == prefecture.prefecture_id}">
+	                    				selected</c:if>
+								>${prefecture.prefecture_name}</option>
+						</c:forEach>
+			   	</select>
+			</div>	
+			
+			<div class="form-group">
+				<label for="place">場所</label>  				
+					<input type="text" name="visitor_place" value="${place}" />
+			</div><br>
+		</div>
+		
+		
+		<div class="inline-group">
+			<div class="form-group">
+				<label for="companion">同行者</label>
+				<input type="text" name="companion">
+			</div>
+			<div class="form-group">
+				<label for="emotion_id">感情</label>
+					<select name="emotion_id">
+						<option value="" disabled selected>選択してください</option>
+						<c:forEach var="emotion" items="${emoList}">
+							<option value="${emotion.emotion_id}">${emotion.emoji}</option>
+						</c:forEach>
+					</select>
+			</div>
+		</div>	
+		
+		<div class="form-group">
+			<label for="thought">感想</label>
+			<textarea name="thought" rows="10" class="textarea-large">${thought}</textarea><br>
+		</div>
+		
+		<div class="form-group">
+			<label for="photo1">写真1</label>	
+			<input type="file" name="photo1">
+		</div>
+		
+		<div class="form-group">
+			<label for="photo2">写真2</label>
+			<input type="file" name="photo2">
+		</div>
+		
+		<div class="form-group">
+			<label for="photo3">写真3</label>
+			<input type="file" name="photo3">
+		</div>
+		
+		<div class="form-group">
+			<label for="photo4">写真4</label>
+			<input type="file" name="photo4">
+		</div>
+		
+		<div class="form-group">
+			<label for="photo5">写真5</label>
+			<input type="file" name="photo5">
+		</div>
+	</div>
+            <div class="regist_buttons">
+			<input type="reset" value="リセット" class="btn-reset">
+			<input type="button" value="登録" class="btn-submit" onclick="validateAndShowDialog('visitor')" />
+		</div>
+			※欄は必須項目です
+               <span id="error_message"></span>
+            
+        
 		</form>
 		</div>
 		
 		<!-- 候補地登録 -->
 		<div id="tab2" class="tab_panel">
 			<h2>候補地登録</h2>
-		<form method="POST" action="<c:url value='/PickupRegistServlet'/>"  id="pickupForm" >
-		<div class="center-form">
-		  <div class="inline-group">
-		※都道府県<select name="prefecture_id" required>
-					<option value="" disabled selected>選択してください</option>
-					<c:forEach var="prefecture" items="${prefectureList}">
-						<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
-					</c:forEach>
-				</select>
-		&nbsp;&nbsp;&nbsp;
-		場所<input type="text" name="pickup_place" ></div><br>
-		備考欄<br>
-				<textarea name="remarks" rows="5" cols="40" class="textarea-large"></textarea><br><br>
-				  <div class="inline-group">
-		<input type="reset" name=ResetButton value="リセット" class="btn-reset">
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;
-		<input type="button" name=RegistButton value="登録" class="btn-submit" onclick="validateAndShowDialog('pickup')" /></div><br>
-		※欄は必須項目です
-                <span id="error_message"></span>
-         </div>
+				<form method="POST" action="<c:url value='/PickupRegistServlet'/>"  id="pickupForm" >
+					<div class="center-form">
+		  				<div class="inline-group">
+		  					<div class="form-group">
+		  						<label for="prefecture_id">※都道府県</label>
+								<select name="prefecture_id" required>
+									<option value="" disabled selected>選択してください</option>
+										<c:forEach var="prefecture" items="${prefectureList}">
+											<option value="${prefecture.prefecture_id}">${prefecture.prefecture_name}</option>
+										</c:forEach>
+								</select>
+							</div>
+								
+							<div class="form-group">
+								<label for="place">場所</label>
+								<input type="text" name="pickup_place" >
+							</div>
+						</div>
+		
+		<div class="form-group">
+			<label for="remarks">備考欄</label>
+			<textarea name="remarks" rows="10" class="textarea-large"></textarea>
+		</div>
+		</div>
+		
+		<div class="regist_buttons">
+			<input type="reset" value="リセット" class="btn-reset">
+			<input type="button" value="登録" class="btn-submit" onclick="validateAndShowDialog('pickup')" />
+		</div>
+			※欄は必須項目です
+               <span id="error_message"></span>
 		</form>
 		</div>
 		</div>
@@ -165,13 +221,14 @@
     </div>
 </div>
 <!-- ダイアログHTML(ここまで) -->
+
 <!-- [ ダイアログ / HTML ] 登録 (ここから) -->
 <div id="Regist-confirmDialog" class="custom-dialog" style="display:none;">
     <p>登録しますが、よろしいですか？</p>
     <img src="<c:url value='${imgsPath}/char/Question.png'/>" alt="登録確認">
     <div class="dialog-buttons">
+    	<button class="btn-no" onclick="handleRegistConfirm(false)">いいえ</button>
         <button class="btn-yes" onclick="handleRegistConfirm(true)">はい</button>
-        <button class="btn-no" onclick="handleRegistConfirm(false)">いいえ</button>
     </div>
 </div>
 <!-- [ ダイアログ / HTML ] 登録 (ここまで) -->

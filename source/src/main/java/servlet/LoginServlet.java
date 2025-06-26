@@ -67,11 +67,6 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		}
-			
-		
-			
-
-			
 	}
 }
 
