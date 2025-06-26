@@ -53,33 +53,36 @@ public class PrefectureFootprintDTO {
 	}
 
 	public void setFootprint_level() {
+		// 0: 色なし
 		int footprint_level = 0;
 		
-		if (this.prefecture_footprint >= 10) {
-			// 10 以上
-			footprint_level = 5;
-		}
-		else if (this.prefecture_footprint >= 7) {
-			// 7 以上
-			footprint_level = 4;
-		}
-		else if (this.prefecture_footprint >= 5) {
-			// 5 以上
-			footprint_level = 3;
-		}
-		else if (this.prefecture_footprint >= 3) {
-			// 3 以上
-			footprint_level = 2;
-		}
-		else if (this.prefecture_footprint >= 1) {
-			// 1 以上
-			footprint_level = 1;
-		}
-		else {
-			// 0以下
-			footprint_level = 0;
+		// 訪れた回数で色レベルを決める
+		switch (this.prefecture_footprint) {
+			case 1:
+				// 薄い１
+				footprint_level = 1;
+				break;
+			case 2:
+				// 薄い２
+				footprint_level = 2;
+				break;
+			case 3:
+				// 薄い３
+				footprint_level = 3;
+				break;
+			case 4:
+				// 薄い４
+				footprint_level = 4;
+				break;
+			default:
+				// 5 以上なら原色
+				if (this.prefecture_footprint >=5) {
+					footprint_level = 5;
+				}
+				break;
 		}
 		
+		// 色レベル数を格納
 		this.footprint_level = footprint_level;
 	}
 
