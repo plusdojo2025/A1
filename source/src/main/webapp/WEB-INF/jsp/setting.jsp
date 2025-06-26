@@ -20,13 +20,13 @@
     </style>
 <title>設定｜TABI×TILE</title>
 
-	<!-- 全体共通css -->
-	<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
-	<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
-	
-	<!-- 設定画面用css -->
-	<link rel="stylesheet" href="<c:url value='assets/css/setting.css'/>">
-	
+<!-- 全体共通css -->
+<link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
+<link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
+
+<!-- 設定画面用css -->
+<link rel="stylesheet" href="<c:url value='assets/css/setting.css'/>">
+
 </head>
 <body>
 
@@ -80,12 +80,15 @@
 <!-- メイン（ここから） -->
 	<main class="main">
         <form method="POST" action="<c:url value='/SettingServlet'/>" id="name_form">
+        	<!-- 予めセッションスコープに格納していたユーザーIDの情報をもらう -->
         		<input type="hidden" id="user_id" name="user_id" value='${sessionScope.user_id.user_id}'>
+
+        	<!-- ニックネームの入力欄 -->
 		    <p>ニックネームの変更</p>
 		    <label>
 		        <input type="text" id="name" class="nickname" name="nickname" value='${sessionScope.user_id.nickname}'>
 		    </label>
-		
+			<!-- 都道府県の入力欄 -->
 		    <p>都道府県の変更</p>
 		    <label>
 		        <select name="prefecture_id">
@@ -139,7 +142,7 @@
 		                <option value="47">沖縄県</option>     
 		            </select>
 		    </label>
-		    
+		    <!-- エラーメッセージの表示場所 -->
 		<div class ="login-container">
 			<c:if test="${not empty errorMessage}">
 				<p class="error-message">${errorMessage}</p>

@@ -22,7 +22,6 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// 新規登録画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 		dispatcher.forward(request, response);
@@ -43,8 +42,6 @@ public class SignUpServlet extends HttpServlet {
 		
 		UserDAO uDAO = new UserDAO();
 		if (uDAO.insert(new UserDTO(user_id,password,nickname,prefecture_id))) { // 登録成功
-
-		} else { // 登録失敗
 
 		}
 		

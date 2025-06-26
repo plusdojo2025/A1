@@ -48,6 +48,7 @@ public class GachaDAO extends DAO {
         try {
             access();
 
+            //gachaテーブルに新しい1行のデータを追加（INSERT） する
             String sql = "INSERT INTO gacha (user_id, turned_date, pickup_id) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -88,6 +89,7 @@ public class GachaDAO extends DAO {
                 result = new PickupDTO(
                     rs.getInt("pickup_id"),
                     rs.getInt("prefecture_id"),
+                    rs.getString("prefecture_name"),
                     rs.getString("pickup_place"),
                     rs.getString("remarks")
                 );

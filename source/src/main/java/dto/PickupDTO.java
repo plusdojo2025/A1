@@ -30,13 +30,14 @@ public class PickupDTO {
 	    }
 	    
 	    // ガチャ取得用
-	    public PickupDTO(int pickup_id, int prefecture_id, String pickup_place, String remarks) {
+	    public PickupDTO(int pickup_id, int prefecture_id, String prefecture_name, String pickup_place, String remarks) {
 	        this.pickup_id = pickup_id;
 	        this.prefecture_id = prefecture_id;
+	        this.prefecture_name = prefecture_name;
 	        this.pickup_place = pickup_place;
 	        this.remarks = remarks;
 	        this.user_id = null;
-	        this.prefecture_name = null;
+			/* this.prefecture_name = null; */
 	    }
 
 	// コンストラクタ
