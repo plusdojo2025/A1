@@ -147,3 +147,10 @@
     	left: 100%;
     	}
     	}
+    	
+    	
+    	.pagination a {
+    	font-size: 25px;
+    	padding: 10px;
+    	}
+    	

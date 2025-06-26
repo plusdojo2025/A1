@@ -24,10 +24,10 @@
 
 	/* ▼ タブボタン共通 */
     .tab_btn {
-    width: 150px;
+    width: 200px;
     heighf: 100%;
     padding: 5px 10px;
-    font-size: 14px;
+    font-size:22px;
     /* デフォルトの色設定 */
     color: black;
     background-color: #d9f0f9;
@@ -57,6 +57,9 @@
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
+    border-radius: 100px;         /* 角丸 */
+    padding: 20px 30px;         /* 内側余白 */
+    box-sizing: border-box;     /* padding込みで幅計算 */
     text-align: center;
     }
     

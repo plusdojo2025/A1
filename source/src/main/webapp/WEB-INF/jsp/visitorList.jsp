@@ -67,8 +67,8 @@
 		<div class="tab_wrap tab-center">
     		<!--タブメニュー-->
   			<div class="tab_area">
-   				 <button class="tab_btn <c:if test='${activeTab == "tab1"}'>active</c:if>" data-tab="tab1">訪問地一覧</button>
-  				<button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>"  data-tab="tab2">候補地一覧</button>
+   				 <button class="tab_btn <c:if test='${activeTab == "tab1"}'>active</c:if>" data-tab="tab1">訪問地</button>
+  				<button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>"  data-tab="tab2">候補地</button>
 			</div>
 			
 			<!-- タブ切り替え用 -->

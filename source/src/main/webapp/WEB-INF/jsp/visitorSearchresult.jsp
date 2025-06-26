@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 
 <!-- 結果表示 -->
-<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
+
 <link rel="stylesheet" href="<c:url value='assets/css/result.css'/>">
 </head>
 <body>
@@ -56,6 +56,7 @@
 <!-- ヘッダー(ここまで) -->
 <!-- メイン（ここから） -->
 	<main>
+	<div class="center">
 	
 	<!-- 訪問地検索結果一覧 -->
 		<h2>訪問地 検索結果</h2>
@@ -66,6 +67,7 @@
     	</c:if>
 
 		<c:if test="${not empty visitorList}">
+		<div class="card_list">
             <c:forEach var="e" items="${visitorList}">
             	<a href="<c:url value='/VisitorServlet?pk=${e.visitor_id}' />">
             		<div class="card link-card"
@@ -81,6 +83,7 @@
 					</div>			
 				</a>		
 			</c:forEach>
+		<div>
   		</c:if>
 		
 		<!-- ▼ 候補地 ページネーション -->
@@ -101,8 +104,9 @@
     				</form> 
 			   	</c:forEach>
 			</div>
-		</c:if>						
-
+		</c:if>
+	</div>					
+	</main>	
 <%-- 	<form method="POST" action="<c:url value='/VisitorSearchServlet'/>">
 	<input type="hidden" name="user_id" value="${e.user_id}">
 	訪問開始日<input type="text" name="start_date" value="${e.start_date}"><br>
@@ -118,7 +122,7 @@
 	
 	
 		
-	</main>
+	
 <!-- メイン(ここまで) -->
 
 <!-- フッター(ここから) -->

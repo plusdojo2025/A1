@@ -1,11 +1,35 @@
+.center {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto 0;
+    margin-top: 40px; 
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 100px;         /* 角丸 */
+    padding: 20px 30px;         /* 内側余白 */
+    box-sizing: border-box;
+    display: block;     /* padding込みで幅計算 */
+	}
+	
+	.center h2 {
+    margin-bottom: 10px;
+    }
+	
+	.center:active{
+    
+    }
+	
 /* 一覧のカード用CSS */
 	.card_list {
 	display: flex;
 	flex-direction: column;
-	gap: 25px;
-	padding: 30px;
-	max-width: 600px;
+	gap: 10px;
+	width: 100%;
+    max-width: 800px;
 	margin: 0 auto;
+	padding: 20px;
+	box-sizing: border-box;
+
 	}
 
 	/* カード本体 */
@@ -20,9 +44,12 @@
 	padding: 15px 20px;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 	margin-bottom: 10px;
-	width: 100%;
+
 	}
 	
+	/* h2 titleの中央寄せ */
+
+
 	/* タイトル(左上に固定) */
    .card_title {
    position: absolute;
@@ -72,4 +99,24 @@
    .card:hover {
    transform: scale(1.03);
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   /* -- ページング -- */
+   .pagination button {
+   background: none;
+   border: none;
+   padding: 0;
+   margin: 0 5px;
+   font-size: 25px;
+   cursor: pointer;
+   color: black;
+   text-decoration: none;
+   }
+   
+   .pagination button:hover {
+   text-decoration: underline;
+   }
+   
+   form {
+   padding: 10px;
    }
