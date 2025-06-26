@@ -95,6 +95,40 @@ public class PickupSearchServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("pickupList", pickupList);
 		
+		// --- ページング処理ここから ---
+		// ページング処理ここから
+		int page = 1;
+		int pageSize = 5;
+		String pageParam = request.getParameter("page");
+		if (pageParam != null) {
+		    try {
+		        page = Integer.parseInt(pageParam);
+		        if (page < 1) page = 1;
+		    } catch (NumberFormatException e) {
+		        page = 1;
+		    }
+		}
+		
+		// ページング処理
+		int totalPickups = pickupList.size();
+		int totalPagesPickup = (int) Math.ceil((double) totalPickups / pageSize);
+		int startIndex = (page - 1) * pageSize;
+		int endIndex = Math.min(startIndex + pageSize, totalPickups);
+
+		List<PickupDTO> pagedPickupList = new ArrayList<>();
+		if (startIndex < totalPickups) {
+			pagedPickupList = pickupList.subList(startIndex, endIndex);
+		}	
+		request.setAttribute("pickupList", pagedPickupList);
+		
+		
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("pickupList", pagedPickupList);
+		request.setAttribute("currentPage", page);			// 現在ページ
+		request.setAttribute("totalPagesPickup", totalPagesPickup);		// 総ページ数
+		// --- ページング処理ここまで ---
+
+		
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pickupSearchresult.jsp");
 		dispatcher.forward(request, response);

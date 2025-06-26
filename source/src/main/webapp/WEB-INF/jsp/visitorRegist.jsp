@@ -60,8 +60,8 @@
 	<div class="tab_wrap">
     <!--タブメニュー-->
   	<div class="tab_area">
-    <button class="tab_btn active" data-tab="tab1">訪問地登録</button>
-    <button class="tab_btn" data-tab="tab2">候補地登録</button> 
+    <button class="tab_btn active" data-tab="tab1">訪問地</button>
+    <button class="tab_btn" data-tab="tab2">候補地</button> 
   	</div>  
 		<!-- 訪問地登録 -->
 		<div id="tab1" class="tab_panel active">

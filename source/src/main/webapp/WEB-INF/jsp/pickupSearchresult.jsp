@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 
 <!-- 結果表示 -->
-<link rel="stylesheet" href="<c:url value='assets/css/tab.css'/>">
+<link rel="stylesheet" href="<c:url value='assets/css/result.css'/>">
 </head>
 <body>
 <!-- ヘッダー（ここから） -->
@@ -51,24 +51,51 @@
 <!-- メイン（ここから） -->
 	<main>
 	<!-- 候補地検索結果一覧 -->
-	<h2>候補地検索結果一覧</h2>
-	<hr>
-<c:forEach var="pickup" items="${pickupList}">
-	<form method="POST" action="<c:url value='/PickupSearchServlet'/>"> 
-	<tr>
-        <td>${pickup.pickup_id}</td>
+	<div class="center">
+	
+	<h2>候補地 検索結果</h2>
+			<c:if test="${empty pickupList}">
+			<p>指定された条件に一致するデータはありません。</p>
+			<img src="<c:url value='/assets/imgs/char/Ojigi.png' />" width="100" alt="">
+    	</c:if>
+
+					<c:if test="${not empty pickupList}">
+					<div class="card_list">
+						<c:forEach var="pickup" items="${pickupList}">
+							<a href="<c:url value='/PickupServlet?pk=${pickup.pickup_id}'/>">
+								<div class="card link-card" >
+									<h3 class="card_title">${pickup.prefecture_name} </h3>
+									<div class="card_text_area">
+										<p class="card_text">${pickup.pickup_place}</p>
+										<p class="card_text">${pickup.remarks}</p>
+									</div>
+								</div>
+							</a>
+						</c:forEach>
+						</div>
+					</c:if>
+					
+					<!-- ▼ 候補地 ページネーション -->
+					<c:if test="${totalPagesPickup > 1}">
+						<div class="pagination">
+							<c:forEach begin="1" end="${totalPagesPickup}" var="i">
+						<form method="post" action="<c:url value='/PickupSearchServlet'/>" style="display:inline;">
+      					<input type="hidden" name="page" value="${i}">
+      					<input type="hidden" name="prefecture_name" value="${param.prefecture_name}">
+      					<input type="hidden" name="pickup_place" value="${param.pickup_place}">
+      					<input type="hidden" name="remarks" value="${param.remarks}">
+      					<button type="submit" class="${i == currentPage ? 'active' : ''}">${i}</button>
+    				</form> 
+							
+			   				</c:forEach>
+						</div>
+					</c:if>
+	
+      <!--   <td>${pickup.pickup_id}</td>
         <td>${pickup.pickup_place}</td>
-        <td>${pickup.prefecture_name}</td>  <!-- ← ここ -->
-        <td>${pickup.remarks}</td>
-  </tr>
-  </form>
-</c:forEach>
-
-<c:if test="${empty pickupList}">
-<p>指定された条件に一致するデータはありません。</p>
-
-</c:if>
-			
+        <td>${pickup.prefecture_name}</td>  
+        <td>${pickup.remarks}</td> -->
+		</div>	
 	</main>
 <!-- メイン(ここまで) -->
 
