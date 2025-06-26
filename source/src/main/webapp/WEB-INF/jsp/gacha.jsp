@@ -6,7 +6,7 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>｜TABI×TILE</title>
+	<title>ガチャ｜TABI×TILE</title>
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
@@ -26,7 +26,7 @@
 			<a href="<c:url value='/GachaServlet'/>"><img src="<c:url value='/assets/imgs/icons/gacha.png' />" width="100" ></a>
 			<a href="<c:url value='/QaServlet'/>"><img src="<c:url value='/assets/imgs/icons/qa.png' />" width="100" ></a>
 			<a href="<c:url value='/SettingServlet'/>"><img src="<c:url value='/assets/imgs/icons/setting.png' />" width="100" ></a>
-			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="0" ></a>
+			<a href="<c:url value='/LogoutServlet'/>" onclick="showConfirmDialog(); return false;"><img src="<c:url value='/assets/imgs/icons/logout.png' />" width="100" ></a>
 		</div>
 	</div>
 <!-- ニックネーム表示 -->
@@ -48,22 +48,19 @@
 	</header>
 
 <!-- メイン -->
-<main>
-	<div class="panel">
-		<p>行きたい場所からランダムで<br>一日一回ガチャが引けます</p>
-	</div>
+	<main class="gacha-main">
+  <h2 class="gacha-title">行きたい場所からランダムで<br>一日一回ガチャが引けます</h2>
 
-	<c:if test="${not empty errorMsg}">
-		<div class="error-dialog center">${errorMsg}</div>
-	</c:if>
+  <div class="gacha-box">
+    <img src="<c:url value='/assets/imgs/icon/gacha.png' />" alt="ガチャ画像" class="gacha-image">
+  </div>
 
-	<form action="GachaServlet" method="post">
-		<button type="submit" id="GachaButton">
-			<img src="img/gacha_icon.png" alt="ガチャアイコン" class="button-icon">
-			ガチャを引く
-		</button>
-	</form>
-</main>
+  <div class="gacha-button-area">
+    <form action="GachaServlet" method="post">
+      <button class="gacha-button">ガチャを引く</button>
+    </form>
+  </div>
+	</main>
 
 <!-- フッター(ここから) -->
 	<div class="footer">

@@ -6,12 +6,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>｜TABI×TILE</title>
+<title>ガチャ｜TABI×TILE</title>
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
 <!-- ガチャ画面用css -->
-<link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>">
+<%-- <link rel="stylesheet" href="<c:url value='assets/css/gacha.css'/>"> --%>
 
 </head>
 <body>
@@ -51,39 +51,16 @@
 
 <!-- メイン（ここから） -->
 	<main>
-		<%-- <div class="panel">
-		<p><c:out value="${errorMsg}" /></p>
-
-		<div class="error-image">
-			<img src="assets/imgs/char/Ojigi.png" alt="お辞儀" width="100">
-		</div>
-
-		<div class="button-row">
-			<form action="HomeServlet" method="get">
-				<button type="submit" class="error-button">ホームへ戻る</button>
-			</form>
-			<c:if test="${not empty showHistoryButton}">
-				<form action="GachaResultServlet" method="get">
-					<button type="submit" class="error-button">今日の結果を見る</button>
-				</form>
-			</c:if>
-		</div>
-	</div> --%>
-	
-	<div class="panel">
-		<p>${errorMsg}</p>
-		<div class="error-image">
-			<img src="img/error_icon.png" alt="エラー画像" width="100">
-		</div>
-		<div class="button-row">
-			<form action="HomeServlet" method="get">
-				<button type="submit">はい</button>
-			</form>
-			<form action="GachaResultServlet" method="get">
-				<button type="submit">今日の結果を見る</button>
-			</form>
-		</div>
-	</div>
+		<div class="error-panel center">
+    <img src="<c:url value='/assets/imgs/char/Ojigi.png'/>" alt="エラー" class="error-icon" />
+    <p class="error-message">${errorMsg}</p>
+    <div class="error-buttons">
+      <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a>
+		
+		<p>行きたい場所が登録されていません。</p>
+        <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a>
+    </div>
+  </div>
 	</main>
 <!-- メイン(ここまで) -->
 

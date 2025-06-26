@@ -5,7 +5,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>｜TABI×TILE</title>
+<title>ガチャ結果｜TABI×TILE</title>
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='assets/css/common.css'/>">
 <link rel="stylesheet" href="<c:url value='assets/css/custom.css'/>">
@@ -50,32 +50,25 @@
 
 <!-- メイン（ここから） -->
 	<main>
-		<img src="assets/imgs/icons/kapsel_open.png" alt="カプセル画像" width="120">
-	<div class="balloon">
-		<c:choose>
-			<c:when test="${not empty pickup}">
-				<p><strong>${pickup.placeName}</strong> に決定！！</p>
-				<p>地域：${pickup.region}</p>
-				<p>メモ：${pickup.memo}</p>
-				<form action="PickupServlet" method="get">
-					<button type="submit" id="Detail">行きたいリストへ</button>
-				</form>
-			</c:when>
-			<c:otherwise>
-				<p>行きたい場所が登録されていません。</p>
-				<a href="<c:url value='/RegistServlet' />">場所を登録する</a>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	
-	<%-- <img src="img/capsule.png" alt="カプセル画像" width="120">
-	<div class="balloon">
-		<%= result != null ? result.getPickup_name() : "場所不明" %> に決定！！
-		<form action="PickUpServlet" method="get">
-			<input type="hidden" name="pickup_id" value="<%= result != null ? result.getPickup_id() : 0 %>">
-			<button type="submit">行きたいリストへ</button>
-		</form>
-	</div> --%>
+		<img src="<c:url value='/assets/imgs/icons/kapsel_open.png' />" alt="カプセル画像" width="120">
+
+    <div class="balloon">
+        <c:choose>
+            <c:when test="${not empty sessionScope.selectedPickup}">
+                <p><strong>${sessionScope.selectedPickup.pickup_place}</strong> に決定！！</p>
+                <p>地域：${sessionScope.selectedPickup.prefecture_name}</p>
+                <p>メモ：${sessionScope.selectedPickup.remarks}</p>
+
+                <p><a class="goto-link" href="<c:url value='/PickupServlet?pk=${sessionScope.selectedPickup.pickup_id}' />">
+					▶ 行きたいリストへ
+				</a></p>
+            </c:when>
+            <c:otherwise>
+                <p>行きたい場所が登録されていません。</p>
+                <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a>
+            </c:otherwise>
+        </c:choose>
+    </div>
 	</main>
 <!-- メイン(ここまで) -->
 
