@@ -77,12 +77,24 @@ public class GachaDAO extends DAO {
             access();
 
             String sql = """
-                SELECT p.pickup_id, p.prefecture_id, p.pickup_place, p.remarks
-                FROM gacha g
-                JOIN pickups p ON g.pickup_id = p.pickup_id
-                WHERE g.user_id = ? AND DATE(g.turned_date) = CURDATE()
-                ORDER BY g.turned_date DESC
-                LIMIT 1;
+                SELECT
+				    p.pickup_id,
+				    p.prefecture_id,
+				    pf.prefecture_name,
+				    p.pickup_place,
+				    p.remarks
+				FROM
+				    gacha g
+				JOIN
+				    pickups p ON g.pickup_id = p.pickup_id
+				JOIN
+				    prefectures pf ON p.prefecture_id = pf.prefecture_id
+				WHERE
+				    g.user_id = ?
+				    AND DATE(g.turned_date) = CURDATE()
+				ORDER BY
+				    g.turned_date DESC
+				LIMIT 1;
             """;
             
             System.out.println("UserDAOで取得したデータ"+sql);

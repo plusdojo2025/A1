@@ -6,46 +6,28 @@
 
 <link rel="stylesheet" href="<c:url value='${cssPath}/badge.css'/>">
 
+<c:if test="${empty sessionScope.badgeList}">
+  <p style="color:red;">バッジリストが空です！Servletでセットされていない可能性があります。</p>
+</c:if>
+
+<c:forEach var="k" items="${sessionScope.badgeList}">
+  <p>DEBUG: ${k.badge_id} - ${k.badge_name} - ${k.badgeAcquiredDate}</p>
+</c:forEach>
+
 <!-- バッジ画像差し替えスクリプト -->
 <script>
-
-   document.addEventListener("DOMContentLoaded", function () {
-       let imgElem;
-	  <c:set var="count" value="1" />
-	  <c:forEach var="e" items="${sessionScope.badgeList}" varStatus="status">
-	  
-    	<c:forEach var="i" begin="1" end="9">
-    	/* alert(${count}) */
-		      <c:if test="${e.badge_id == count}">
-		        imgElem = document.getElementById("${count}");
-		        
-		        
-		         if (imgElem) { 
-		          imgElem.src = "<c:url value='${imgsPath}/badges/${e.badge_image}' />";
-		          
-		         } 
-		      </c:if>
-	     	 <c:set var="count" value="${count + 1}" />
-	      </c:forEach>
- 	      <c:set var="count" value="1" /> 
-       <c:if test="${e.badge_id != status.index + 1}">
-     		 ${status.index}
-   	 </c:if> 
-    </c:forEach>
-  }); 
-/*   let imgElem;
   document.addEventListener("DOMContentLoaded", function () {
-	  
-	  <c:forEach var="e" items="${sessionScope.badgeList}" varStatus="status">
-	  
-    	
-	        imgElem = document.getElementById("${status.index+1}");  
-	        
-	      	imgElem.src = "<c:url value='/assets/imgs/badges/${e.badge_image}' />";      
-
-	  </c:forEach>
-
-  }); */
+    <c:forEach var="b" items="${sessionScope.badgeList}">
+      const img = document.getElementById("${b.badge_id}");
+      if (img && "${b.badgeAcquiredDate}" !== "null") {
+        img.src = "<c:url value='${imgsPath}/badges/${b.badge_image}'/>";
+        const date = document.getElementById("date${b.badge_id}");
+        if (date) {
+          date.textContent = "${fn:substring(b.badgeAcquiredDate, 0, 10)}";
+        }
+      }
+    </c:forEach>
+  });
 </script>
 
 <!-- 初期状態 empty.png で3×3 -->
@@ -99,4 +81,51 @@
 	 		</div>
 	 	</c:if>
 	 </c:forEach>
- </div>
+ </div> --%>
+ 
+ 
+ <h2>デバッグ出力：バッジ一覧</h2>
+<ul>
+<c:forEach var="b" items="${sessionScope.badgeList}">
+  <li>${b.badge_name}：${b.badgeAcquiredDate}</li>
+</c:forEach>
+</ul>
+
+ <%-- <div class="badge-grid">
+  <c:forEach var="b" items="${sessionScope.badgeList}">
+    <div class="badge-cell">
+      <img 
+        src="<c:url value='/assets/imgs/badges/${empty b.badgeAcquiredDate ? "empty.png" : b.badge_image}' />" 
+        alt="バッジ画像" 
+        width="80" height="80"
+      />
+      <p>
+        <c:if test="${not empty b.badgeAcquiredDate}">
+          <fmt:formatDate value="${b.badgeAcquiredDate}" pattern="yyyy/MM/dd"/>
+        </c:if>
+      </p>
+    </div>
+  </c:forEach>
+</div> --%>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    <c:forEach var="b" items="${sessionScope.badgeList}">
+      const img = document.getElementById("${b.badge_id}");
+      if (img) {
+        img.src = "<c:url value='${imgsPath}/badges/${b.badge_image}'/>";
+      }
+
+      const date = document.getElementById("date${b.badge_id}");
+      if (date) {
+        date.textContent = "${fn:substring(b.badgeAcquiredDate, 0, 10)}";
+      }
+    </c:forEach>
+  });
+</script>
+
+
+
+<p>badgeListの確認：</p>
+<c:out value="${sessionScope.badgeList}" />

@@ -34,7 +34,8 @@ public class GachaResultServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
     	HttpSession session = request.getSession();
-        UserDTO user = (UserDTO) session.getAttribute("user_id");
+		UserDTO user = (UserDTO) session.getAttribute("user_id");
+		/* UserDTO user = (UserDTO) session.getAttribute("loginUser"); */
         
         //ログインしていなかったらログインページに遷移する。
         if (user == null) {
