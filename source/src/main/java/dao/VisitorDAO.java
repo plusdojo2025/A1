@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import dto.AreaDTO;
 import dto.PrefectureFootprintDTO;
@@ -438,6 +439,12 @@ public class VisitorDAO extends DAO {
 			System.out.println();
 		}
 		
+		// 取得（地方を含む）失敗したら
+		if (Objects.isNull(prefecturefootprintMap) == true){
+			// 色付け出来ない為、終了する
+			return prefecturefootprintMap;
+		}
+
 		
 		// 訪れた回数ごとに色クラス名を決めます
 		for(Map.Entry<String, PrefectureFootprintDTO> data : prefecturefootprintMap.entrySet()) {
