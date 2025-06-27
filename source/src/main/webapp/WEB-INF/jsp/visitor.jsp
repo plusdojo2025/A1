@@ -17,6 +17,8 @@
 <!-- 全体共通css -->
 <link rel="stylesheet" href="<c:url value='${cssPath}/common.css'/>">
 <link rel="stylesheet" href="<c:url value='${cssPath}/custom.css'/>">
+<!-- 個別css -->
+<link rel="stylesheet" href="<c:url value='${cssPath}/detail.css'/>">
 </head>
 <body>
 
@@ -83,192 +85,206 @@
 <!-- ヘッダー(ここまで) -->
 
 <!-- メイン（ここから） -->
-	<main
-	    ><form
-	    	method="POST"
-	    	action="<c:url value='/VisitorServlet' />"
-	    	enctype="multipart/form-data"
-	        ><div
-	            ><label
-	                ><span
-	                    >開始日</span
-	                ><input type="date"
-	                    name="start_date"
-	                    value="${visitor.start_date}"
-	            /></label
-	            ><label
-	                ><span
-	                    >終了日</span
-	                ><input type="date"
-	                    name="end_date"
-	                    value="${visitor.end_date}"
-	            /></label
-	            ><label
-	                ><span
-	                    >タイトル</span
-	                ><input type="text"
-	                    name="title"
-	                    value="${visitor.title}"
-	            /></label
-	        ></div
-	        ><div
-	            ><label
-	                ><span
-	                    >都道府県</span
-	                ><select name="prefecture"
-	                    ><option value="" 
-	                    	disabled
-	                    		>選択してください</option
-                    		><c:forEach 
-		                    	var="pre" 
-		                    	items="${prefList}"
-	                    	><option 
-	                    		value="${pre.prefecture_id}"
-	                    		<c:if test="${visitor.prefecture_id == pre.prefecture_id}"
-	                    			>selected</c:if>
-                    				>${pre.prefecture_name}</option
-                   		></c:forEach
-	                ></select
-	            ></label
-	            ><label
-	                ><span
-	                    >場所</span
-	                ><input type="text"
-	                    name="place"
-	                    value="${visitor.visitor_place}"
-	            /></label
-	        ></div
-	        ><div
-	            ><label
-	                ><span
-	                    >同行者</span
-	                ><input type="text"
-	                    name="componion"
-	                    value="${visitor.componion}"
-	            /></label
-	            ><label
-	                ><span
-	                    >感情</span
-	                ><select name="emotion"
-	                    ><option value="" 
-		                    	disabled
-		                    	<c:if test="${visitor.emotion_id == -1}"
-		                    		>selected</c:if> 
-	                    		>選択してください</option
-	                    	><c:forEach 
-		                    	var="emo" 
-		                    	items="${emoList}"
-	                    	><option 
-	                    		value="${emo.emotion_id}"
-	                    		<c:if test="${visitor.emotion_id == emo.emotion_id}"
-	                    			>selected</c:if>
-                    				>${emo.emoji}</option
-                   		></c:forEach
-	                ></select
-	            ></label
-	        ></div
-	        ><div
-	            ><label
-	                ><span
-	                    >感想</span
-	                ><textarea name="thought"
-	                    >${visitor.thought}</textarea
-	            ></label
-	        ></div
-	        ><div class="photos"
-	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${uploadPath}/${visitor.photo1}'/>" 
-	                alt="写真1"
-	                width="300"
-	        	/><input type="hidden"
-					name="delReq1" 
-	        		value="しない"
-	        	/><button type="button"
-	        		<c:if test='${empty visitor.photo1}'
-	        			>disabled="disabled"</c:if>
-	        		>削除</button
-				><input type="file" 
-	        		accept="image/*"
-	        		name="photo1"
-	        /></div
-	        ><div class="photos"
-	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${uploadPath}/${visitor.photo2}'/>" 
-	                alt="写真2"
-	                width="300"
-	        	/><input type="hidden"
-					name="delReq2" 
-	        		value="しない"
-	        	/><button type="button"
-	        		<c:if test='${empty visitor.photo2}'
-	        			>disabled="disabled"</c:if>
-	        		>削除</button
-				><input type="file" 
-	        		accept="image/*"
-	        		name="photo2"
-	        /></div
-	        ><div class="photos"
-	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${uploadPath}/${visitor.photo3}'/>" 
-	                alt="写真3"
-	                width="300"
-	        	/><input type="hidden"
-					name="delReq3" 
-	        		value="しない"
-	        	/><button type="button"
-	        		<c:if test='${empty visitor.photo3}'
-	        			>disabled="disabled"</c:if>
-	        		>削除</button
-				><input type="file" 
-	        		accept="image/*"
-	        		name="photo3"
-	        /></div
-	        ><div class="photos"
-	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${uploadPath}/${visitor.photo4}'/>" 
-	                alt="写真4"
-	                width="300"
-	        	/><input type="hidden"
-					name="delReq4" 
-	        		value="しない"
-	        	/><button type="button"
-	        		<c:if test='${empty visitor.photo4}'
-	        			>disabled="disabled"</c:if>
-	        		>削除</button
-				><input type="file" 
-	        		accept="image/*"
-	        		name="photo4"
-	        /></div
-	        ><div class="photos"
-	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${uploadPath}/${visitor.photo5}'/>" 
-	                alt="写真5"
-	                width="300"
-	        	/><input type="hidden"
-					name="delReq5" 
-	        		value="しない"
-	        	/><button type="button"
-	        		<c:if test='${empty visitor.photo5}'
-	        			>disabled="disabled"</c:if>
-	        		>削除</button
-				><input type="file" 
-	        		accept="image/*"
-	        		name="photo5"
-	        /></div
-	        ><div
-	            ><button type="button"
-	                name="DeleteButton"
-	                >削除</button
-	            ><button type="button"
-	                name="UpdateButton"
-	                >更新</button
-	        ></div
-	        ><div
-	            ><button
-					type="button"
-	            	>前のリストに戻る</button
-	       	></div
-	    ></form>
+	<main>
+		<form method="POST"
+	    		action="<c:url value='/VisitorServlet' />"
+	    		enctype="multipart/form-data"
+	    		class="container-center">
+	    	<div class="card">
+				<!-- タイトル -->
+				<div class="title-container"
+					><label
+						><span
+							>タイトル</span
+						><br
+						/><input type="text" 
+							name="title" 
+							value="${visitor.title}"
+					/></label
+				></div>
+
+
+	    		<table class="table-center">
+        			<!-- 初日・終日 -->
+					<tr
+						><td
+							><label 
+								for="start_date"
+								>初日</label
+						></td
+						><td
+							><label 	
+								for="end_date"
+								>終日</label
+						></td
+					></tr
+					><tr
+        				><td
+							><input 
+								type="date" 
+								name="start_date" 
+								value="${visitor.start_date}" 
+						/></td>
+        				<td
+							><input 
+								type="date" 
+								name="end_date" 
+								value="${visitor.end_date}" 
+						/></td
+      				></tr>
+	    			
+	    			<!-- 都道府県・場所 -->
+	    			<tr
+						><td
+							><label 
+								for="prefecture"
+								>都道府県</label
+						></td
+						><td
+							><label 
+								for="place"
+								>場所</label
+						></td
+					></tr>
+					<tr
+						><td
+							><select 
+								name="prefecture"
+            					><option value="" disabled
+									>選択してください</option>
+            					<c:forEach var="pre" items="${prefList}">
+              						<option value="${pre.prefecture_id}" <c:if test="${visitor.prefecture_id == pre.prefecture_id}">
+              						selected</c:if>>${pre.prefecture_name}</option>
+            					</c:forEach>
+          					</select
+       					></td
+        				><td
+							><input 
+								type="text" 
+								name="visitor_place" 
+								value="${visitor.visitor_place}" 
+						/></td
+        			></tr>
+
+        			<!-- 同行者・感情 -->
+        			<tr>
+        				<td
+							><label 
+								for="componion"
+								>同行者</label
+						></td>
+        				<td
+							><label 
+								for="emotion"
+								>感情</label
+						></td>
+					</tr>
+					<tr
+        				><td
+							><input 
+								type="text" 
+								name="componion" 
+								value="${visitor.componion}" 
+						/></td>
+        				<td
+							><select name="emotion"
+            					><option value="" disabled <c:if test="${visitor.emotion_id == -1}">selected</c:if>>選択してください</option>
+            					<c:forEach var="emo" items="${emoList}">
+              						<option value="${emo.emotion_id}" <c:if test="${visitor.emotion_id == emo.emotion_id}">
+              						selected</c:if>>${emo.emoji}</option>
+            					</c:forEach>
+          					</select>
+       					 </td>
+      				</tr>
+      			</table>
+
+				<!-- 感想 -->
+				<div class="title-container"
+					><label
+						><span
+							>感想</span
+						><br
+						/><textarea 
+							class="thought"
+							name="thought"
+							rows="10"
+							>${visitor.thought}</textarea
+					></label
+				></div>
+
+      			<table>	
+      				<!-- 写真1 -->
+      				<tr>
+      					<td><label for="photo1">写真1</label></td>
+      					<td colspan="3" class="photos">
+      						<img src="<c:url value='${uploadPath}/${visitor.photo1}'/>" alt="写真1" width="300" />
+      						<br/><input type="hidden" name="delReq1" value="しない" />
+      							<button type="button" class="btn delete"
+      								<c:if test='${empty visitor.photo1}'>disabled="disabled"</c:if>>削除</button>
+      						<input type="file" accept="image/*" name="photo1" />
+      					</td>
+      				</tr>
+
+					<!-- 写真2 -->
+					<tr>
+  						<td><label for="photo2">写真2</label></td>
+  						<td colspan="3" class="photos">
+    						<img src="<c:url value='${uploadPath}/${visitor.photo2}'/>" alt="写真2" width="300" />
+    						<br/><input type="hidden" name="delReq2" value="しない" />
+    							<button type="button" class="btn delete"
+      								<c:if test='${empty visitor.photo2}'>disabled="disabled"</c:if>>削除</button>
+    						<input type="file" accept="image/*" name="photo2" />
+  						</td>
+					</tr>
+
+					<!-- 写真3 -->
+					<tr>
+  						<td><label for="photo3">写真3</label></td>
+  						<td colspan="3" class="photos">
+    						<img src="<c:url value='${uploadPath}/${visitor.photo3}'/>" alt="写真3" width="300" />
+    						<br/><input type="hidden" name="delReq3" value="しない" />
+    							<button type="button" class="btn delete"
+      								<c:if test='${empty visitor.photo3}'>disabled="disabled"</c:if>>削除</button>
+    						<input type="file" accept="image/*" name="photo3" />
+  						</td>
+					</tr>
+
+					<!-- 写真4 -->
+					<tr>
+  						<td><label for="photo4">写真4</label></td>
+  						<td colspan="3" class="photos">
+    						<img src="<c:url value='${uploadPath}/${visitor.photo4}'/>" alt="写真4" width="300" />
+    						<br/><input type="hidden" name="delReq4" value="しない" />
+    							<button type="button" class="btn delete"
+      								<c:if test='${empty visitor.photo4}'>disabled="disabled"</c:if>>削除</button>
+    						<input type="file" accept="image/*" name="photo4" />
+ 						 </td>
+					</tr>
+
+					<!-- 写真5 -->
+					<tr>
+  						<td><label for="photo5">写真5</label></td>
+  						<td colspan="3" class="photos">
+    						<img src="<c:url value='${uploadPath}/${visitor.photo5}'/>" alt="写真5" width="300" />
+    						<br/><input type="hidden" name="delReq5" value="しない" />
+    							<button type="button" class="btn delete"
+      								<c:if test='${empty visitor.photo5}'>disabled="disabled"</c:if>>削除</button>
+    						<input type="file" accept="image/*" name="photo5" />
+  						</td>
+					</tr>
+      			</table>
+      		</div>
+			
+				<!-- フォーム送信ボタン -->
+				<div class="contents-btn">
+  					<button class="btn delete" type="button" name="DeleteButton">削除</button>
+  					<button class="btn update" type="button" name="UpdateButton">更新</button>
+				</div>
+				
+				<div class="return-buttons">
+  					<button type="button" class="btn" onclick="history.back()">前のリストに戻る</button>
+				</div>
+			</form>
 	</main>
 <!-- メイン(ここまで) -->
 

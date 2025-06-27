@@ -150,11 +150,15 @@
 	                >更新</button
 	            ><button type="button"
 	            	name="VisitorButton"
-	            	class="btn moved	"
+	            	class="btn moved"
 	                >訪問</button
 	        ></div
 	        ><div class="return-buttons"
-	        	><button type="button" onclick="history.back()">前のリストに戻る</button
+	        	><button 
+					type="button" 
+					class="btn"
+					onclick="history.back()"
+					>前のリストに戻る</button
 	        ></div
 	     ></form
     ></main>

@@ -7,8 +7,45 @@
 /* コンテナ（中央寄せ） */
 .container-center {
     margin: 0px auto;
-    width: 50%;
+    width: 75%;
 }
+
+
+.card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+/* 初日 */
+/* 終日 */
+/* 都道府県 */
+/* 場所 */
+/* 同行者 */
+/* 感情 */
+.title-container input[name="title"],
+.table-center input[name="start_date"],
+.table-center input[name="end_date"],
+.table-center select[name="prefecture"],
+.table-center input[name="visitor_place"],
+.table-center input[name="componion"],
+.table-center select[name="emotion"],
+/* 候補地のみ */
+/* 場所 */
+.table-center input[name="place"]
+{
+	margin: 5px 0;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
+
 
 /* 二列の入力欄（テーブル） */
 .table-center {
@@ -25,13 +62,26 @@
 
 /* 備考 */
 /* 感想 */
-.remarks,
-.thought {
+.thought, 
+.remarks
+{
     /* 親の幅に準拠させる */
     width: 100%;
     border-radius: 5px;
 }
 
+/* 感想 */
+/* 備考 */
+.title-container textarea[name="thought"],
+textarea[name="remarks"]
+{
+	margin: 5px 0;
+  font-size: 18px;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
 
 /* 操作する */
 .contents-btn {
@@ -43,6 +93,8 @@
     column-gap: 50px;
     /* 横の中央寄せ */
     justify-content: center;
+    /* 上余白を開ける */
+    margin-top: 30px;
 }
 
 /* ボタン全体 */
@@ -55,12 +107,30 @@
     border-radius: 10px;
 }
 
+.contents-btn .btn.delete,
+.contents-btn .btn.btn.update,
+.contents-btn .btn.btn.btn.moved
+{
+  	width: 180px;
+  	height: 70px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	font-size: 22px;
+  	border: none;
+  	border-radius: 6px;
+  	cursor: pointer;
+  	white-space: nowrap;
+}
+
+
+
 
 /* 削除ボタン */
 .btn.delete {
   background-color: #E79BB7;
-    color: #FFF;
-    font-weight: bold;
+  color: #FFF;
+  font-weight: bold;
 }
 .btn.delete:hover {
   background-color: #D9769B;
@@ -72,8 +142,8 @@
 /* 更新ボタン */
 .btn.update {
   background-color: #8DA9E0;
-    color: #FFF;
-    font-weight: bold;
+  color: #FFF;
+  font-weight: bold;
 }
 .btn.update:hover {
   background-color: #5F87D2;
@@ -106,3 +176,75 @@ select
 }
 
 
+
+/* 前の戻るボタン */
+.return-buttons {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.return-buttons button[type="button"] {
+  font-size: 25px;
+  background: #6fb1d8;
+  border-radius: 50px;
+  border-bottom: 4px solid #2a7fc1;
+  color: #FFF;
+  font-weight: 600;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 25px 10px 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+    
+/* ＜ を左に表示 */
+.return-buttons button[type="button"]:before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #FFF;
+  border-left: 3px solid #FFF;
+  transform: rotate(-45deg) translateY(48%);
+  position: absolute;
+  top: 48%;
+  left: 20px;
+  border-radius: 1px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+/* キラッとエフェクト用: shineアニメーション */
+.return-buttons button[type="button"]:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background-image: linear-gradient(130deg, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 55%);
+  animation: shine 3s infinite;
+  z-index: 0;
+}
+
+/* クリック時 */
+.return-buttons button[type="button"]:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+}
+
+@keyframes shine {
+  33% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+  
