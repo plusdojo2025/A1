@@ -8,7 +8,7 @@
 <%-- [ 短縮 ] 画像フォルダパス --%>
 <c:set var="imgsPath" value="/assets/imgs" />
 <%-- [ 短縮 ] ユーザーフォルダパス --%>
-<c:set var="mediaPath" value="${imgsPath}/${sessionScope.user_id.user_id}" />
+<c:set var="uploadPath" value="${imgsPath}/upload" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -177,7 +177,7 @@
 	        ></div
 	        ><div class="photos"
 	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${mediaPath}/${visitor.photo1}'/>" 
+	            	src="<c:url value='${uploadPath}/${visitor.photo1}'/>" 
 	                alt="写真1"
 	                width="300"
 	        	/><input type="hidden"
@@ -193,7 +193,7 @@
 	        /></div
 	        ><div class="photos"
 	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${mediaPath}/${visitor.photo2}'/>" 
+	            	src="<c:url value='${uploadPath}/${visitor.photo2}'/>" 
 	                alt="写真2"
 	                width="300"
 	        	/><input type="hidden"
@@ -209,7 +209,7 @@
 	        /></div
 	        ><div class="photos"
 	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${mediaPath}/${visitor.photo3}'/>" 
+	            	src="<c:url value='${uploadPath}/${visitor.photo3}'/>" 
 	                alt="写真3"
 	                width="300"
 	        	/><input type="hidden"
@@ -225,7 +225,7 @@
 	        /></div
 	        ><div class="photos"
 	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${mediaPath}/${visitor.photo4}'/>" 
+	            	src="<c:url value='${uploadPath}/${visitor.photo4}'/>" 
 	                alt="写真4"
 	                width="300"
 	        	/><input type="hidden"
@@ -241,7 +241,7 @@
 	        /></div
 	        ><div class="photos"
 	            ><img <%-- [ 取得 ] メディアパス --%>  
-	            	src="<c:url value='${mediaPath}/${visitor.photo5}'/>" 
+	            	src="<c:url value='${uploadPath}/${visitor.photo5}'/>" 
 	                alt="写真5"
 	                width="300"
 	        	/><input type="hidden"

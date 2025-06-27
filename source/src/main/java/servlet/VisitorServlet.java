@@ -160,15 +160,11 @@ public class VisitorServlet extends HttpServlet {
 //		// [ 本番 ] フルパス指定
 		String proPath = getServletContext().getRealPath(
 				Env.MEDIA_DIR);
-	     // 各ユーザーのフォルダ名（とパス）
-		proPath += loginUser.getUser_id() +"\\";
         System.out.println("本番環境: ");
         System.out.println(proPath);
 		
 //		// [ 開発 ] フルパス指定
 //		String devPath = Env.devPath + Env.MEDIA_DIR;
-//     // 各ユーザーのフォルダ名（とパス）
-//		devPath += loginUser.getUser_id() +"\\";
 //		System.out.println("開発環境: ");
 //		System.out.println(devPath);
         System.out.println();
@@ -260,43 +256,43 @@ public class VisitorServlet extends HttpServlet {
 		};
 		
 		
-		// 各ユーザーのフォルダを作成
-		System.out.println("----------------------------------");
-		System.out.println("● 各ユーザーのフォルダを作成");
-		System.out.println("----------------------------------");
-		System.out.println("ファイルの保存先が存在するか調べます...");
-		try {
-			// 対象となるフォルダパス
-			String target;
-			// [ 本番 ] ユーザーフォルダまでのパス
-			target = proPath;
-//			// [ 開発 ] ユーザーフォルダまでのパス
-//			target = devPath;
-			
-			// [ 取得 ] ファイルオブジェからフォルダ作成する
-			File user_dir = new File(target);
-			
-			// ユーザーのフォルダが無い場合
-			if (user_dir.isDirectory() == false) {
-				// フォルダを作成する
-				user_dir.mkdirs();
-				System.out.println("フォルダを作成しました。");
-			} else {
-				System.out.println("既にフォルダは存在します。");
-			}
-		} catch (SecurityException e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-			
-			System.out.println("フォルダが作成できない為、諸々の操作を却下します。");
-			
-			// [ ロケーション ] VisitorListServlet
-			url = request.getContextPath() + "/VisitorListServlet";
-			
-			// [ 転送 ]  代替の場所（URL）に
-			response.sendRedirect (url);
-		}
-		System.out.println();
+//		// 各ユーザーのフォルダを作成
+//		System.out.println("----------------------------------");
+//		System.out.println("● 各ユーザーのフォルダを作成");
+//		System.out.println("----------------------------------");
+//		System.out.println("ファイルの保存先が存在するか調べます...");
+//		try {
+//			// 対象となるフォルダパス
+//			String target;
+//			// [ 本番 ] ユーザーフォルダまでのパス
+//			target = proPath;
+////			// [ 開発 ] ユーザーフォルダまでのパス
+////			target = devPath;
+//			
+//			// [ 取得 ] ファイルオブジェからフォルダ作成する
+//			File user_dir = new File(target);
+//			
+//			// ユーザーのフォルダが無い場合
+//			if (user_dir.isDirectory() == false) {
+//				// フォルダを作成する
+//				user_dir.mkdirs();
+//				System.out.println("フォルダを作成しました。");
+//			} else {
+//				System.out.println("既にフォルダは存在します。");
+//			}
+//		} catch (SecurityException e) {
+//			// TODO: handle exception
+//			System.out.println(e.getMessage());
+//			
+//			System.out.println("フォルダが作成できない為、諸々の操作を却下します。");
+//			
+//			// [ ロケーション ] VisitorListServlet
+//			url = request.getContextPath() + "/VisitorListServlet";
+//			
+//			// [ 転送 ]  代替の場所（URL）に
+//			response.sendRedirect (url);
+//		}
+//		System.out.println();
 		
 		
 		// [ media ] 複数のファイル保存処理
@@ -372,7 +368,7 @@ public class VisitorServlet extends HttpServlet {
 			String salt = this.getSalt();
 			
 			// [ 連結 ] タイムスタンプ + 拡張子
-			fileName = salt + fileName;
+			fileName = loginUser.getUser_id() + salt + fileName;
 			System.out.println("ファイル名をソルト値に変更しました...");
 			System.out.println("fileName: " + fileName);
 			
