@@ -57,7 +57,7 @@
 			
 			<div class="error-buttons">
 				<%-- <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a> --%>
-				<a href="<c:url value='/PickupRegistServlet'/>" class="btn">場所の登録する</a>
+				<a href="<c:url value='/PickupRegistServlet'/>" class="btn">登録する</a>
 				<%-- <button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>" data-tab="tab2">候補地</button>  --%>
 			</div>
 		</div>
