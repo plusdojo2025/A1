@@ -87,9 +87,8 @@
 	    	method="POST"
 	    	action="<c:url value='/PickupServlet' />"
 	    	class="container-center"
-	        ><div
-	            ><table
-	            	class="table-center"
+	        ><div class="card"
+	            ><table class="table-center"
 					><tr
 						><td
 							><label 
@@ -154,12 +153,10 @@
 	            	class="btn moved	"
 	                >訪問</button
 	        ></div
-	        ><div
-	            ><button
-					type="button"
-	            	>前のリストに戻る</button
-	       	></div
-	    ></form
+	        ><div class="return-buttons"
+	        	><button type="button" onclick="history.back()">前のリストに戻る</button
+	        ></div
+	     ></form
     ></main>
 <!-- メイン(ここまで) -->
 
