@@ -162,7 +162,7 @@ public class VisitorRegistServlet extends HttpServlet {
 			            part.write(uploadPath + File.separator + fileName);
 			            savedFileNames[i] = fileName;
 			        } else {
-			            savedFileNames[i] = null;
+			            savedFileNames[i] = "";
 			        }
 			    }
 			    // 画像保存処理ここまで
