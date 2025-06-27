@@ -82,6 +82,9 @@ public class VisitorRegistServlet extends HttpServlet {
 				// [ 破棄 ] 用済みになった移行データ
 				session.removeAttribute("visitor");
 			}
+			
+			// 候補地に切り替え
+			request.setAttribute("activeTab", "tab1");
 	
 			// 登録ページにフォワードする
 			String view = "/WEB-INF/jsp/visitorRegist.jsp";

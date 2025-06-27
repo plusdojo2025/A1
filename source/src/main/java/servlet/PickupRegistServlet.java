@@ -46,6 +46,9 @@ public class PickupRegistServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
+		
+		// 候補地に切り替え
+		request.setAttribute("activeTab", "tab2");
 
 		// 登録ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/visitorRegist.jsp");

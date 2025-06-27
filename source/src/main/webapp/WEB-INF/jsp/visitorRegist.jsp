@@ -59,12 +59,12 @@
 	<div class="tab_wrap">
     <!--タブメニュー-->
   	<div class="tab_area">
-    <button class="tab_btn active" data-tab="tab1">訪問地</button>
-    <button class="tab_btn" data-tab="tab2">候補地</button> 
+    <button class="tab_btn <c:if test='${activeTab == "tab1"}'>active</c:if>" data-tab="tab1">訪問地</button>
+    <button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>" data-tab="tab2">候補地</button> 
   	</div>  
 	
 	<!-- 訪問地登録 -->
-	<div id="tab1" class="tab_panel active">
+	<div id="tab1" class="tab_panel  <c:if test='${activeTab == "tab1"}'>active</c:if>">
 		<h2>訪問地登録</h2>
 			<form method="POST" action="<c:url value='/VisitorRegistServlet'/>" enctype="multipart/form-data"  id="visitorForm" >
 				<div class="center-form">
@@ -164,7 +164,7 @@
 		</div>
 		
 		<!-- 候補地登録 -->
-		<div id="tab2" class="tab_panel">
+		<div id="tab2" class="tab_panel <c:if test='${activeTab == "tab2"}'>active</c:if>">
 			<h2>候補地登録</h2>
 				<form method="POST" action="<c:url value='/PickupRegistServlet'/>"  id="pickupForm" >
 					<div class="center-form">
