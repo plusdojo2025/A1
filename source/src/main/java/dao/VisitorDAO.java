@@ -632,8 +632,11 @@ public class VisitorDAO extends DAO {
 			visitordto.setThought(rs.getString(
 					"thought"));
 			// 感情ID
-			visitordto.setEmotion_id(
-					rs.getInt("emotion_id"));
+			int emotion_id = rs.getInt("emotion_id");
+			if (emotion_id != 0) {
+				visitordto.setEmotion_id(
+						rs.getInt("emotion_id"));
+			}
 			// 写真１
 			visitordto.setPhoto1(
 					rs.getString("photo1"));
