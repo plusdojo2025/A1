@@ -175,8 +175,8 @@ public class VisitorServlet extends HttpServlet {
 			// 詳細地の削除
 			visitordao.delete(pk);
 			
-			// [ ロケーション ] VisitorListServlet
-			url = request.getContextPath() + "/VisitorListServlet";
+			// [ ロケーション ] ListServlet
+			url = request.getContextPath() + "/ListServlet";
 			// [ 転送 ]  代替の場所（URL）に
 			response.sendRedirect (url);
 			return;
@@ -286,8 +286,8 @@ public class VisitorServlet extends HttpServlet {
 //			
 //			System.out.println("フォルダが作成できない為、諸々の操作を却下します。");
 //			
-//			// [ ロケーション ] VisitorListServlet
-//			url = request.getContextPath() + "/VisitorListServlet";
+//			// [ ロケーション ] ListServlet
+//			url = request.getContextPath() + "/ListServlet";
 //			
 //			// [ 転送 ]  代替の場所（URL）に
 //			response.sendRedirect (url);
