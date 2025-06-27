@@ -17,7 +17,7 @@ public class Env {
 	 * <h4>JSTLで画像ファイルパスを取得するには... </h4>
 	 * <p>< c:url value="/media/ファイル名.拡張子" /></p>
 	 */
-	public static final String MEDIA_DIR = "/assets/imgs/";
+	public static final String MEDIA_DIR = "/assets/imgs/upload/";
 	
 	/**
 	 * <h3>テスト環境（PC）</h3>
