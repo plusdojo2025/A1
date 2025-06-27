@@ -44,7 +44,7 @@ date_acquisition)VALUES
 -- dojouser4 九州(沖縄含む
 (13,8,'dojouser4','2024-10-21'),
 -- dojouser4 都道府県制覇
-(14,9,'dojouser4','2025-02-06');
+(14,9,'dojouser4','2025-05-07');
 
 
 
