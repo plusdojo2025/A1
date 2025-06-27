@@ -12,8 +12,10 @@ main p {
  	}
 
 main summary {
-margin-top: 20px;
-cursor: pointer;
+	margin: 0px auto;
+	width: 80%;
+	margin-top: 20px;
+	cursor: pointer;
 }
 
 .qa{
@@ -27,12 +29,17 @@ cursor: pointer;
 }
 
 .text{
-text-align:left;
-display:inline-block;
-background-color: white;  /* 白背景 */
-padding: 10px;             /* 少し内側に余白 */
-border-radius: 8px;        /* 角丸で柔らかく */
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 軽い影で浮かせる */
-margin-top: 5px;
-width: 100%; /* 親要素内で全幅指定 */
+	text-align:left;
+	display:inline-block;
+	background-color: white;  /* 白背景 */
+	padding: 10px;             /* 少し内側に余白 */
+	border-radius: 8px;        /* 角丸で柔らかく */
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 軽い影で浮かせる */
+	margin-top: 5px;
+	width: 100%; /* 親要素内で全幅指定 */
 }
+
+h1 {
+	text-align: center;
+}
+
