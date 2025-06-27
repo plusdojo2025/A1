@@ -50,34 +50,34 @@
 
 <!-- メイン（ここから） -->
 	<main>
-		<img src="<c:url value='/assets/imgs/icons/kapsel_open.png' />" alt="カプセル画像" width="120">
-
-    <div class="balloon">
         <c:choose>
-            <c:when test="${not empty sessionScope.selectedPickup}">
-                <p>${sessionScope.selectedPickup.pickup_place}</p>
-                <p><strong>地域：${sessionScope.selectedPickup.prefecture_name}</strong> に決定！！</p>
-                <p>メモ：${sessionScope.selectedPickup.remarks}</p>
+            <%-- <c:when test="${not empty sessionScope.selectedPickup}"> --%>
+            <c:when test="${not empty sessionScope.selectedPickup && empty requestScope.errorMessage}">
+            	<img src="<c:url value='/assets/imgs/icons/kapsel_open.png' />" alt="カプセル画像" width="120">
+    			<div class="balloon">
+                	<p>${sessionScope.selectedPickup.pickup_place}</p>
+                	<p><strong>地域：${sessionScope.selectedPickup.prefecture_name}</strong> に決定！！</p>
+                	<p>メモ：${sessionScope.selectedPickup.remarks}</p>
 
-                <p><a class="goto-link" href="<c:url value='/PickupServlet?pk=${sessionScope.selectedPickup.pickup_id}' />">
-					▶ 行きたいリストへ
-				</a></p>
+                	<p><a class="goto-link" href="<c:url value='/PickupServlet?pk=${sessionScope.selectedPickup.pickup_id}' />">
+						▶ 行きたいリストへ
+					</a></p>
+				</div>
             </c:when>
+            
             <c:otherwise>
                 <%-- <p>行きたい場所が登録されていません。</p>
                 <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a> --%>
                 <div class="error-panel">
 				    <img src="<c:url value='/assets/imgs/char/Ojigi.png' />" alt="エラー" class="error-icon" />
-				
 				    <p class="error-message">本日はもう引いています。</p>
-				
 				    <div class="error-buttons">
 				        <a href="<c:url value='/GachaResultServlet'/>" class="link">結果を確認する</a>
 				    </div>
 				</div>
             </c:otherwise>
         </c:choose>
-    </div>
+    
     <div class="returned-buttons">
 			<a href="<c:url value='/HomeServlet'/>">ホームに戻る</a>
 	</div>

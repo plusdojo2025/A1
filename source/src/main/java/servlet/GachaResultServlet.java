@@ -43,6 +43,13 @@ public class GachaResultServlet extends HttpServlet {
             return;
         }
         
+        Boolean alreadyPicked = (Boolean) session.getAttribute("alreadyPickedToday");
+    	if (alreadyPicked != null && alreadyPicked) {
+    	    session.removeAttribute("alreadyPickedToday"); // 一度だけ表示するため削除
+    	    request.setAttribute("errorMessage", "本日はすでにガチャを引いています。");
+    	}
+
+        
         //ガチャ結果を取得するためのDAOを実行する
         GachaDAO dao = new GachaDAO();
         PickupDTO result = dao.getTodayResult(user.getUser_id());

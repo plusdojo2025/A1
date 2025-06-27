@@ -61,9 +61,13 @@ public class GachaServlet extends HttpServlet {
 		// 1日1回制限の確認
         boolean hasDrawnToday = gachaDao.hasDrawnToday(user.getUser_id());
         if (hasDrawnToday) {
-        	System.out.println("ガチャサーブレットからgachaResult.jspに飛ぶよ");
-            request.setAttribute("errorMessage", "本日はすでにガチャを引いています。");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaResult.jsp");
+//        	System.out.println("ガチャサーブレットからgachaResult.jspに飛ぶよ");
+//            request.setAttribute("errorMessage", "本日はすでにガチャを引いています。");
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaResult.jsp");
+//            dispatcher.forward(request, response);
+//            return;
+        	session.setAttribute("alreadyPickedToday", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/gachaLoading.jsp");
             dispatcher.forward(request, response);
             return;
         }
