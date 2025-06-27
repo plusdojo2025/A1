@@ -1,10 +1,10 @@
 package servlet;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -30,11 +30,10 @@ import dto.VisitorDTO;
  * Servlet implementation class VisitorRegistServlet
  */
 @MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024,      // 1MB
-	    maxFileSize = 1024 * 1024 * 5,        // 5MBまでのファイル
-	    maxRequestSize = 1024 * 1024 * 25     // 合計25MB
-	)
-
+		//アップロードされたファイルが
+		// 一時的に保存されるディレクトリのパス。
+	  location=""
+)
 @WebServlet("/VisitorRegistServlet")
 public class VisitorRegistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -116,14 +115,14 @@ public class VisitorRegistServlet extends HttpServlet {
 			    String thought = request.getParameter("thought");
 
 			    System.out.println("ログインユーザーID: " + user_id);
-			    System.out.println("都道府県ID: " + start_date_str);
-			    System.out.println("場所: " + end_date_str);
-			    System.out.println("場所: " + title);
-			    System.out.println("場所: " + prefecture_id_str);
+			    System.out.println("初日: " + start_date_str);
+			    System.out.println("終日: " + end_date_str);
+			    System.out.println("お題: " + title);
+			    System.out.println("都道府県ID: " + prefecture_id_str);
 			    System.out.println("場所: " + visitor_place);
-			    System.out.println("場所: " + componion);
-			    System.out.println("場所: " + emotion_id_str);
-			    System.out.println("場所: " + thought);
+			    System.out.println("同行者: " + componion);
+			    System.out.println("感情ID: " + emotion_id_str);
+			    System.out.println("感想: " + thought);
 
 			 // 入力値の保持用
 			    request.setAttribute("user_id", user_id);
@@ -136,14 +135,18 @@ public class VisitorRegistServlet extends HttpServlet {
 			    request.setAttribute("emotion_id", emotion_id_str);
 			    request.setAttribute("thought", thought);
 			    
-			 // 画像保存処理ここから
-			    String uploadPath = getServletContext().getRealPath("/uploads");
-			    File uploadDir = new File(uploadPath);
-			    if (!uploadDir.exists()) {
-			        uploadDir.mkdirs();
-			    }
-
+			    // 画像保存処理ここから
+			    // フルパス指定
+			    String fileFullPath;
+			    
+			    // [ 本番 ] フルパス指定
+			    String uploadPath = getServletContext().getRealPath(
+			    		Env.MEDIA_DIR);
+			    
+			    // アップロードするファイル名がここに
 			    String[] savedFileNames = new String[5];
+			    
+			    // [ 取得 ] ファイルデータ
 			    Part[] parts = {
 			        request.getPart("photo1"),
 			        request.getPart("photo2"),
@@ -152,19 +155,69 @@ public class VisitorRegistServlet extends HttpServlet {
 			        request.getPart("photo5")
 			    };
 
+				// [ media ] 複数のファイル保存処理
+				System.out.println("----------------------------------");
+				System.out.println("■ [ media ] 複数ファイルの処理");
+				System.out.println("----------------------------------");
 			    for (int i = 0; i < parts.length; i++) {
-			        Part part = parts[i];
-			        if (part != null && part.getSize() > 0) {
-			            String submittedFileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-			            String extension = submittedFileName.substring(submittedFileName.lastIndexOf("."));
-			            String fileName = user_id + "_" + System.currentTimeMillis() + "_" + (i + 1) + extension;
-
-			            part.write(uploadPath + File.separator + fileName);
-			            savedFileNames[i] = fileName;
-			        } else {
-			            savedFileNames[i] = "";
-			        }
+					// [ 短縮 ] ファイルオブジェの取得
+					Part part = parts[i];
+					// 初期化（空文字）
+					savedFileNames[i] = "";
+					
+					
+					System.out.println("----------------------------------");
+					System.out.println("● [ part ] " + part.getName());
+					System.out.println("----------------------------------");
+					
+					// [ 抽出 ] ファイル名.拡張子
+					String fileName = this.getFileName(part);
+					
+					// [ 判定 ] ファイル名が無いなら
+					if (fileName.isEmpty()) {
+						System.out.println("ファイルデータはありません...\n");
+						continue;
+					}
+					
+					// ----------------------------------
+					// ★ 画像ファイルの作成の準備
+					// ----------------------------------
+					// [ 抽出 ] ドット付き拡張子
+					fileName = fileName.substring(
+							fileName.lastIndexOf("."));
+					System.out.printf(
+							"拡張子「%s」を抽出しました...\n",
+							fileName);
+					
+					// [ 取得 ] タイムスタンプ（ソルト値に該当）
+					String salt = this.getSalt();
+					
+					// [ 連結 ] タイムスタンプ + 拡張子
+					fileName = user_id + salt + fileName;
+					System.out.println("ファイル名をソルト値に変更しました...");
+					System.out.println("fileName: " + fileName);
+					
+					try {
+						// [ 調整 ] ファイル書き込み時のソルト値の為に
+						Thread.sleep(1500);
+						System.out.println("時間の調整が終わりました...");
+						
+						// 新規ファイルフルパス
+						fileFullPath = uploadPath + fileName;
+						
+						// 場所（location） は フルパス で指定してある
+						System.out.println("ファイル書き起こし中...");
+						part.write(fileFullPath);
+						System.out.println("ファイルの書き込みが終了しました。\n");
+						
+						// [ セット ] 更新するファイル名
+						savedFileNames[i] = fileName;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println(e.getMessage());
+					}
 			    }
+				System.out.println("----------------------------------");
 			    // 画像保存処理ここまで
 
 			    // start_date と end_date を Date 型に変換
@@ -189,12 +242,12 @@ public class VisitorRegistServlet extends HttpServlet {
 				}
 
 			    // emotion_id を int 型に変換
-			    int emotion_id = 0;
+			    int emotion_id = -1;
 			    if (emotion_id_str != null && !emotion_id_str.isEmpty()) {
 			        try {
 			            emotion_id = Integer.parseInt(emotion_id_str);
 			        } catch (NumberFormatException e) {
-			            emotion_id = 0;
+			        	System.out.println(e.getMessage());
 			        } 
 			    }
 
@@ -216,9 +269,6 @@ public class VisitorRegistServlet extends HttpServlet {
 			        return;
 			    }
 
-			   // int prefecture_id = Integer.parseInt(prefecture_id_str);
-			    
-				
 			    // DTOにセット
 			    VisitorDTO dto = new VisitorDTO(0, user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id,
 			    	    savedFileNames[0], savedFileNames[1], savedFileNames[2], savedFileNames[3], savedFileNames[4]);
@@ -247,7 +297,7 @@ public class VisitorRegistServlet extends HttpServlet {
 
 			    if (success) {
 			        // 成功：登録画面へリダイレクト（リセットされた状態）
-					response.sendRedirect(request.getContextPath() + "/PickupRegistServlet");
+					response.sendRedirect(request.getContextPath() + "/VisitorRegistServlet");
 			    } else {
 			        // 失敗：入力値保持して戻る
 			        request.setAttribute("errorMessage", "登録に失敗しました。もう一度お試しください。");
@@ -256,4 +306,67 @@ public class VisitorRegistServlet extends HttpServlet {
 			    }
 			}
 
+	
+	
+	
+
+	/**
+	 * ファイルの名前を取得する
+	 * @param [ Part ] 受信したファイルデータ
+	 * @return [ String ] ファイル名.拡張子
+	 */
+	private String getFileName(Part part) {
+        String name = null;
+		System.out.println("ファイル名.拡張子 を取得します...");
+        // Content-Disposition: form-data; name="fieldName"; filename="filename.jpg"
+        // 複数の引数は　セミコロン で区切ります。
+        for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+        	// filename パラメーター なら
+            if (dispotion.trim().startsWith("filename")) {
+				System.out.println("ファイル名.拡張子 の抽出中...");
+            	// パラメータから filename.jpg を抽出する
+                name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+                // ファイル名までのパスを切り捨てる
+                name = name.substring(name.lastIndexOf("\\") + 1);
+				System.out.println("抽出完了しました...");
+                break;
+            }
+        }
+        System.out.println("filename: " + name);
+        System.out.println();
+        
+		return name;
+	}
+	
+	/**
+	 * 取得したタイムスタンプをソルト値として返す
+	 * 目的: ファイルアクセスを困難にすること
+	 * @return [ String ] タイムスタンプ文字列
+	 */
+	private String getSalt() {
+		// ソルト値
+		String salt;
+		
+		// [ 取得 ] ローカル時間
+		LocalDateTime now  = LocalDateTime.now();
+		
+		// [ 設定 ] 日時の表示形式を指定
+		DateTimeFormatter  dtf = DateTimeFormatter.ofPattern(
+        		"yyyy_MM_dd_HH_mm_ss");
+        
+        // [ デバッグ ] 日時を取得
+        System.out.println("現在時刻: " + now);
+        
+        // [ 変換 ] 日時を文字列に
+        salt = dtf.format(now);
+		System.out.println("ソルト: " + salt);
+		System.out.println();
+        
+		// ソルト値としてタイムスタンプ文字列を返す
+		return salt;
+	}
+	
+	
+	
+	
 }

@@ -301,11 +301,44 @@ public class VisitorDAO extends DAO {
 					"root","password");
 
             // SQL文の準備
-            String sql = "INSERT INTO visitors "
-                    + "(user_id, title, componion, start_date, end_date, prefecture_id, visitor_place, thought, emotion_id, photo1, photo2, photo3, photo4, photo5) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+            String sql = """
+            		INSERT INTO 
+            			visitors
+            		(user_id, 
+            		title, 
+            		componion, 
+            		start_date, 
+            		end_date,
+            		prefecture_id, 
+            		visitor_place, 
+            		thought, 
+            		emotion_id, 
+            		photo1, 
+            		photo2, 
+            		photo3, 
+            		photo4, 
+            		photo5)
+            		VALUES (
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?, 
+            			?);
+            		""";
+            
+            
             ps = conn.prepareStatement(sql);
+
+            // [ バインド ] 挿入値
             ps.setString(1, dto.getUser_id());
             ps.setString(2, dto.getTitle());
             ps.setString(3, dto.getComponion());
@@ -314,7 +347,14 @@ public class VisitorDAO extends DAO {
             ps.setInt(6, dto.getPrefecture_id());
             ps.setString(7, dto.getVisitor_place());
             ps.setString(8, dto.getThought());
-            ps.setInt(9, dto.getEmotion_id());
+            
+            // 感情選択されていないなら「null」
+            if (dto.getEmotion_id() != -1) {
+            	ps.setInt(9, dto.getEmotion_id());
+            } else {
+            	ps.setNull(9, 0);
+            }
+            
             ps.setString(10, dto.getPhoto1());
             ps.setString(11, dto.getPhoto2());
             ps.setString(12, dto.getPhoto3());
