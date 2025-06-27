@@ -44,7 +44,7 @@
 	 		<div class="date-badge">
 	 			<!-- 日付が文字列なので0番目から10文字取ってくる -->
 	 			${fn:substring(k.badgeAcquiredDate,0,10)}
-	 			　<span>${k.badge_name}</span>地方制覇
+	 			　<span>${k.badge_name}</span>
 	 		</div>
 	 	</c:if>
 	 </c:forEach>
