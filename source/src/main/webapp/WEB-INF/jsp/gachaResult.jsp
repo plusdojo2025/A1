@@ -60,7 +60,7 @@
                 	<p>メモ：${sessionScope.selectedPickup.remarks}</p>
 
                 	<p><a class="goto-link" href="<c:url value='/PickupServlet?pk=${sessionScope.selectedPickup.pickup_id}' />">
-						▶ 行きたいリストへ
+						▶ 候補地リストへ
 					</a></p>
 				</div>
             </c:when>

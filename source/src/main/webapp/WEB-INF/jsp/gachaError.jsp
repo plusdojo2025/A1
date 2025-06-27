@@ -51,24 +51,14 @@
 
 <!-- メイン（ここから） -->
 	<main>
-		<%-- <div class="error-panel center">
-			<img src="<c:url value='/assets/imgs/char/Ojigi.png'/>" alt="エラー" class="error-icon" />
-			<p class="error-message">${errorMsg}</p>
-			<div class="error-buttons">
-			  <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a>
-			
-			<p>行きたい場所が登録されていません。</p>
-			      <a href="<c:url value='/PickupRegistServlet' />">場所を登録する</a>
-			</div>
-		</div> --%>
-		
 		<div class="error-panel">
 			<img src="<c:url value='/assets/imgs/char/Ojigi.png'/>" alt="エラー" class="error-icon" />
-			<p class="error-message">行きたい場所が登録されていません。</p>
+			<p class="error-message">候補地が登録されていません。</p>
 			
 			<div class="error-buttons">
 				<%-- <a href="<c:url value='/HomeServlet'/>" class="btn">ホームへ戻る</a> --%>
-				<a href="<c:url value='/PickupRegistServlet'/>" class="btn">場所を登録する</a>
+				<a href="<c:url value='/PickupRegistServlet'/>" class="btn">場所の登録する</a>
+				<%-- <button class="tab_btn <c:if test='${activeTab == "tab2"}'>active</c:if>" data-tab="tab2">候補地</button>  --%>
 			</div>
 		</div>
 		
