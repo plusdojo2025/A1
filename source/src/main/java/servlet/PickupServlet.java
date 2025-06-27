@@ -185,8 +185,8 @@ public class PickupServlet extends HttpServlet {
 			break;
 		
 		case "DeleteButton":
-			// [ ロケーション ] VisitorRegistServlet
-			url = request.getContextPath() + "/VisitorListServlet";
+			// [ ロケーション ] ListServlet
+			url = request.getContextPath() + "/ListServlet";
 			
 			// [ 削除 ] 候補地のレコード
 			pickupdao.delete(pk);
