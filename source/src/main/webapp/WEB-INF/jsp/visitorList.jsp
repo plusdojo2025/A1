@@ -7,7 +7,7 @@
 <%-- [ 短縮 ] 画像フォルダパス --%>
 <c:set var="imgsPath" value="/assets/imgs" />
 <%-- [ 短縮 ] ユーザーフォルダパス --%>
-<c:set var="mediaPath" value="/media/${sessionScope.user_id.user_id}" />
+<c:set var="uploadPath" value="${imgsPath}/upload" />
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -88,7 +88,7 @@
 						<c:forEach var="visitor" items="${visitorList}">
 							<a href="<c:url value='/VisitorServlet?pk=${visitor.visitor_id}' />">
 								<div class="card link-card"
-           							style="background-image: url('<c:url value="${mediaPath}/${visitor.photo1}" />');
+           							style="background-image: url('<c:url value="${uploadPath}/${visitor.photo1}" />');
            							background-size: cover;
            							background-position: center;
            							color: #fff;">
