@@ -101,7 +101,6 @@ select {
 /* 入力フォーム */
 .form-group {
 	width: 100%;
-	max-width: 400px; /* 入力欄の幅を揃える */
 	margin-bottom: 15px;
 }
 	
